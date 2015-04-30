@@ -1,0 +1,18 @@
+<md-bottom-sheet class="md-list md-has-header game-bottom-sheet">
+
+    <md-subheader>
+        <span class="name">时间段选择</span>
+    </md-subheader>
+
+    <md-list>
+        <md-item ng-repeat="item in ts.items">
+            <md-button ng-click="ts.performAction(item)" class="btn-btm-time" ng-class="{'md-primary md-raised': item.primary}" id="{{item.el_id}}" ng-model="dates">
+                <md-icon md-svg-icon="{{item.icon_url}}"></md-icon>
+                {{item.name}}
+            </md-button>
+        </md-item>
+    </md-list>
+	
+	<input type="text" ng-if="ts.showDateRangePicker" date-range-picker ng-model="dates" ranged="true" custom-select-options="ul.rangeSelectOptions" control="dateRangePickerControl"/>
+
+</md-bottom-sheet>

@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>GIANT DMP</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+
+    <!--<link rel='stylesheet' href='assets/googlefont.css'>-->
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
+	<link rel="stylesheet" href="./bower_components/angular-date-range-picker/build/angular-date-range-picker.css">
+	<link rel="stylesheet" href="./bower_components/angular-native-picker/build/themes/default.date.css">
+    <link rel="stylesheet" href="assets/app.css"/>
+</head>
+
+<body ng-app="starterApp" layout="column" ng-controller="UserController as ul">
+
+<!-- 顶部导航条 ↓ -->
+<md-toolbar layout="row" class="game-head-nav" md-is-locked-open>
+    <!-- 菜单按钮 ↓ -->
+    <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show Game List">
+        <md-icon md-svg-icon="menu"></md-icon>
+    </md-button>
+    <!-- 菜单按钮 ↑ -->
+
+    <!-- logo ↓ -->
+    <md-button class="md-primary" ng-click="ul.selectTotal()" aria-label="select total">
+        <img src="assets/images/giant_logo.jpg" class="toolbar_logo">
+    </md-button>
+    <!-- logo ↑ -->
+
+    <span flex></span>
+
+    <!-- 用户管理按钮 ↓ -->
+    <md-button class="menu md-icon-button" ng-click="ul.toggleUserCtrl()" aria-label="Show User Administration">
+        <md-icon md-svg-icon="user"></md-icon>
+    </md-button>
+    <!-- 用户管理按钮 ↑ -->
+</md-toolbar>
+<!-- 顶部导航条 ↑ -->
+
+
+<div flex layout="row">
+    <!-- 游戏列表导航 ↓ -->
+    <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z1 game-sidenav" md-component-id="left">
+        <md-list>
+            <md-list ng-repeat="game in ul.users">
+                <h3 class="md-title game-type">{{game.type}}</h3>
+                <md-list ng-repeat="it in game.gamelist track by $index">
+                    <md-button class="game-list-button" ng-click="ul.selectUser(it)" ng-class="{'game-selected' : it === ul.selected }">
+                        <!--<md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>-->
+                        <md-icon md-svg-icon="next" class="next-icon"></md-icon>
+                        <span class="game-list-span" ng-class="{'game-name-selected' : it === ul.selected}">{{it.name}}</span>
+                    </md-button>
+                </md-list>
+            </md-list>
+        </md-list>
+    </md-sidenav>
+    <!-- 游戏列表导航 ↑ -->
+
+    <div flex layout="column" id="right-content">
+		<!-- 游戏名称 时间选择 子头部 -->
+        <md-subheader class="game-subheader">
+            <span class="subheader-game-name" id="subheader-game-name-title">总览</span>
+            <span hide-sm class="subheader-time-pc">
+				<span ng-repeat="item in ul.timeItems">
+					<md-button ng-click="ul.performAction(item)" class="md-raised btn-time" ng-class="{'md-primary': item.primary}" id="{{item.el_pc_id}}" ng-model="dates">
+						{{item.name}}
+					</md-button>
+				</span>
+            </span>
+            <span hide-gt-sm class="subheader-time">
+                <md-button class="menu md-icon-button btn-calendar" ng-click="ul.toggleTimePanel($event)" aria-label="Show time choosing when in mobile mode">
+                    <md-icon md-svg-icon="calendar"></md-icon>
+                </md-button>
+            </span>
+        </md-subheader>
+		
+		
+		<div ng-if="!ul.selected" layout="column" class="content">
+			<div layout="row" layout-sm="column" class="content-part1">
+				<md-card flex flex-order='1' class="game-data-card">
+					<div class="game-data-card-header"><span class="card-header-title">收益</span></div>
+					<md-card-content class="game-data-card-content">
+						<div class="game-data-card-inner">
+							<div>
+								<div class="game-data-card-content-row">
+									<span class="trend-title">收入</span>
+									<!--<span class="trend-chart-indicator">-->
+                                    <md-button ng-click="ul.showTrend($event)">
+                                        <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+										<span class="trend-icon">
+											<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+											<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+											<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+										</span>
+                                    </md-button>
+								</div>
+								<div class="game-data-card-content-row">
+                                    <md-button ng-click="ul.showDist($event)">
+                                        <span class="data-literal">77777777</span>
+                                        <span class="data-rech-select-unit" stop-event>
+                                            <md-select id="currency-unit-sel" placeholder="选择货币单位" ng-model="someVal">
+                                                <md-option value="1" ng-selected="true">RMB</md-option>
+                                                <md-option value="2">韩元</md-option>
+                                                <md-option value="3">越南盾</md-option>
+                                                <md-option value="4">美元</md-option>
+                                            </md-select>
+                                        </span>
+                                    </md-button>
+								</div>
+								<div class="game-data-card-content-row">
+									<span class="topgame">最高：《</span><span class="topgame">征途2</span><span class="topgame">》</span>
+								</div>
+							</div>
+						</div>
+					</md-card-content>
+				</md-card>
+				
+				<md-card flex flex-order='1' class="game-data-card">
+					<div class="game-data-card-header"><span class="card-header-title">在线</span></div>
+					<md-card-content class="game-data-card-content">
+						<div class="game-data-card-inner">
+							<div>
+								<div class="game-data-card-content-row">
+									<span class="trend-title">最高在线</span>
+									<!--<span class="trend-chart-indicator">-->
+                                    <md-button ng-click="ul.showTrend($event)">
+										<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+										<span class="trend-icon">
+											<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+											<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+											<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+										</span>
+									</md-button>
+								</div>
+								<div class="game-data-card-content-row">
+                                    <md-button ng-click="ul.showDist($event)">
+                                        <span class="data-literal">77777777</span>
+                                        <span class="data-literal-unit">人</span>
+                                    </md-button>
+								</div>
+								<div class="game-data-card-content-row">
+									<span class="topgame">最高：《</span><span class="topgame">征途2</span><span class="topgame">》</span>
+								</div>
+							</div>
+						</div>
+						<md-divider class="game-data-card-divider"></md-divider>
+						<div class="game-data-card-online">
+							<div class="game-data-card-content-row">
+								<span class="trend-title">当前在线</span>
+							</div>
+							<div class="game-data-card-content-row">
+                                <md-button ng-click="ul.showDist($event)">
+                                    <span class="data-sub-literal">12765231</span>
+                                    <span class="data-literal-unit">人</span>
+                                </md-button>
+							</div>
+							<div class="game-data-card-content-row">
+								<span class="topgame">最高：《</span><span class="topgame">征途2</span><span class="topgame">》</span>
+							</div>
+						</div>
+					</md-card-content>
+				</md-card>
+			</div>
+			
+			
+			
+			<div layout="row" layout-sm="column" class="content-part2">
+				<md-card flex flex-order='1' class="game-data-card">
+					<div class="game-data-card-header"><span class="card-header-title">人数</span></div>
+					<md-card-content class="game-data-card-content">
+						<div layout="row" layout-sm="column">
+							<div flex flex-order="1" layout="column">
+								<div flex flex-order='1' class="border-right">
+									<div class="game-data-card-inner">
+										<div>
+											<div class="game-data-card-content-row">
+												<span class="trend-title">净新增付费用户数</span>
+												<!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="ul.showTrend($event)">
+													<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+													<span class="trend-icon">
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+													</span>
+												</md-button>
+											</div>
+											<div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-literal">77777777</span>
+                                                    <span class="data-literal-unit">人</span>
+                                                </md-button>
+											</div>
+											<div class="game-data-card-content-row">
+												<span class="topgame">最高：《</span><span class="topgame">征途2</span><span class="topgame">》</span>
+											</div>
+										</div>
+									</div>
+									
+									<md-divider class="game-data-card-divider-hide-sm"></md-divider>
+									
+									<div layout="row" layout-sm="column">
+										<div flex flex-order="1" class="border-right">
+											<div class="game-data-card-inner game-data-card-inner2">
+												<div>
+													<div class="game-data-card-content-row">
+														<span class="trend-title">付费用户数</span>
+														<!--<span class="trend-chart-indicator">-->
+                                                        <md-button ng-click="ul.showTrend($event)">
+															<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+															<span class="trend-icon">
+																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+																<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+															</span>
+														</md-button>
+													</div>
+													<div class="game-data-card-content-row">
+                                                        <md-button ng-click="ul.showDist($event)">
+														    <span class="data-sub-literal">77777777</span>
+														    <span class="data-literal-unit">人</span>
+                                                        </md-button>
+													</div>
+													<div class="game-data-card-content-row">
+														<span class="topgame">最高：《</span><span class="topgame">征途2</span><span class="topgame">》</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div flex flex-order="2">
+											<div class="game-data-card-inner game-data-card-inner2">
+												<div>
+													<div class="game-data-card-content-row">
+														<span class="trend-title">新增付费用户数</span>
+														<!--<span class="trend-chart-indicator">-->
+                                                        <md-button ng-click="ul.showTrend($event)">
+															<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+															<span class="trend-icon">
+																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+																<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+															</span>
+														</md-button>
+													</div>
+													<div class="game-data-card-content-row">
+                                                        <md-button ng-click="ul.showDist($event)">
+														    <span class="data-sub-literal">77777777</span>
+														    <span class="data-literal-unit">人</span>
+                                                        </md-button>
+													</div>
+													<div class="game-data-card-content-row">
+														<span class="topgame">最高：《</span><span class="topgame">征途2</span><span class="topgame">》</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<md-divider class="game-data-card-divider-hide-sm"></md-divider>
+											
+									<div layout="row" layout-sm="column">
+										<div flex flex-order="1" class="border-right">
+											<div class="game-data-card-inner game-data-card-inner2">
+												<div>
+													<div class="game-data-card-content-row">
+														<span class="trend-title">流失付费用户数</span>
+														<!--<span class="trend-chart-indicator">-->
+                                                        <md-button ng-click="ul.showTrend($event)">
+															<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+															<span class="trend-icon">
+																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+																<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+															</span>
+														</md-button>
+													</div>
+													<div class="game-data-card-content-row">
+                                                        <md-button ng-click="ul.showDist($event)">
+                                                            <span class="data-sub-literal">77777777</span>
+                                                            <span class="data-literal-unit">人</span>
+                                                        </md-button>
+													</div>
+													<div class="game-data-card-content-row">
+														<span class="topgame">最高：《</span><span class="topgame">征途2</span><span class="topgame">》</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div flex flex-order="2">
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							
+						
+							<div flex flex-order="2" layout="column">
+								<div flex flex-order='1'>
+									<md-divider class="game-data-card-divider-sm"></md-divider>
+									
+									<div class="game-data-card-inner">
+										<div>
+											<div class="game-data-card-content-row">
+												<span class="trend-title">净新增用户数</span>
+												<!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="ul.showTrend($event)">
+													<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+													<span class="trend-icon">
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+													</span>
+												</md-button>
+											</div>
+											<div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+												    <span class="data-literal">77777777</span>
+												    <span class="data-literal-unit">人</span>
+                                                </md-button>
+											</div>
+											<div class="game-data-card-content-row">
+												<span class="topgame">最高：《</span><span class="topgame">征途2</span><span class="topgame">》</span>
+											</div>
+										</div>
+									</div>
+									
+									<md-divider class="game-data-card-divider-hide-sm"></md-divider>
+									
+									<div layout="row" layout-sm="column">
+										<div flex flex-order="1" class="border-right">
+											<div class="game-data-card-inner game-data-card-inner2">
+												<div>
+													<div class="game-data-card-content-row">
+														<span class="trend-title">活跃用户数</span>
+														<!--<span class="trend-chart-indicator">-->
+                                                        <md-button ng-click="ul.showTrend($event)">
+															<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+															<span class="trend-icon">
+																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+																<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+															</span>
+														</md-button>
+													</div>
+													<div class="game-data-card-content-row">
+                                                        <md-button ng-click="ul.showDist($event)">
+                                                            <span class="data-sub-literal">77777777</span>
+                                                            <span class="data-literal-unit">人</span>
+                                                        </md-button>
+													</div>
+													<div class="game-data-card-content-row">
+														<span class="topgame">最高：《</span><span class="topgame">征途2</span><span class="topgame">》</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div flex flex-order="2">
+											<div class="game-data-card-inner game-data-card-inner2">
+												<div>
+													<div class="game-data-card-content-row">
+														<span class="trend-title">新增用户数</span>
+														<!--<span class="trend-chart-indicator">-->
+                                                        <md-button ng-click="ul.showTrend($event)">
+															<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+															<span class="trend-icon">
+																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+																<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+															</span>
+														</md-button>
+													</div>
+													<div class="game-data-card-content-row">
+                                                        <md-button ng-click="ul.showDist($event)">
+														    <span class="data-sub-literal">77777777</span>
+														    <span class="data-literal-unit">人</span>
+                                                        </md-button>
+													</div>
+													<div class="game-data-card-content-row">
+														<span class="topgame">最高：《</span><span class="topgame">征途2</span><span class="topgame">》</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<md-divider class="game-data-card-divider-hide-sm"></md-divider>
+									
+									<div layout="row" layout-sm="column">
+										<div flex flex-order="1" class="border-right">
+											<div class="game-data-card-inner game-data-card-inner2">
+												<div>
+													<div class="game-data-card-content-row">
+														<span class="trend-title">流失用户数</span>
+														<!--<span class="trend-chart-indicator">-->
+                                                        <md-button ng-click="ul.showTrend($event)">
+															<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+															<span class="trend-icon">
+																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+																<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+															</span>
+														</md-button>
+													</div>
+													<div class="game-data-card-content-row">
+                                                        <md-button ng-click="ul.showDist($event)">
+                                                            <span class="data-sub-literal">77777777</span>
+                                                            <span class="data-literal-unit">人</span>
+                                                        </md-button>
+													</div>
+													<div class="game-data-card-content-row">
+														<span class="topgame">最高：《</span><span class="topgame">征途2</span><span class="topgame">》</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div flex flex-order="2">
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</md-card-content>
+				</md-card>
+			</div>
+		</div>
+		
+		
+		
+
+		
+		
+		
+		
+		
+		<!-- 选择某个游戏 -->
+		<div ng-if="ul.selected" layout="column" class="content">
+			<div layout="row" layout-sm="column" class="content-part1-1">
+				<md-card flex flex-order='1' class="game-data-card">
+					<div class="game-data-card-header"><span class="card-header-title">收益</span></div>
+					<md-card-content class="game-data-card-content">
+						<div class="game-data-card-inner">
+							<div>
+								<div class="game-data-card-content-row">
+									<span class="trend-title">收入</span>
+									<!--<span class="trend-chart-indicator">-->
+                                    <md-button ng-click="ul.showTrend($event)">
+                                        <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+										<span class="trend-icon">
+											<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+											<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+											<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+										</span>
+                                    </md-button>
+								</div>
+								<div class="game-data-card-content-row">
+                                    <md-button ng-click="ul.showDist($event)">
+                                        <span class="data-literal">77777777</span>
+                                        <span class="data-rech-select-unit" stop-event>
+                                            <md-select id="spec-currency-unit-sel" placeholder="选择货币单位" ng-model="someVal">
+                                                <md-option value="1" ng-selected="true">RMB</md-option>
+                                                <md-option value="2">韩元</md-option>
+                                                <md-option value="3">越南盾</md-option>
+                                                <md-option value="4">美元</md-option>
+                                            </md-select>
+                                        </span>
+                                    </md-button>
+								</div>
+							</div>
+						</div>
+                        <md-divider class="game-data-card-divider"></md-divider>
+                        <div layout="row" layout-sm="column">
+                            <div flex flex-order="1" class="game-data-card-rech-adt border-right-dotted">
+                                <div class="game-data-card-content-row">
+                                    <span class="trend-title">ARPU</span>
+                                </div>
+                                <div class="game-data-card-content-row">
+                                    <md-button ng-click="ul.showDist($event)">
+                                        <span class="data-sub-literal">12765231</span>
+                                        <span class="data-literal-unit" id="spec-arpu-unit">RMB/人</span>
+                                    </md-button>
+                                </div>
+                            </div>
+                            <div flex flex-order="2" class="game-data-card-rech-adt">
+                                <div class="game-data-card-content-row">
+                                    <span class="trend-title">付费比</span>
+                                </div>
+                                <div class="game-data-card-content-row">
+                                    <md-button ng-click="ul.showDist($event)">
+                                        <span class="data-sub-literal">68</span>
+                                        <span class="data-literal-unit">%</span>
+                                    </md-button>
+                                </div>
+                            </div>
+                        </div>
+					</md-card-content>
+				</md-card>
+				
+				<md-card flex flex-order='1' class="game-data-card">
+					<div class="game-data-card-header"><span class="card-header-title">在线</span></div>
+					<md-card-content class="game-data-card-content">
+						<div class="game-data-card-inner">
+							<div>
+								<div class="game-data-card-content-row">
+									<span class="trend-title">最高在线</span>
+									<!--<span class="trend-chart-indicator">-->
+                                    <md-button ng-click="ul.showTrend($event)">
+										<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+										<span class="trend-icon">
+											<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+											<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+											<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+										</span>
+									</md-button>
+								</div>
+								<div class="game-data-card-content-row">
+                                    <md-button ng-click="ul.showDist($event)">
+                                        <span class="data-literal">77777777</span>
+                                        <span class="data-literal-unit">人</span>
+                                    </md-button>
+								</div>
+							</div>
+						</div>
+						<md-divider class="game-data-card-divider"></md-divider>
+						<div class="game-data-card-rech-adt">
+							<div class="game-data-card-content-row">
+								<span class="trend-title">当前在线</span>
+							</div>
+							<div class="game-data-card-content-row">
+                                <md-button ng-click="ul.showDist($event)">
+                                    <span class="data-sub-literal">12765231</span>
+                                    <span class="data-literal-unit">人</span>
+                                </md-button>
+							</div>
+						</div>
+					</md-card-content>
+				</md-card>
+			</div>
+			
+			
+			
+			<div layout="row" layout-sm="column" class="content-part1-2">
+				<md-card flex flex-order='1' class="game-data-card">
+					<div class="game-data-card-header"><span class="card-header-title">人数</span></div>
+					<md-card-content class="game-data-card-content">
+						<div layout="row" layout-sm="column">
+
+							<div flex flex-order="1" layout="column">
+								<div flex flex-order='1' class="border-right">
+									<div class="game-data-card-inner">
+										<div>
+											<div class="game-data-card-content-row">
+												<span class="trend-title">净新增付费用户数</span>
+												<!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="ul.showTrend($event)">
+													<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+													<span class="trend-icon">
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+													</span>
+												</md-button>
+											</div>
+											<div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-literal">77777777</span>
+                                                    <span class="data-literal-unit">人</span>
+                                                </md-button>
+											</div>
+										</div>
+									</div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='2' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">付费用户数</span>
+                                                <!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="ul.showTrend($event)">
+                                                    <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+													<span class="trend-icon">
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+													</span>
+                                                </md-button>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">77777777</span>
+                                                    <span class="data-literal-unit">人</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='3' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">新增付费用户数</span>
+                                                <!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="ul.showTrend($event)">
+                                                    <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+													<span class="trend-icon">
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+													</span>
+                                                </md-button>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">77777777</span>
+                                                    <span class="data-literal-unit">人</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='4' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">流失付费用户数</span>
+                                                <!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="ul.showTrend($event)">
+                                                    <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+													<span class="trend-icon">
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+													</span>
+                                                </md-button>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">77777777</span>
+                                                    <span class="data-literal-unit">人</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-sm"></md-divider>
+                                </div>
+							</div>
+
+
+
+                            <div flex flex-order="2" layout="column">
+                                <div flex flex-order='1' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">净新增用户数</span>
+                                                <!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="ul.showTrend($event)">
+                                                    <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+													<span class="trend-icon">
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+													</span>
+                                                </md-button>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-literal">77777777</span>
+                                                    <span class="data-literal-unit">人</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='2' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">活跃用户数</span>
+                                                <!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="ul.showTrend($event)">
+                                                    <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+													<span class="trend-icon">
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+													</span>
+                                                </md-button>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">77777777</span>
+                                                    <span class="data-literal-unit">人</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='3' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">新增用户数</span>
+                                                <!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="ul.showTrend($event)">
+                                                    <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+													<span class="trend-icon">
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+													</span>
+                                                </md-button>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">77777777</span>
+                                                    <span class="data-literal-unit">人</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='4' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">流失用户数</span>
+                                                <!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="ul.showTrend($event)">
+                                                    <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+													<span class="trend-icon">
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+													</span>
+                                                </md-button>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">77777777</span>
+                                                    <span class="data-literal-unit">人</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-sm"></md-divider>
+                                </div>
+                            </div>
+
+
+                            <div flex flex-order="3" layout="column">
+                                <div flex flex-order='1' class="">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">
+                                                    <md-select ng-model="top_rech_type" class="game-top-rech-sel">
+                                                        <md-option value="1" ng-selected="true">TOP100</md-option>
+                                                        <md-option value="2">TOP500</md-option>
+                                                        <md-option value="3">TOP1000</md-option>
+                                                    </md-select>
+                                                    付费用户数
+                                                </span>
+                                                <!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="ul.showTrend($event)">
+                                                    <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+													<span class="trend-icon">
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+													</span>
+                                                </md-button>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-literal">77777777</span>
+                                                    <span class="data-literal-unit">人</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='2' class="">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">活跃用户数</span>
+                                                <!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="ul.showTrend($event)">
+                                                    <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+													<span class="trend-icon">
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+													</span>
+                                                </md-button>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">77777777</span>
+                                                    <span class="data-literal-unit">人</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='3' class="">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">总流失用户数</span>
+                                                <!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="ul.showTrend($event)">
+                                                    <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+													<span class="trend-icon">
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+													</span>
+                                                </md-button>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">77777777</span>
+                                                    <span class="data-literal-unit">人</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='4' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">xxx</span>
+                                                <!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="ul.showTrend($event)">
+                                                    <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
+													<span class="trend-icon">
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
+													</span>
+                                                </md-button>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">77777777</span>
+                                                    <span class="data-literal-unit">人</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+					</md-card-content>
+				</md-card>
+			</div>
+
+
+
+
+            <div layout="row" layout-sm="column" class="content-part1-3">
+                <md-card flex flex-order='1' class="game-data-card">
+                    <div class="game-data-card-header"><span class="card-header-title">留存</span></div>
+                    <md-card-content class="game-data-card-content">
+                        <div layout="row" layout-sm="column">
+
+                            <div flex flex-order="1" layout="column">
+                                <div flex flex-order='1' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">所有用户留存</span>
+                                                <!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="" class="md-primary btn-remain-time" ng-model="dates">
+                                                    开服首日
+                                                    <md-icon md-svg-icon="calendar"></md-icon>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='2' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">次日留存</span>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">90.1</span>
+                                                    <span class="data-literal-unit">%</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='3' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">周留存</span>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">50.8</span>
+                                                    <span class="data-literal-unit">%</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='4' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">双周留存</span>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">30.8</span>
+                                                    <span class="data-literal-unit">%</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='5' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">月留存</span>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">15.6</span>
+                                                    <span class="data-literal-unit">%</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='6' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showTrend($event)" class="md-primary md-raised btn-remain-time" ng-model="dates">
+                                                    查看详情
+                                                    <md-icon md-svg-icon="circle-right"></md-icon>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-sm"></md-divider>
+                                </div>
+                            </div>
+
+                            <div flex flex-order="2" layout="column">
+                                <div flex flex-order='1' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">活跃玩家留存</span>
+                                                <!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="" class="md-primary btn-remain-time" ng-model="dates">
+                                                    开服首日
+                                                    <md-icon md-svg-icon="calendar"></md-icon>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='2' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">次日留存</span>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">90.1</span>
+                                                    <span class="data-literal-unit">%</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='3' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">周留存</span>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">50.8</span>
+                                                    <span class="data-literal-unit">%</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='4' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">双周留存</span>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">30.8</span>
+                                                    <span class="data-literal-unit">%</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='5' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">月留存</span>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">15.6</span>
+                                                    <span class="data-literal-unit">%</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='6' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showTrend($event)" class="md-primary md-raised btn-remain-time" ng-model="dates">
+                                                    查看详情
+                                                    <md-icon md-svg-icon="circle-right"></md-icon>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-sm"></md-divider>
+                                </div>
+                            </div>
+
+
+                            <div flex flex-order="3" layout="column">
+                                <div flex flex-order='1' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">付费玩家留存</span>
+                                                <!--<span class="trend-chart-indicator">-->
+                                                <md-button ng-click="" class="md-primary btn-remain-time" ng-model="dates">
+                                                    开服首日
+                                                    <md-icon md-svg-icon="calendar"></md-icon>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='2' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">次日留存</span>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">90.1</span>
+                                                    <span class="data-literal-unit">%</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='3' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">周留存</span>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">50.8</span>
+                                                    <span class="data-literal-unit">%</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='4' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">双周留存</span>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">30.8</span>
+                                                    <span class="data-literal-unit">%</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='5' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <span class="trend-title">月留存</span>
+                                            </div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showDist($event)">
+                                                    <span class="data-sub-literal">15.6</span>
+                                                    <span class="data-literal-unit">%</span>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <md-divider class="game-data-card-divider-hide-sm"></md-divider>
+                                </div>
+
+                                <div flex flex-order='6' class="border-right">
+                                    <div class="game-data-card-inner">
+                                        <div>
+                                            <div class="game-data-card-content-row">
+                                                <md-button ng-click="ul.showTrend($event)" class="md-primary md-raised btn-remain-time" ng-model="dates">
+                                                    查看详情
+                                                    <md-icon md-svg-icon="circle-right"></md-icon>
+                                                </md-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+		</div>
+
+    </div>
+</div>
+
+<script src="./bower_components/angular/angular.js"></script>
+<script src="./bower_components/angular-animate/angular-animate.js"></script>
+<script src="./bower_components/angular-aria/angular-aria.js"></script>
+<script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
+
+<script src="./bower_components/angular-bindonce/bindonce.js"></script>
+<script src="./bower_components/moment/moment.js"></script>
+<script src="./bower_components/moment-range/lib/moment-range.js"></script>
+<script src="./bower_components/angular-date-range-picker/build/angular-date-range-picker.js"></script>
+<script src="./bower_components/angular-native-picker/build/angular-datepicker.js"></script>
+
+<script src="./src/games/Games.js"></script>
+<script src="./src/games/GameController.js"></script>
+<script src="./src/games/GameService.js"></script>
+
+<script type="text/javascript">
+    var app = angular
+                .module('starterApp', ['ngMaterial', 'angular-datepicker', 'dateRangePicker', 'games'])
+                .config(function ($mdThemingProvider, $mdIconProvider) {
+
+                $mdIconProvider
+                        .defaultIconSet("./assets/svg/avatars.svg", 128)
+                        .icon("menu", "./assets/svg/menu.svg", 24)
+                        .icon("user", "./assets/svg/user.svg", 24)
+                        .icon("play", "./assets/svg/play.svg", 24)
+                        .icon("next", "./assets/svg/next.svg", 24)
+                        .icon("calendar", "./assets/svg/calendar.svg", 24)
+						.icon("circle-right", "./assets/svg/circle-right.svg", 24)
+                        .icon("share", "./assets/svg/share.svg", 24)
+                        .icon("google_plus", "./assets/svg/google_plus.svg", 512)
+                        .icon("hangouts", "./assets/svg/hangouts.svg", 512)
+                        .icon("twitter", "./assets/svg/twitter.svg", 512)
+                        .icon("phone", "./assets/svg/phone.svg", 512);
+
+                $mdThemingProvider.theme('default')
+                        .primaryPalette('light-blue')
+                        .accentPalette('light-blue');
+
+            });
+
+    app.directive('stopEvent', function () {
+        return {
+            restrict: 'A',
+            link: function (scope, element, attr) {
+                element.bind('click', function (e) {
+                    e.stopPropagation();
+                });
+            }
+        };
+    });
+			
+</script>
+
+</body>
+</html>

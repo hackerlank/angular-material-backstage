@@ -1,0 +1,36 @@
+<html>
+<head>
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+</head>
+
+<body>
+</body>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.ajax({
+			url: 'http://rpttest.ztgame.com/api/api.class.php',
+			dataType: 'jsonp',
+			type: 'GET',
+			data: {'act':'userpriv', 'type':'userInfo', 'username':'songhua', 'area':1},
+			jsonp: 'callback',
+			success: function(data) {
+				console.log(data);
+				alert(data.data.username);
+			}
+		});
+		
+		$.ajax({
+			url: 'http://rpttest.ztgame.com/api/api.class.php',
+			dataType: 'json',
+			type: 'POST',
+			data: {'act':'userpriv', 'type':'userInfo', 'username':'songhua', 'area':1},
+			success: function(data) {
+				console.log(data);
+				alert(data.data.username);
+			}
+		});
+	});
+</script>
+
+</html>

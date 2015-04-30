@@ -121,7 +121,7 @@
 
             $mdBottomSheet.show({
                 parent: angular.element(document.getElementById('content')),
-                templateUrl: '/src/users/view/contactSheet.html',
+                templateUrl: 'src/users/view/contactSheet.html',
                 controller: ['$mdBottomSheet', UserSheetController],
                 controllerAs: "vm",
                 bindToController: true,
@@ -150,7 +150,7 @@
         function toggleTimePanel($event) {
             $mdBottomSheet.show({
                 parent: angular.element(document.getElementById("content")),
-                templateUrl: '/template/timeSelSheet.html',
+                templateUrl: 'template/timeSelSheet.html',
                 controller: ['$mdBottomSheet', '$scope', TimeSelSheetController],
                 controllerAs: "ts",
                 bindToController: true,
@@ -183,7 +183,7 @@
 		function toggleTimeDiyPanel($event) {
 			$mdBottomSheet.show({
 				parent: angular.element(document.getElementById("content")),
-				templateUrl: '/template/timeDiySelSheet.html',
+				templateUrl: 'template/timeDiySelSheet.html',
 				controller: ['$mdBottomSheet', TimeDiySelSheetController],
 				controllerAs: 'tsdiy',
 				bindToController: true,
@@ -204,7 +204,7 @@
 		function showTrend($event) {
 			$mdDialog.show({
 				controller: TrendDialogController,
-				templateUrl: '/template/trendChartTpl.html',
+				templateUrl: 'template/trendChartTpl.html',
 				targetEvent: $event,
 			})
 			.then(function(answer) {
@@ -231,7 +231,7 @@
 		function showDist($event) {
 			$mdDialog.show({
 				controller: DistDialogController,
-				templateUrl: '/template/distChartTpl.html',
+				templateUrl: 'template/distChartTpl.html',
 				targetEvent: $event,
 			})
 			.then(function(answer) {

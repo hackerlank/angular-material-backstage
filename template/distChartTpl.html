@@ -1,16 +1,20 @@
 <md-dialog aria-label="分布图+趋势图" class="game-chart-dialog">
     <md-tabs md-border-bottom>
-        <md-tab label="产品贡献结构">
+        <md-tab>
+            <md-tab-label>产品贡献结构</md-tab-label>
             <md-subheader class="md-primary">
-                <span class="game-chart-subtitle" id="game-chart-title-name">收入产品贡献结构图</span></span>
+                <span class="game-chart-subtitle" id="game-chart-dist-title-name">收入产品贡献结构图</span></span>
             </md-subheader>
             <md-content class="md-padding">
-                <p>chart</p>
+                <p>
+                    chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart
+                </p>
             </md-content>
         </md-tab>
-		<md-tab label="趋势">
+		<md-tab>
+            <md-tab-label>趋势</md-tab-label>
             <md-subheader class="md-primary">
-                <span class="game-chart-subtitle" id="game-chart-title-name">收入产品趋势图</span></span>
+                <span class="game-chart-subtitle" id="game-chart-disttrend-title-name">收入产品趋势图</span></span>
                 <md-select placeholder="选择产品" ng-model="game" class="game-chart-game-sel">
                     <md-option value="0" ng-selected="true">全部</md-option>
                     <md-list ng-repeat="game in games">
@@ -21,19 +25,18 @@
                 </md-select>
             </md-subheader>
             <md-content class="md-padding">
-                <p>chart</p>
+                <p>
+                    chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart
+                </p>
             </md-content>
         </md-tab>
-		
     </md-tabs>
 
+    <div flex></div>
 
     <div class="md-actions" layout="row">
-        <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" hide show-md>
-            More on Wikipedia
-        </md-button>
         <span flex></span>
-        <md-button ng-click="answer('not useful')" class="md-primary md-raised">
+        <md-button ng-click="answer('not useful')" class="md-primary md-raised btn-game-chart-dialog">
             关闭
         </md-button>
     </div>

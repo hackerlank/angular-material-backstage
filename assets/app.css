@@ -408,7 +408,7 @@ md-card md-card-content {
     bottom: 0;
 }
 .game-chart-dialog .md-header-items-container {
-    font-size: 26px;
+    /*font-size: 26px;*/
     border-bottom: 2px solid #EFEFEF;
 }
 .game-chart-dialog .game-chart-subtitle {
@@ -424,8 +424,12 @@ md-backdrop.md-select-backdrop {
     overflow-x: hidden;
 }
 
-
-
+.game-data-tab-trend {
+    width: 100px; max-width: 100px;
+}
+.btn-game-chart-dialog {
+    padding: 8px 20px;
+}
 
 
 

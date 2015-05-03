@@ -5,10 +5,11 @@ html, body {
     margin: 0px;
     padding: 0px;
 	background-color: #EBF0F3;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling : touch;
 }
 
 /* Toolbar area */
-
 .menu {
     background-color: transparent;
     border: none;
@@ -30,6 +31,7 @@ md-toolbar {
     height: 53px;
     min-height: 53px;
     z-index: 69;
+    opacity: 0.95;
 }
 
 md-toolbar.md-default-theme {
@@ -47,7 +49,6 @@ md-toolbar .toolbar_logo {
 }
 
 /* Sidenav area */
-
 md-list .md-button {
     color: inherit;
     font-weight: 500;
@@ -230,7 +231,7 @@ md-toolbar h1 {
 }
 
 .game-head-nav {
-	position: fixed;
+	/*position: fixed;*/
 	left: 0;
 	top: 0;
 }
@@ -261,9 +262,12 @@ span.name {
     padding-left: 5px;
 }
 
+.game-main-content {
+    overflow-x: hidden;
+}
 
 .content {
-	margin-top: 120px;
+	margin-top: 70px;
 	padding: 20px;
 }
 .content .game-data-card-header {
@@ -275,7 +279,7 @@ span.name {
 	font-size: 20px;
 	color: #6A7179;
 	display: inline-block;
-	margin: 15px;
+	margin: 8px;
 }
 .content .game-data-card {
 	background-color: #ffffff;
@@ -415,11 +419,53 @@ md-card md-card-content {
 	margin-top: -10px;
 }
 
+md-backdrop.md-select-backdrop {
+    z-index: 81;
+    overflow-x: hidden;
+}
+
+
+
+
+
+
+
+
+
+
 @media screen and (max-width: 600px) {
+    #right-content .game-subheader {
+        height: 0px;
+        background-color: #F6F7F9;
+        border-bottom: 2px solid #EAEAEA;
+        margin-right: 0px;
+        position: relative;
+        width: 100%;
+        z-index: 68;
+        top: 0;
+    }
+
 	#right-content {
 		margin-left: 0px;
 	}
+    #right-content .game-subheader {
+        min-height: 45px;
+    }
 
+    .game-subheader .subheader-game-name {
+        margin: 0;
+        font-weight: bold;
+        font-size: 16px;
+    }
+    .game-subheader .subheader-time {
+        margin-top: -12px;
+        margin-right: 2px;
+    }
+
+    .content {
+        padding: 0;
+        margin-top: 0;
+    }
 	.content .content-part1 {
 		min-height: 622px;
 	}
@@ -441,12 +487,27 @@ md-card md-card-content {
 	.content .border-right {
 		border-right:0px
 	}
+    .content .game-data-card-profit {
+        max-height: 226px;
+    }
+    .content .game-data-card-ol {
+
+    }
+    .content .game-data-card-spec-profit {
+        min-height: 469px;
+    }
 	.content .game-data-card-divider-hide-sm {
 		display: none;
 	}
 	.content .game-data-card-divider-sm {
-		display: flex;
+		display: block;
 	}
+    .content .game-data-card-header {
+        height: 40px;
+    }
+    .content .game-data-card-header .card-header-title {
+        margin: 0;
+    }
 
     .game-chart-dialog {
         height: 100%;

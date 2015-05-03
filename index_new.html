@@ -61,6 +61,7 @@
     <!-- 游戏列表导航 ↑ -->
 
     <div flex layout="column" id="right-content">
+	<md-content class="game-main-content">
 		<!-- 游戏名称 时间选择 子头部 -->
         <md-subheader class="game-subheader">
             <span class="subheader-game-name" id="subheader-game-name-title">总览</span>
@@ -81,8 +82,8 @@
 		
 		<div ng-if="!ul.selected" layout="column" class="content">
 			<div layout="row" layout-sm="column" class="content-part1">
-				<md-card flex flex-order='1' class="game-data-card">
-					<div class="game-data-card-header"><span class="card-header-title">收益</span></div>
+				<md-card flex flex-order='1' class="game-data-card game-data-card-profit">
+					<md-subheader class="game-data-card-header"><span class="card-header-title">收益</span></md-subheader>
 					<md-card-content class="game-data-card-content">
 						<div class="game-data-card-inner">
 							<div>
@@ -92,8 +93,8 @@
                                     <md-button ng-click="ul.showTrend($event)">
                                         <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 										<span class="trend-icon">
-											<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-											<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+											<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+											<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 											<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 										</span>
                                     </md-button>
@@ -119,8 +120,8 @@
 					</md-card-content>
 				</md-card>
 				
-				<md-card flex flex-order='1' class="game-data-card">
-					<div class="game-data-card-header"><span class="card-header-title">在线</span></div>
+				<md-card flex flex-order='1' class="game-data-card game-data-card-ol">
+					<md-subheader class="game-data-card-header"><span class="card-header-title">在线</span></md-subheader>
 					<md-card-content class="game-data-card-content">
 						<div class="game-data-card-inner">
 							<div>
@@ -130,8 +131,8 @@
                                     <md-button ng-click="ul.showTrend($event)">
 										<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 										<span class="trend-icon">
-											<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-											<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+											<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+											<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 											<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 										</span>
 									</md-button>
@@ -170,7 +171,7 @@
 			
 			<div layout="row" layout-sm="column" class="content-part2">
 				<md-card flex flex-order='1' class="game-data-card">
-					<div class="game-data-card-header"><span class="card-header-title">人数</span></div>
+					<md-subheader class="game-data-card-header"><span class="card-header-title">人数</span></md-subheader>
 					<md-card-content class="game-data-card-content">
 						<div layout="row" layout-sm="column">
 							<div flex flex-order="1" layout="column">
@@ -183,8 +184,8 @@
                                                 <md-button ng-click="ul.showTrend($event)">
 													<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 													<span class="trend-icon">
-														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 													</span>
 												</md-button>
@@ -213,8 +214,8 @@
                                                         <md-button ng-click="ul.showTrend($event)">
 															<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 															<span class="trend-icon">
-																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 																<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 															</span>
 														</md-button>
@@ -240,8 +241,8 @@
                                                         <md-button ng-click="ul.showTrend($event)">
 															<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 															<span class="trend-icon">
-																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 																<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 															</span>
 														</md-button>
@@ -272,8 +273,8 @@
                                                         <md-button ng-click="ul.showTrend($event)">
 															<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 															<span class="trend-icon">
-																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 																<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 															</span>
 														</md-button>
@@ -310,8 +311,8 @@
                                                 <md-button ng-click="ul.showTrend($event)">
 													<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 													<span class="trend-icon">
-														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 													</span>
 												</md-button>
@@ -340,8 +341,8 @@
                                                         <md-button ng-click="ul.showTrend($event)">
 															<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 															<span class="trend-icon">
-																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 																<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 															</span>
 														</md-button>
@@ -367,8 +368,8 @@
                                                         <md-button ng-click="ul.showTrend($event)">
 															<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 															<span class="trend-icon">
-																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 																<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 															</span>
 														</md-button>
@@ -399,8 +400,8 @@
                                                         <md-button ng-click="ul.showTrend($event)">
 															<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 															<span class="trend-icon">
-																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+																<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+																<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 																<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 															</span>
 														</md-button>
@@ -440,8 +441,8 @@
 		<!-- 选择某个游戏 -->
 		<div ng-if="ul.selected" layout="column" class="content">
 			<div layout="row" layout-sm="column" class="content-part1-1">
-				<md-card flex flex-order='1' class="game-data-card">
-					<div class="game-data-card-header"><span class="card-header-title">收益</span></div>
+				<md-card flex flex-order='1' class="game-data-card game-data-card-spec-profit">
+					<md-subheader class="game-data-card-header"><span class="card-header-title">收益</span></md-subheader>
 					<md-card-content class="game-data-card-content">
 						<div class="game-data-card-inner">
 							<div>
@@ -451,8 +452,8 @@
                                     <md-button ng-click="ul.showTrend($event)">
                                         <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 										<span class="trend-icon">
-											<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-											<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+											<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+											<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 											<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 										</span>
                                     </md-button>
@@ -500,8 +501,8 @@
 					</md-card-content>
 				</md-card>
 				
-				<md-card flex flex-order='1' class="game-data-card">
-					<div class="game-data-card-header"><span class="card-header-title">在线</span></div>
+				<md-card flex flex-order='1' class="game-data-card game-data-card-spec-ol">
+					<md-subheader class="game-data-card-header"><span class="card-header-title">在线</span></md-subheader>
 					<md-card-content class="game-data-card-content">
 						<div class="game-data-card-inner">
 							<div>
@@ -511,8 +512,8 @@
                                     <md-button ng-click="ul.showTrend($event)">
 										<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 										<span class="trend-icon">
-											<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-											<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+											<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+											<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 											<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 										</span>
 									</md-button>
@@ -545,7 +546,7 @@
 			
 			<div layout="row" layout-sm="column" class="content-part1-2">
 				<md-card flex flex-order='1' class="game-data-card">
-					<div class="game-data-card-header"><span class="card-header-title">人数</span></div>
+					<md-subheader class="game-data-card-header"><span class="card-header-title">人数</span></md-subheader>
 					<md-card-content class="game-data-card-content">
 						<div layout="row" layout-sm="column">
 
@@ -559,8 +560,8 @@
                                                 <md-button ng-click="ul.showTrend($event)">
 													<span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 													<span class="trend-icon">
-														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 													</span>
 												</md-button>
@@ -585,8 +586,8 @@
                                                 <md-button ng-click="ul.showTrend($event)">
                                                     <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 													<span class="trend-icon">
-														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 													</span>
                                                 </md-button>
@@ -611,8 +612,8 @@
                                                 <md-button ng-click="ul.showTrend($event)">
                                                     <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 													<span class="trend-icon">
-														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 													</span>
                                                 </md-button>
@@ -637,8 +638,8 @@
                                                 <md-button ng-click="ul.showTrend($event)">
                                                     <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 													<span class="trend-icon">
-														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 													</span>
                                                 </md-button>
@@ -667,8 +668,8 @@
                                                 <md-button ng-click="ul.showTrend($event)">
                                                     <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 													<span class="trend-icon">
-														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 													</span>
                                                 </md-button>
@@ -693,8 +694,8 @@
                                                 <md-button ng-click="ul.showTrend($event)">
                                                     <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 													<span class="trend-icon">
-														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 													</span>
                                                 </md-button>
@@ -719,8 +720,8 @@
                                                 <md-button ng-click="ul.showTrend($event)">
                                                     <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 													<span class="trend-icon">
-														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 													</span>
                                                 </md-button>
@@ -745,8 +746,8 @@
                                                 <md-button ng-click="ul.showTrend($event)">
                                                     <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 													<span class="trend-icon">
-														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 													</span>
                                                 </md-button>
@@ -781,8 +782,8 @@
                                                 <md-button ng-click="ul.showTrend($event)">
                                                     <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 													<span class="trend-icon">
-														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 													</span>
                                                 </md-button>
@@ -807,8 +808,8 @@
                                                 <md-button ng-click="ul.showTrend($event)">
                                                     <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 													<span class="trend-icon">
-														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 													</span>
                                                 </md-button>
@@ -833,8 +834,8 @@
                                                 <md-button ng-click="ul.showTrend($event)">
                                                     <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 													<span class="trend-icon">
-														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 													</span>
                                                 </md-button>
@@ -859,8 +860,8 @@
                                                 <md-button ng-click="ul.showTrend($event)">
                                                     <span class="trendup-literal" ng-class="{'trenddown-literal' : true === ul.rechup}">10.6%</span>
 													<span class="trend-icon">
-														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"></img>
-														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"></img>
+														<img ng-if="ul.rechup" class="trend-img" src="assets/images/trendup.jpg"/>
+														<img ng-if="!ul.rechup" class="trend-img" src="assets/images/trenddown.jpg"/>
 														<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
 													</span>
                                                 </md-button>
@@ -887,7 +888,7 @@
 
             <div layout="row" layout-sm="column" class="content-part1-3">
                 <md-card flex flex-order='1' class="game-data-card">
-                    <div class="game-data-card-header"><span class="card-header-title">留存</span></div>
+                    <md-subheader class="game-data-card-header"><span class="card-header-title">留存</span></md-subheader>
                     <md-card-content class="game-data-card-content">
                         <div layout="row" layout-sm="column">
 
@@ -1194,8 +1195,9 @@
                     </md-card-content>
                 </md-card>
 		</div>
-
-    </div>
+    	</div>
+	</md-content>
+	</div>
 </div>
 
 <script src="./bower_components/angular/angular.js"></script>

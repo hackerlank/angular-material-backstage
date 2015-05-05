@@ -52,8 +52,8 @@
   line-height: 20px;
   display: inline-block;
   position: relative;
-  top: -40px;
-  left: 25%;
+  top: 4px;
+  left: 10%;
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -171,7 +171,7 @@
 }
 
 .angular-date-range-picker--ranged .angular-date-range-picker__buttons {
-  position: absolute;
+  /*position: absolute;*/
   bottom: 10px;
 }
 

@@ -35,7 +35,7 @@ md-toolbar {
 }
 
 md-toolbar.md-default-theme {
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
 }
 
 md-toolbar h1 {
@@ -61,9 +61,7 @@ md-list .md-button.selected {
 }
 
 md-sidenav {
-    width: 230px;
-    background-color: #142036;
-	z-index: 69;
+
 }
 
 md-sidenav.md-locked-open {
@@ -80,8 +78,30 @@ md-sidenav md-list {
     padding: 0 0 8px 0;
 }
 
+
+.game-cps-sidenav {
+    z-index: 71;
+}
+.game-cps-panel.md-default-theme {
+    background-color: #3F51B5;
+}
+.game-cps-sidenav .cps-channel-radiogroup {
+    max-height: 202px;
+    overflow-y: scroll;
+}
+.game-cps-sidenav .cps-platform-radiogroup {
+    max-height: 202px;
+    overflow-y: scroll;
+}
+.game-cps-sidenav .cps-server-select {
+    margin-left: 20px;
+}
+
 .game-sidenav {
 	position:fixed;
+    width: 230px;
+    background-color: #142036;
+    z-index: 69;
 }
 .game-sidenav .game-type {
     color: #0066FF;
@@ -153,12 +173,17 @@ md-button:hover {
     margin: 12px 0 0 10px;
     display: inline-block;
 }
+.game-subheader .subheader-game-cps {
+    float: right;
+    margin-right: 0px;
+    margin-top: -17px;
+}
 .game-subheader .subheader-time {
     float: right;
 }
 .game-subheader .subheader-time-pc {
 	float: right;
-	margin-right: 240px;
+	margin-right: 10px;
 }
 .game-subheader .btn-time {
     padding: 12px 25px;
@@ -235,6 +260,9 @@ md-toolbar h1 {
 	left: 0;
 	top: 0;
 }
+.game-head-nav.md-default-theme {
+    background-color: #ffffff;
+}
 
 .avatar {
     position: relative;
@@ -269,6 +297,7 @@ span.name {
 .content {
 	margin-top: 70px;
 	padding: 20px;
+    background-color: #EBF0F3;
 }
 .content .game-data-card-header {
 	width:100%;
@@ -418,6 +447,9 @@ md-card md-card-content {
 	float: right;
 	margin-top: -10px;
 }
+.game-chart-dialog .dialog-chart-p {
+	width:99%; min-height:500px;
+}
 
 md-backdrop.md-select-backdrop {
     z-index: 81;
@@ -425,10 +457,18 @@ md-backdrop.md-select-backdrop {
 }
 
 .game-data-tab-trend {
-    width: 100px; max-width: 100px;
+    width: 100%; max-width: 100%; height: 100%; max-height: 100%;
 }
 .btn-game-chart-dialog {
     padding: 8px 20px;
+}
+.btn-game-chps {
+    height: 68px;
+    padding: 30px;
+}
+.btn-cps-confirm {
+    margin: 50px 0 0 30px;
+    padding: 10px 20px;
 }
 
 

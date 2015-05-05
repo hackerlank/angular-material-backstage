@@ -6,13 +6,13 @@
                 <span class="game-chart-subtitle" id="game-chart-dist-title-name">收入产品贡献结构图</span></span>
             </md-subheader>
             <md-content class="md-padding">
-                <p>
-                    chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart
+                <p show-dist class="dialog-chart-p" id="dist-chart-p" layout="row" layout-align="center center">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                 </p>
             </md-content>
         </md-tab>
 		<md-tab>
-            <md-tab-label>趋势</md-tab-label>
+            <md-tab-label ng-click="callDrawTrendChart()">趋势</md-tab-label>
             <md-subheader class="md-primary">
                 <span class="game-chart-subtitle" id="game-chart-disttrend-title-name">收入产品趋势图</span></span>
                 <md-select placeholder="选择产品" ng-model="game" class="game-chart-game-sel">
@@ -25,8 +25,8 @@
                 </md-select>
             </md-subheader>
             <md-content class="md-padding">
-                <p>
-                    chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart<br/>chart
+                <p class="dialog-chart-p" id="trend-chart-p" layout="row" layout-align="center center">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                 </p>
             </md-content>
         </md-tab>

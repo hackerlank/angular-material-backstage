@@ -6,7 +6,7 @@
     angular
         .module('games')
         .controller('UserController', [
-            'userService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$scope', '$mdDialog', '$mdUtil',
+            'gameService', 'gameDataService', 'dataCateService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$scope', '$mdDialog', '$mdUtil',
             UserController
         ])
 		.controller('cpsCtrl', function ($scope, $timeout, $mdSidenav, $log) {
@@ -36,6 +36,15 @@
 						}
 						if ('btn-btm-timediy' == element[0].id) {
 							myjquery('#mobiledaterangepicker').trigger('click');
+						}
+						if ('btn-all-remain-date' == element[0].id) {
+							myjquery('#AllRemainDatePicker').trigger('click');
+						}
+						if ('btn-active-remain-date' == element[0].id) {
+							myjquery('#ActiveRemainDatePicker').trigger('click');
+						}
+						if ('btn-rechargers-date' == element[0].id) {
+							myjquery('#RechargersDatePicker').trigger('click');
 						}
 						e.stopPropagation();
 					});
@@ -359,7 +368,7 @@
      * @param avatarsService
      * @constructor
      */
-    function UserController(userService, $mdSidenav, $mdBottomSheet, $log, $q, $scope, $mdDialog, $mdUtil) {
+    function UserController(gameService, gameDataService, dataCateService, $mdSidenav, $mdBottomSheet, $log, $q, $scope, $mdDialog, $mdUtil) {
         var self = this;
 
         // 初始化请求参数
@@ -380,19 +389,20 @@
         self.tDE = "";
         self.cunit = 1;                     //默认RMB
         self.topType = 1;                   //默认TOP100
-        self.AllRemainDate = 0;
-        self.ActiveRemainDate = 0;
-        self.RechargersDate = 0;
-
-        self.diydates;                       //自定义时间范围（DateRange类型，需要处理成self.daterangeStart, self.daterangeEnd）
+        self.AllRemainDate = 0;				//所有用户留存时间选择
+        self.ActiveRemainDate = 0;			//活跃用户留存时间选择
+        self.RechargersDate = 0;			//充值用户留存时间选择
+        self.DiyDateRange = 0;				//自定义时间范围（DateRange类型，需要处理成self.daterangeStart, self.daterangeEnd）
 
 
         self.selected = null;
         self.games = [];
+		self.gamelist = [];
+		self.gd = [];							//data model definition
+        self.dcd = [];                          //data category data
         self.selectGame = selectGame;
         self.toggleList = toggleUsersList;
         self.toggleUserCtrl = toggleUserCtrl;
-        self.share = share;
         self.toggleTimePanel = toggleTimePanel;
 		self.rangeSelectOptions = [/*{
 				label: "最近1周",
@@ -445,37 +455,61 @@
 		];
 		self.selectServer = selectServer;
 
+		self.getGameNameById = getGameNameById;
 
+		self.topTypes = {
+			1: 'TOP100',
+			2: 'TOP500',
+			3: 'TOP1000'
+		};
 
 		function chooseDateType (item) {
-            console.log(self.pcdates);
 			for (key in self.timeItems) {
 				self.timeItems[key].primary = false;
 			}
 			item.primary = true;
 			
 			if ('btn-timediy' == item.el_pc_id) {
-				this.showPcDateRangePicker = true;
+				self.showPcDateRangePicker = true;
 			} else {
-				this.showPcDateRangePicker = false;
+				self.showPcDateRangePicker = false;
 			}
 
             self.datetype = item.id;
 		};
 
 
-        // Load all registered users
-
-        userService
-            .loadAllUsers()
-            .then(function (users) {
-                self.games = [].concat(users);
+        // Load all available games
+        gameService
+            .loadAllGames()
+            .then(function (games) {
+                self.games = [].concat(games);
+				for (typegame in self.games) {
+					self.gamelist = myjquery.merge(self.gamelist, self.games[typegame].gamelist);
+				}
                 //self.selected = users[0];
             });
+		function getGameNameById(gid) {
+			for (id in self.gamelist) {
+				if (gid == self.gamelist[id].gid) {
+					return self.gamelist[id].name;
+				}
+			}
+		}
+		// Load all data vars
+		gameDataService
+			.loadAllGameData()
+			.then (function (gamedata) {
+				self.gd = gamedata;
+			});
+        // Load all data category
+        dataCateService
+            .loadAllDataCategory()
+            .then (function (datacatedata) {
+                self.dcd = datacatedata;
+            });
 
-        // *********************************
-        // Internal methods
-        // *********************************
+
 
         /**
          * First hide the bottomsheet IF visible, then
@@ -487,11 +521,9 @@
             pending.then(function () {
                 $mdSidenav('left').toggle();
             });
-
-
         }
 
-        function toggleUserCtrl() {
+        function toggleUserCtrl () {
             //............
         }
 
@@ -508,40 +540,6 @@
 			self.selected = false;
             self.gid = 0;
 		}
-
-        /**
-         * Show the bottom sheet
-         */
-        function share($event) {
-            var user = self.selected;
-
-            $mdBottomSheet.show({
-                parent: angular.element(document.getElementById('content')),
-                templateUrl: 'src/users/view/contactSheet.html',
-                controller: ['$mdBottomSheet', UserSheetController],
-                controllerAs: "vm",
-                bindToController: true,
-                targetEvent: $event
-            }).then(function (clickedItem) {
-                clickedItem && $log.debug(clickedItem.name + ' clicked!');
-            });
-
-            /**
-             * Bottom Sheet controller for the Avatar Actions
-             */
-            function UserSheetController($mdBottomSheet) {
-                this.user = user;
-                this.items = [
-                    {name: 'Phone', icon: 'phone', icon_url: 'assets/svg/phone.svg'},
-                    {name: 'Twitter', icon: 'twitter', icon_url: 'assets/svg/twitter.svg'},
-                    {name: 'Google+', icon: 'google_plus', icon_url: 'assets/svg/google_plus.svg'},
-                    {name: 'Hangout', icon: 'hangouts', icon_url: 'assets/svg/hangouts.svg'}
-                ];
-                this.performAction = function (action) {
-                    $mdBottomSheet.hide(action);
-                };
-            }
-        }
 
         function toggleTimePanel($event) {
             $mdBottomSheet.show({
@@ -599,7 +597,7 @@
 		}
 		
 		
-		function showTrend($event) {
+		function showTrend($event, title, mode) {
 			$mdDialog.show({
 				controller: TrendDialogController,
 				templateUrl: 'template/trendChartTpl.html',
@@ -610,9 +608,19 @@
 			}, function() {
 				console.log('You cancelled the dialog.');
 			});
+
+			var modes = {
+				1: '环比',
+				2: '在线曲线',
+				3: '环比',			//TOP付费用户、流失用户、总流失用户
+				4: '留存曲线'
+			};
+
+			var mode = mode || 1;
 			
 			
 			function TrendDialogController($scope, $mdDialog) {
+				$scope.selected = self.selected;
 				$scope.hide = function() {
 					$mdDialog.hide();
 				};
@@ -623,10 +631,19 @@
 					$mdDialog.hide(answer);
 				};
 				$scope.games = self.games;
+				$scope.mode = mode;
+
+                $scope.tablabel = modes[mode];
+				if (3 == mode) {
+					title = self.topTypes[self.topType] + title;
+				}
+                $scope.chartlabel = title + modes[mode] + "图";
+
+				$scope.cps_indicator = genCpsIndicator();
 			}
 		}
 		
-		function showDist($event) {
+		function showDist($event, title, modeleft, moderight) {
 			$mdDialog.show({
 				controller: DistDialogController,
 				templateUrl: 'template/distChartTpl.html',
@@ -637,9 +654,27 @@
 			}, function() {
 				console.log('You cancelled the dialog.');
 			});
-			
-			
+
+			var modesleft = {
+				1: '产品贡献结构',
+				2: '渠道贡献结构',
+				3: '分布结构',			//净新增付费用户、净新增用户（横向双柱状图）
+				4: '分布结构',			//付费用户、活跃用户（双饼图）
+				5: '分布结构',			//新增付费用户、流失付费用户、流失用户
+				6: '分布结构'			//top付费用户、top流失用户、top总流失用户（单饼图）
+				//7: '渠道贡献结构'			//留存
+			};
+
+			var modesright = {
+				1: '趋势',
+				2: '趋势'				//净新增付费用户、净新增用户（双面积曲线）
+			};
+
+			var modeleft = modeleft || 1;
+			var moderight = moderight || 1;
+
 			function DistDialogController($scope, $mdDialog) {
+				$scope.selected = self.selected;
 				$scope.hide = function() {
 					$mdDialog.hide();
 				};
@@ -662,7 +697,54 @@
 						$scope.callDrawChartOnce = true;
 					}
 				}
+
+				$scope.modeleft = modeleft;
+				$scope.moderight = moderight;
+
+				if (6 == modeleft) {
+					title = self.topTypes[self.topType] + title;
+				}
+
+				$scope.tablabelleft = modesleft[modeleft];
+				$scope.chartlabelleft = title + modesleft[modeleft] + "图";
+
+				$scope.tablabelright = modesright[moderight];
+				$scope.chartlabelright = title + modesright[moderight] + "图";
+
+				$scope.cps_indicator = genCpsIndicator();
 			}
+		}
+
+		function genCpsIndicator() {
+			var cps_indicator = "";
+			if (0 == self.channel) {
+				cps_indicator += '全渠道 ';
+			} else {
+				for (k in self.channels) {
+					if (self.channel == self.channels[k].id) {
+						cps_indicator += self.channels[k].name + '';
+					}
+				}
+			}
+			if (0 == self.platform) {
+				cps_indicator += "> 全平台 ";
+			} else {
+				for (k in self.platforms) {
+					if (self.platform == self.platforms[k].id) {
+						cps_indicator += '> ' + self.platforms[k].name + ' ';
+					}
+				}
+			}
+			if (0 == self.server) {
+				cps_indicator += "> 全区服 ";
+			} else {
+				for (k in self.servers) {
+					if (self.server == self.servers[k].id) {
+						cps_indicator += '> ' + self.servers[k].name + ' ';
+					}
+				}
+			}
+			return cps_indicator;
 		}
 
 

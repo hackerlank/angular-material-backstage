@@ -1,9 +1,12 @@
 <md-dialog aria-label="分布图+趋势图" class="game-chart-dialog">
     <md-tabs md-border-bottom>
         <md-tab>
-            <md-tab-label>产品贡献结构</md-tab-label>
+            <md-tab-label>{{tablabelleft}}</md-tab-label>
             <md-subheader class="md-primary">
-                <span class="game-chart-subtitle" id="game-chart-dist-title-name">收入产品贡献结构图</span></span>
+                <span class="game-chart-subtitle" id="game-chart-dist-title-name">{{chartlabelleft}}</span>
+                <div ng-if="3==modeleft || 4==modeleft || 5==modeleft || 6==modeleft" class="game-chart-cps-indicator">
+                    {{cps_indicator}}
+                </div>
             </md-subheader>
             <md-content class="md-padding">
                 <p show-dist class="dialog-chart-p" id="dist-chart-p" layout="row" layout-align="center center">
@@ -12,10 +15,10 @@
             </md-content>
         </md-tab>
 		<md-tab>
-            <md-tab-label ng-click="callDrawTrendChart()">趋势</md-tab-label>
+            <md-tab-label ng-click="callDrawTrendChart()">{{tablabelright}}</md-tab-label>
             <md-subheader class="md-primary">
-                <span class="game-chart-subtitle" id="game-chart-disttrend-title-name">收入产品趋势图</span></span>
-                <md-select placeholder="选择产品" ng-model="game" class="game-chart-game-sel">
+                <span class="game-chart-subtitle" id="game-chart-disttrend-title-name">{{chartlabelright}}</span>
+                <md-select ng-if="!selected" placeholder="选择产品" ng-model="game" class="game-chart-game-sel">
                     <md-option value="0" ng-selected="true">全部</md-option>
                     <md-list ng-repeat="game in games">
                         <md-list ng-repeat="it in game.gamelist track by $index">
@@ -23,6 +26,9 @@
                         </md-list>
                     </md-list>
                 </md-select>
+                <div ng-if="selected" class="game-chart-cps-indicator">
+                    {{cps_indicator}}
+                </div>
             </md-subheader>
             <md-content class="md-padding">
                 <p class="dialog-chart-p" id="trend-chart-p" layout="row" layout-align="center center">

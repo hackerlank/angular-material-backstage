@@ -1,10 +1,10 @@
 <md-dialog aria-label="环比图" class="game-chart-dialog">
     <md-tabs md-stretch-tabs>
         <md-tab class="game-data-tab-trend">
-            <md-tab-label>环比</md-tab-label>
+            <md-tab-label>{{tablabel}}</md-tab-label>
             <md-subheader class="md-primary">
-                <span class="game-chart-subtitle" id="game-chart-trend-title-name">收入环比图</span>
-                <md-select placeholder="选择产品" ng-model="game" class="game-chart-game-sel">
+                <span class="game-chart-subtitle" id="game-chart-trend-title-name">{{chartlabel}}</span>
+                <md-select ng-if="!selected" placeholder="选择产品" ng-model="game" class="game-chart-game-sel">
 					<md-option value="0" ng-selected="true">全部</md-option>
                     <md-list ng-repeat="game in games">
                         <md-list ng-repeat="it in game.gamelist track by $index">
@@ -12,10 +12,13 @@
                         </md-list>
                     </md-list>
                 </md-select>
+                <div ng-if="selected" class="game-chart-cps-indicator">
+                    {{cps_indicator}}
+                </div>
 
 
             </md-subheader>
-            <md-content class="md-padding">
+            <md-content>
                 <p show-chain class="dialog-chart-p" id="chain-chart-p" layout="row" layout-align="center center">
                     <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                 </p>

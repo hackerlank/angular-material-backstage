@@ -83,7 +83,7 @@ md-sidenav md-list {
     z-index: 71;
 }
 .game-cps-panel.md-default-theme {
-    background-color: #3F51B5;
+    /*background-color: #3F51B5;*/
 }
 .game-cps-sidenav .cps-channel-radiogroup {
     max-height: 202px;
@@ -176,7 +176,7 @@ md-button:hover {
 .game-subheader .subheader-game-cps {
     float: right;
     margin-right: 0px;
-    margin-top: -17px;
+    margin-top: -2px;
 }
 .game-subheader .subheader-time {
     float: right;
@@ -184,16 +184,17 @@ md-button:hover {
 .game-subheader .subheader-time-pc {
 	float: right;
 	margin-right: 10px;
+    margin-top: 15px;
 }
 .game-subheader .btn-time {
-    padding: 12px 25px;
+    padding: 10px 25px;
     margin: 0 3px;
     border-radius: 0;
     font-size: 14px;
 }
 .btn-remain-time {
-    padding: 12px 25px;
-    margin: 0 10px;
+    padding: 5px;
+    margin: 0;
     border-radius: 0;
     font-size: 14px;
     font-size:16px;
@@ -295,7 +296,7 @@ span.name {
 }
 
 .content {
-	margin-top: 70px;
+	margin-top: 65px;
 	padding: 20px;
     background-color: #EBF0F3;
 }
@@ -320,6 +321,9 @@ span.name {
 	display: block;
 	padding: 0 0;
 }
+.content .btn-game-data-literal {
+    margin-left: -10px;
+}
 .content .game-data-chart-indicator:hover {
     -webkit-box-shadow: 0 0 10px 0 #ccc;
     -moz-box-shadow: 0 0 10px 0 #ccc;
@@ -329,6 +333,9 @@ span.name {
 	font-size: 18px;
 	color: #A5A5A5;
 }
+.content .game-data-remain-datepicker {
+    margin-left: 20px;
+}
 .content .trend-chart-indicator:hover {
     -webkit-box-shadow: 0 0 10px 0 #ccc;
     -moz-box-shadow: 0 0 10px 0 #ccc;
@@ -336,13 +343,14 @@ span.name {
     padding: 5px 0;
 }
 .content .trendup-literal {
-	font-size: 16px;
-	color: #008000;
-	margin-left: 10px;
+    font-size: 16px;
+    color: #b20000;
+    margin-left: 10px;
 }
 .content .trenddown-literal {
-	font-size: 72px;
-	color: #333333;
+    font-size: 16px;
+    color: #008000;
+    margin-left: 10px;
 }
 .content .trend-img {
     vertical-align: middle;
@@ -447,6 +455,9 @@ md-card md-card-content {
 	float: right;
 	margin-top: -10px;
 }
+.game-chart-dialog .game-chart-cps-indicator {
+    float: right;
+}
 .game-chart-dialog .dialog-chart-p {
 	width:99%; min-height:500px;
 }
@@ -464,7 +475,7 @@ md-backdrop.md-select-backdrop {
 }
 .btn-game-chps {
     height: 68px;
-    padding: 30px;
+    padding: 26px;
 }
 .btn-cps-confirm {
     margin: 50px 0 0 30px;
@@ -497,12 +508,12 @@ md-backdrop.md-select-backdrop {
     }
 
     .game-subheader .subheader-game-name {
-        margin: 0;
+        margin: 10px;
         font-weight: bold;
         font-size: 16px;
     }
     .game-subheader .subheader-time {
-        margin-top: -12px;
+        margin-top: 2px;
         margin-right: 2px;
     }
 
@@ -559,5 +570,10 @@ md-backdrop.md-select-backdrop {
         max-width: 100%;
         max-height: 100%;
         bottom: 0;
+    }
+
+    .game-chart-dialog .game-chart-cps-indicator {
+        margin-top: 8px;
+        float: none;
     }
 }

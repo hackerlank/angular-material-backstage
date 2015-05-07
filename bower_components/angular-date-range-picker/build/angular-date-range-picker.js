@@ -11,7 +11,7 @@
                 restrict: "AE",
                 replace: true,
                 //template: "<span tabindex=\"0\" ng-keydown=\"hide()\" class=\"angular-date-range-picker__input\">\n  <span ng-if=\"showRanged\">\n    <span ng-show=\"!!model\">{{ model.start.format(\"ll\") }} - {{ model.end.format(\"ll\") }}</span>\n    <span ng-hide=\"!!model\">Select date range</span>\n  </span>\n  <span ng-if=\"!showRanged\">\n    <span ng-show=\"!!model\">{{ model.format(\"ll\") }}</span>\n    <span ng-hide=\"!!model\">Select date</span>\n  </span>\n</span>",
-                template: "<span tabindex=\"0\" ng-keydown=\"hide()\" class=\"angular-date-range-picker__input\">\n  <span ng-if=\"showRanged\">\n    <span ng-show=\"!!model\">{{ model.start.format(\"MM/DD/YYYY\") }} - {{ model.end.format(\"MM/DD/YYYY\") }}</span>\n    <span ng-hide=\"!!model\">选择日期范围</span>\n  </span>\n  <span ng-if=\"!showRanged\">\n    <span ng-show=\"!!model\">{{ model.format(\"ll\") }}</span>\n    </span>\n</span>",
+                template: "<span tabindex=\"0\" ng-keydown=\"hide()\" class=\"angular-date-range-picker__input\">\n  <span ng-if=\"showRanged\">\n    <span ng-show=\"!!model\">{{ model.start.format(\"MM/DD/YYYY\") }} - {{ model.end.format(\"MM/DD/YYYY\") }}</span>\n    <span ng-hide=\"!!model\">选择日期范围</span>\n  </span>\n  <span ng-if=\"!showRanged\">\n    <span ng-show=\"!!model\">{{ model.format(\"MM/DD/YYYY\") }}</span>\n    <span ng-hide=\"!!model\">开服首日</span>\n    </span>\n</span>",
                 scope: {
                     model: "=ngModel",
                     customSelectOptions: "=",
@@ -76,7 +76,8 @@
                         var end, start;
                         if ($scope.showRanged) {
                             //return $scope.range = $scope.selection ? (start = $scope.selection.start.clone().startOf("month").startOf("day"), end = start.clone().add(2, "months").endOf("month").startOf("day"), moment().range(start, end)) : moment().range(moment().startOf("month").subtract(1, "month").startOf("day"), moment().endOf("month").add(1, "month").startOf("day"));
-                            return $scope.range = $scope.selection ? (start = $scope.selection.start.clone().startOf("month").startOf("day"), end = start.clone().endOf("month").startOf("day"), moment().range(start, end)) : moment().range(moment().startOf("month").subtract(1, "month").startOf("day"), moment().endOf("month").subtract(1, "month").startOf("day"));
+                            $scope.range = $scope.selection ? (start = $scope.selection.start.clone().startOf("month").startOf("day"), end = start.clone().endOf("month").startOf("day"), moment().range(start, end)) : moment().range(moment().startOf("month").subtract(0, "month").startOf("day"), moment().endOf("month").subtract(0, "month").startOf("day"));
+                            return $scope.range;
                         } else {
                             $scope.selection = false;
                             $scope.selection = $scope.model || false;
@@ -219,6 +220,7 @@
                             }
                         } else {
                             $scope.selection = moment(day.date);
+                            console.log($scope.selection);
                         }
                         return _prepare();
                     };
@@ -256,9 +258,11 @@
                         return $scope.quickListDefinitions = value;
                     });
                     domEl = $compile(angular.element(pickerTemplate))($scope);
-                    //element.append(domEl);
 
-                    angular.element(document).find('body').eq(0).append(domEl);
+                    if (screen.width > 600)
+                        element.append(domEl);
+                    else
+                        angular.element(document).find('body').eq(0).append(domEl);
                     element.bind("click", function (e) {
                         if (e != null) {
                             if (typeof e.stopPropagation === "function") {

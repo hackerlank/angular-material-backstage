@@ -583,9 +583,13 @@ md-backdrop.md-select-backdrop {
 
     .btn-remain-time {
         padding: 5px;
-        margin: 0 35px;
+        margin: 0 0;
         border-radius: 0;
         font-size: 14px;
         font-size:16px;
+    }
+
+    #mobiledaterangepicker {
+        margin-left: 30px;
     }
 }

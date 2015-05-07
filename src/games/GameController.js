@@ -6,7 +6,7 @@
     angular
         .module('games')
         .controller('UserController', [
-            'gameService', 'gameDataService', 'dataCateService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$scope', '$mdDialog', '$mdUtil',
+            'gameService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$scope', '$mdDialog', '$mdUtil',
             UserController
         ])
 		.controller('cpsCtrl', function ($scope, $timeout, $mdSidenav, $log) {
@@ -368,7 +368,7 @@
      * @param avatarsService
      * @constructor
      */
-    function UserController(gameService, gameDataService, dataCateService, $mdSidenav, $mdBottomSheet, $log, $q, $scope, $mdDialog, $mdUtil) {
+    function UserController(gameService, $mdSidenav, $mdBottomSheet, $log, $q, $scope, $mdDialog, $mdUtil) {
         var self = this;
 
         // 初始化请求参数
@@ -497,13 +497,13 @@
 			}
 		}
 		// Load all data vars
-		gameDataService
+        gameService
 			.loadAllGameData()
 			.then (function (gamedata) {
 				self.gd = gamedata;
 			});
         // Load all data category
-        dataCateService
+        gameService
             .loadAllDataCategory()
             .then (function (datacatedata) {
                 self.dcd = datacatedata;

@@ -36,6 +36,9 @@
                     case 1:                             //获取游戏列表
                         genGamesObj(deferral, data);
                         break;
+                    case 2:
+                        genGamesData(deferral, data, params);
+                        break;
                 }
             }).error(function() {
                 alert('连接异常，请重试！');
@@ -68,9 +71,28 @@
             deferral.resolve(games);
         }
 
+        function genGamesData(deferral, data, params) {
+            var gamedata = {};
+            if ("OK" == data.status) {
+                if (0 == params.gid) {              //总览面板数据
+                    gamedata.overall  = data.data;
+                    gamedata.overall.profit = data.data.profile;
+                } else {                            //某个游戏的面板数据
+                    gamedata.specgame = data.data;
+                }
+            }
+            deferral.resolve(gamedata);
+        }
+
+        // 1 获取游戏列表
         function getGameList() {
             var data = {'act':'userpriv', 'type':'gamePriv', 'username':'songhua', 'area':1}
             return getByJsonp(requestUrl, data, 1);
+        }
+
+        // 2 获取面板数据
+        function getGameBoardData(param) {
+            return getByJsonp(requestUrl, param, 2);
         }
 
         var games = [{
@@ -348,9 +370,9 @@
                 // Simulate async nature of real remote calls
                 return $q.when(getGameList());
             },
-            loadAllGameData : function() {
+            loadAllGameData : function(param) {
                 // Simulate async nature of real remote calls
-                return $q.when(gamedata);
+                return $q.when(getGameBoardData(param));
             },
             loadAllDataCategory: function() {
                 return $q.when(datacatedata);

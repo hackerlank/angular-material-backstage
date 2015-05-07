@@ -18,26 +18,29 @@
 <body ng-app="starterApp" layout="column" ng-controller="UserController as ul">
 
 <!-- 顶部导航条 ↓ -->
-<md-toolbar layout="row" class="game-head-nav" md-is-locked-open>
-    <!-- 菜单按钮 ↓ -->
-    <md-button class="menu" hide-gt-sm ng-click="ul.toggleList($event)" aria-label="Show Game List">
-        <md-icon md-svg-icon="menu"></md-icon>
-    </md-button>
-    <!-- 菜单按钮 ↑ -->
+<md-toolbar layout="column" class="game-head-nav" md-is-locked-open>
+    <md-content layout="row" class="game-head-nav-content">
+        <!-- 菜单按钮 ↓ -->
+        <md-button class="menu" hide-gt-sm ng-click="ul.toggleList($event)" aria-label="Show Game List">
+            <md-icon md-svg-icon="menu"></md-icon>
+        </md-button>
+        <!-- 菜单按钮 ↑ -->
 
-    <!-- logo ↓ -->
-    <md-button class="md-primary" ng-click="ul.selectTotal()" aria-label="select total">
-        <img src="assets/images/giant_logo.jpg" class="toolbar_logo">
-    </md-button>
-    <!-- logo ↑ -->
+        <!-- logo ↓ -->
+        <md-button class="md-primary" ng-click="ul.selectTotal()" aria-label="select total">
+            <img src="assets/images/giant_logo.jpg" class="toolbar_logo">
+        </md-button>
+        <!-- logo ↑ -->
 
-    <span flex></span>
+        <span flex></span>
 
-    <!-- 用户管理按钮 ↓ -->
-    <md-button class="menu md-icon-button" ng-click="ul.toggleUserCtrl()" aria-label="Show User Administration">
-        <md-icon md-svg-icon="user"></md-icon>
-    </md-button>
-    <!-- 用户管理按钮 ↑ -->
+        <!-- 用户管理按钮 ↓ -->
+        <md-button class="menu md-icon-button" ng-click="ul.toggleUserCtrl()" aria-label="Show User Administration">
+            <md-icon md-svg-icon="user"></md-icon>
+        </md-button>
+        <!-- 用户管理按钮 ↑ -->
+    </md-content>
+    <md-progress-linear ng-hide="ul.hideProgressBar" md-mode="indeterminate" class="game-progress-bar"></md-progress-linear>
 </md-toolbar>
 <!-- 顶部导航条 ↑ -->
 

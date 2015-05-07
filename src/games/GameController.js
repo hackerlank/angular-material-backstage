@@ -6,7 +6,7 @@
     angular
         .module('games')
         .controller('UserController', [
-            'gameService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$scope', '$mdDialog', '$mdUtil',
+            'gameService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$scope', '$mdDialog', '$mdUtil', '$mdToast',
             UserController
         ])
 		.controller('cpsCtrl', function ($scope, $timeout, $mdSidenav, $log) {
@@ -368,7 +368,7 @@
      * @param avatarsService
      * @constructor
      */
-    function UserController(gameService, $mdSidenav, $mdBottomSheet, $log, $q, $scope, $mdDialog, $mdUtil) {
+    function UserController(gameService, $mdSidenav, $mdBottomSheet, $log, $q, $scope, $mdDialog, $mdUtil, $mdToast) {
         var self = this;
 
         // 初始化请求参数
@@ -427,6 +427,7 @@
 		];
 		self.chooseDateType = chooseDateType;
 		self.showPcDateRangePicker = false;
+        self.hideProgressBar = true;
 
 		self.showTrend = showTrend;
         self.showDist = showDist;
@@ -463,6 +464,31 @@
 			3: 'TOP1000'
 		};
 
+
+
+        showProgressBar();
+
+
+
+        function showProgressBar() {
+            self.hideProgressBar = false;
+        }
+        function hideProgressBar() {
+            setTimeout(function() {
+                self.hideProgressBar = true;
+            }, 2000);
+        }
+        function notifyLoading(notification, position) {
+            notification = notification || "数据已刷新...";
+            position = position || "right";
+            $mdToast.show(
+                $mdToast.simple()
+                    .content(notification)
+                    .position(position)
+                    .hideDelay(2000)
+            );
+        }
+
 		function chooseDateType (item) {
 			for (key in self.timeItems) {
 				self.timeItems[key].primary = false;
@@ -487,7 +513,7 @@
 				for (typegame in self.games) {
 					self.gamelist = myjquery.merge(self.gamelist, self.games[typegame].gamelist);
 				}
-                //self.selected = users[0];
+                hideProgressBar();
             });
 		function getGameNameById(gid) {
 			for (id in self.gamelist) {
@@ -497,16 +523,30 @@
 			}
 		}
 		// Load all data vars
-        gameService
-			.loadAllGameData()
-			.then (function (gamedata) {
-				self.gd = gamedata;
-			});
+        loadGameBoardData();
+
+        function loadGameBoardData() {
+            showProgressBar();
+            var param = {
+                'act': 'getData',
+                'datatype': 4,
+                'gid': self.gid
+            };
+            gameService
+                .loadAllGameData(param)
+                .then (function (gamedata) {
+                    self.gd = gamedata;
+                    notifyLoading();
+                    hideProgressBar();
+                });
+        }
+
         // Load all data category
         gameService
             .loadAllDataCategory()
             .then (function (datacatedata) {
                 self.dcd = datacatedata;
+                hideProgressBar();
             });
 
 

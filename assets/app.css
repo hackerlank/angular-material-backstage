@@ -261,6 +261,16 @@ md-toolbar h1 {
 	left: 0;
 	top: 0;
 }
+.game-head-nav .game-head-nav-content {
+    overflow: hidden;
+}
+.game-head-nav .game-progress-bar {
+    position: absolute;
+    bottom: 5px;
+}
+.game-head-nav .md-ready {
+    /*height: 3px;*/
+}
 .game-head-nav.md-default-theme {
     background-color: #ffffff;
 }

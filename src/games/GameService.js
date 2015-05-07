@@ -170,8 +170,7 @@
                 profit: {
                     income: {
                         chain: 10.9,
-                        num: 985647855,
-                        topgid: 1
+                        num: 985647855
                     },
                     arpu: {
                         num: 69875
@@ -183,69 +182,56 @@
                 ol: {
                     pcu: {
                         chain: -3.41,
-                        num: 72517859,
-                        topgid: 2
+                        num: 72517859
                     },
                     cu: {
-                        num: 36857859,
-                        topgid: 3
+                        num: 36857859
                     }
                 },
                 people: {
                     netNewRech: {
                         chain: 6.7777,
-                        num: 856217,
-                        topgid: 4
+                        num: 856217
                     },
                     rech: {
                         chain: -1.3,
-                        num: 9925716,
-                        topgid: 5
+                        num: 9925716
                     },
                     newRech: {
                         chain: 3.3,
-                        num: 368579,
-                        topgid: 6
+                        num: 368579
                     },
                     lostRech: {
                         chain: 1.1,
-                        num: 111222,
-                        topgid: 7
+                        num: 111222
                     },
                     netNew: {
                         chain: 9.9,
-                        num: 632587856,
-                        topgid: 1
+                        num: 632587856
                     },
                     active: {
                         chain: 6.6,
-                        num: 258963,
-                        topgid: 9
+                        num: 258963
                     },
                     new: {
                         chain: 18.9,
-                        num: 6859652,
-                        topgid: 2
+                        num: 6859652
                     },
                     lost: {
                         chain: -1.1,
-                        num: 332211,
-                        topgid: 3
+                        num: 332211
                     },
                     topRech: {
                         chain: -8.9,
-                        num: 938271,
-                        topgid: 2
+                        num: 938271
                     },
                     topLost: {
                         chain: -1.9,
-                        num: 938271,
-                        topgid: 2
+                        num: 938271
                     },
                     topLostTotal: {
                         chain: -0.8,
-                        num: 2938271,
-                        topgid: 3
+                        num: 2938271
                     }
                 },
                 remain: {

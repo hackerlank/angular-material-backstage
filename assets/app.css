@@ -409,7 +409,7 @@ span.name {
     min-height: 637px;
 }
 .content .content-part1-3 {
-    min-height: 711px;
+    min-height: 683px;
 }
 
 .content .border-right {
@@ -534,7 +534,7 @@ md-backdrop.md-select-backdrop {
         min-height: 1627px;
     }
     .content .content-part1-3 {
-        min-height: 1977px;
+        min-height: 1860px;
     }
 	.content .data-literal {
 		font-size: 41px;
@@ -575,5 +575,17 @@ md-backdrop.md-select-backdrop {
     .game-chart-dialog .game-chart-cps-indicator {
         margin-top: 8px;
         float: none;
+    }
+
+    .content .game-data-remain-datepicker {
+        margin-left: 0px;
+    }
+
+    .btn-remain-time {
+        padding: 5px;
+        margin: 0 35px;
+        border-radius: 0;
+        font-size: 14px;
+        font-size:16px;
     }
 }

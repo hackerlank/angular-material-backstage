@@ -1003,7 +1003,7 @@
                 $mdToast.simple()
                     .content(notification)
                     .position(position)
-                    .hideDelay(2000)
+                    .hideDelay(1000)
             );
         }
         // tools ↑

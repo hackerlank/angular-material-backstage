@@ -981,7 +981,7 @@
         function hideProgressBar() {
             setTimeout(function() {
                 self.hideProgressBar = true;
-            }, 500);
+            }, 1000);
         }
         function notifyLoading(notification, position) {
             notification = notification || "数据已刷新...";

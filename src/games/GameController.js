@@ -713,18 +713,31 @@
 					}
 					item.primary = true;
 					
-					if ('btn-btm-timediy' == item.el_id) {
+					if (6 == item.id) {
 						this.showDateRangePicker = true;
-
 					} else {
 						this.showDateRangePicker = false;
                         $mdBottomSheet.hide(item);
+
+                        console.log('loadGameBoardData: ts1');
+                        loadGameBoardData();
 					}
+
+                    if (1 == item.id) {                     //btn-realtime
+                        self.cuTitle = self.dcd.overall[3];
+                    } else {
+                        self.cuTitle = self.dcd.overall[12];
+                    }
+                    self.datetype = item.id;
                 };
 
                 $scope.$watch('DiyDateRange', function() {
                     self.daterangeStart = moment($scope.DiyDateRange.start).format('YYYY-MM-DD');
                     self.daterangeEnd = moment($scope.DiyDateRange.end).format('YYYY-MM-DD');
+                    if (0 !=$scope.DiyDateRange) {
+                        console.log('loadGameBoardData: ts2');
+                        loadGameBoardData();
+                    }
                 });
             }
         }

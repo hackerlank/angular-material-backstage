@@ -35,10 +35,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameController.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/games/GameController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.60596025">
+            <state vertical-scroll-proportion="-18.3">
               <caret line="983" column="17" selection-start-line="983" selection-start-column="17" selection-end-line="983" selection-end-column="17" />
               <folding>
                 <element signature="e#0#46#0" expanded="false" />
@@ -60,17 +60,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameService.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameService.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/games/GameService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="104" column="9" selection-start-line="104" selection-start-column="9" selection-end-line="104" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.5630342">
+              <caret line="52" column="18" selection-start-line="52" selection-start-column="18" selection-end-line="52" selection-end-column="18" />
               <folding>
-                <element signature="e#4587#5509#0" expanded="false" />
-                <element signature="e#5511#6579#0" expanded="false" />
-                <element signature="e#6607#11134#0" expanded="false" />
-                <element signature="e#11163#12302#0" expanded="false" />
-                <element signature="e#13237#17764#0" expanded="false" />
+                <element signature="e#4589#5511#0" expanded="false" />
+                <element signature="e#5513#6581#0" expanded="false" />
+                <element signature="e#6609#11136#0" expanded="false" />
+                <element signature="e#11165#12304#0" expanded="false" />
+                <element signature="e#13239#17766#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -115,9 +115,9 @@
         <option value="$PROJECT_DIR$/assets/app.css" />
         <option value="$PROJECT_DIR$/template/timeSelSheet.html" />
         <option value="$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker.js" />
-        <option value="$PROJECT_DIR$/src/games/GameService.js" />
         <option value="$PROJECT_DIR$/index_new.html" />
         <option value="$PROJECT_DIR$/src/games/GameController.js" />
+        <option value="$PROJECT_DIR$/src/games/GameService.js" />
       </list>
     </option>
   </component>
@@ -374,7 +374,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-8" width="1936" height="1096" extended-state="7" />
+    <frame x="-1928" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21296784" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -769,20 +769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/games/GameService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="104" column="9" selection-start-line="104" selection-start-column="9" selection-end-line="104" selection-end-column="9" />
-          <folding>
-            <element signature="e#4587#5509#0" expanded="false" />
-            <element signature="e#5511#6579#0" expanded="false" />
-            <element signature="e#6607#11134#0" expanded="false" />
-            <element signature="e#11163#12302#0" expanded="false" />
-            <element signature="e#13237#17764#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index_new.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.625">
@@ -796,7 +782,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/games/GameController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60596025">
+        <state vertical-scroll-proportion="-18.3">
           <caret line="983" column="17" selection-start-line="983" selection-start-column="17" selection-end-line="983" selection-end-column="17" />
           <folding>
             <element signature="e#0#46#0" expanded="false" />
@@ -813,6 +799,20 @@
             <element signature="e#81836#82814#0" expanded="false" />
             <element signature="e#83530#83741#0" expanded="false" />
             <element signature="e#92828#92867#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/games/GameService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5630342">
+          <caret line="52" column="18" selection-start-line="52" selection-start-column="18" selection-end-line="52" selection-end-column="18" />
+          <folding>
+            <element signature="e#4589#5511#0" expanded="false" />
+            <element signature="e#5513#6581#0" expanded="false" />
+            <element signature="e#6609#11136#0" expanded="false" />
+            <element signature="e#11165#12304#0" expanded="false" />
+            <element signature="e#13239#17766#0" expanded="false" />
           </folding>
         </state>
       </provider>

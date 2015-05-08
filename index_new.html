@@ -72,19 +72,19 @@
             <p>
                 渠道过滤
             </p>
-            <md-radio-group class="cps-channel-radiogroup" ng-model="ul.channel" ng-click="ul.selectChannel(ul.channel)">
+            <md-radio-group class="cps-channel-radiogroup" ng-model="ul.channel" ng-change="ul.selectChannel(ul.channel)">
                 <md-radio-button ng-value="0" class="md-primary">全部</md-radio-button>
                 <md-list ng-repeat="channel in ul.channels">
-                    <md-radio-button ng-value="{{channel.id}}">{{channel.name}}</md-radio-button>
+                    <md-radio-button value="{{channel.id}}">{{channel.name}}</md-radio-button>
                 </md-list>
             </md-radio-group>
             <p>
                 选择平台
             </p>
-            <md-radio-group class="cps-platform-radiogroup" ng-model="ul.platform" ng-click="ul.selectPlatform(ul.platform)">
+            <md-radio-group class="cps-platform-radiogroup" ng-model="ul.platform" ng-change="ul.selectPlatform(ul.platform)">
                 <md-radio-button ng-value="0" class="md-primary">全部</md-radio-button>
                 <md-list ng-repeat="platform in ul.platforms">
-                    <md-radio-button ng-value="{{platform.id}}">{{platform.name}}</md-radio-button>
+                    <md-radio-button ng-value="platform.id">{{platform.name}}</md-radio-button>
                 </md-list>
             </md-radio-group>
             <p>
@@ -94,7 +94,7 @@
                 <md-select class="cps-server-select" placeholder="选择区服" ng-model="ul.server" ng-change="ul.selectServer(ul.server)">
                     <md-option value="0" ng-selected="true">全部</md-option>
                     <md-list ng-repeat="server in ul.servers">
-                        <md-option ng-value="{{server.id}}">{{server.name}}</md-option>
+                        <md-option ng-value="server.id">{{server.name}}</md-option>
                     </md-list>
                 </md-select>
             </p>
@@ -124,7 +124,7 @@
 							{{item.name}}
 						</md-button>
 					</span>
-                    <input id="pcdaterangepicker" ng-hide="!ul.showPcDateRangePicker" type="text" date-range-picker ng-model="ul.DiyDateRange" ranged="true"
+                    <input id="pcdaterangepicker" ng-hide="!ul.showPcDateRangePicker" type="text" date-range-picker ng-model="DiyDateRange" ranged="true"
                            custom-select-options="ul.rangeSelectOptions" control="dateRangePickerControl"/>
 				</span>
 
@@ -164,8 +164,8 @@
 										<md-button ng-click="ul.showDist($event, ul.dcd.overall[1])" class="btn-game-data-literal">
 											<span class="data-literal">{{ul.gd.overall.profit.num | number: 0}}</span>
 											<span class="data-rech-select-unit" stop-event>
-												<md-select id="currency-unit-sel" placeholder="选择货币单位" ng-model="ul.cunit">
-													<md-option value="1" ng-selected="true">RMB</md-option>
+												<md-select id="currency-unit-sel" placeholder="选择货币单位" ng-model="misc.cunit">
+													<md-option value="1">RMB</md-option>
 													<md-option value="2">韩元</md-option>
 													<md-option value="3">越南盾</md-option>
 													<md-option value="4">美元</md-option>
@@ -214,10 +214,10 @@
 							<md-divider class="game-data-card-divider"></md-divider>
 							<div class="game-data-card-online">
 								<div class="game-data-card-content-row">
-									<span class="trend-title">{{ul.dcd.overall[3]}}</span>
+									<span class="trend-title" dynamic-title-cu>{{ul.cuTitle}}</span>
 								</div>
 								<div class="game-data-card-content-row">
-									<md-button ng-click="ul.showTrend($event, ul.dcd.overall[3], 2)">
+									<md-button ng-click="ul.showTrend($event, ul.cuTitle, 2)">
 										<span class="data-sub-literal">{{ul.gd.overall.ol.cu.num | number: 0}}</span>
 										<span class="data-literal-unit">人</span>
 									</md-button>
@@ -527,11 +527,10 @@
 										<md-button ng-click="ul.showDist($event, ul.dcd.specgame[1], 2)" class="btn-game-data-literal">
 											<span class="data-literal">{{ul.gd.specgame.profit.income.num | number: 0}}</span>
 											<span class="data-rech-select-unit" stop-event>
-												<md-select id="spec-currency-unit-sel" placeholder="选择货币单位" ng-model="ul.cunit">
-													<md-option value="1" ng-selected="true">RMB</md-option>
-													<md-option value="2">韩元</md-option>
-													<md-option value="3">越南盾</md-option>
-													<md-option value="4">美元</md-option>
+												<md-select id="spec-currency-unit-sel" placeholder="选择货币单位" ng-model="misc.cunit">
+													<md-list ng-repeat="cunitinfo in ul.cunits">
+														<md-option ng-value="cunitinfo.id" ng-selected="cunitinfo.selected">{{cunitinfo.name}}</md-option>
+													</md-list>
 												</md-select>
 											</span>
 										</md-button>
@@ -547,7 +546,7 @@
 									<div class="game-data-card-content-row">
 										<md-button ng-click="ul.showDist($event, ul.dcd.specgame[2], 2)">
 											<span class="data-sub-literal">{{ul.gd.specgame.profit.arpu.num | number: 1}}</span>
-											<span class="data-literal-unit" id="spec-arpu-unit">RMB/人</span>
+											<span class="data-literal-unit" id="spec-arpu-unit">{{(ul.cunits | filter:{id:misc.cunit})[0].name}}/人</span>
 										</md-button>
 									</div>
 								</div>
@@ -596,10 +595,10 @@
 							<md-divider class="game-data-card-divider"></md-divider>
 							<div class="game-data-card-rech-adt">
 								<div class="game-data-card-content-row">
-									<span class="trend-title">{{ul.dcd.specgame[5]}}</span>
+									<span class="trend-title">{{ul.cuTitle}}</span>
 								</div>
 								<div class="game-data-card-content-row">
-									<md-button ng-click="ul.showTrend($event, ul.dcd.specgame[5], 2)">
+									<md-button ng-click="ul.showTrend($event, ul.cuTitle, 2)">
 										<span class="data-sub-literal">{{ul.gd.specgame.ol.cu.num | number: 0}}</span>
 										<span class="data-literal-unit">人</span>
 									</md-button>
@@ -838,7 +837,7 @@
 											<div>
 												<div class="game-data-card-content-row">
 													<span class="trend-title">
-														<md-select ng-model="ul.topType" class="game-top-rech-sel">
+														<md-select ng-model="misc.topType" class="game-top-rech-sel">
 															<md-list ng-repeat="toptype in ul.topTypes track by $index">
 																<md-option value="{{$index+1}}">{{toptype}}</md-option>
 															</md-list>
@@ -947,10 +946,10 @@
 													<!--<span class="trend-chart-indicator">-->
                                                     <div hide-gt-sm></div>
 													<input id="AllRemainDatePicker" type="text"
-														   date-range-picker ng-model="ul.AllRemainDateRaw" ranged="false"
+														   date-range-picker ng-model="misc.AllRemainDate" ranged="false"
 														   custom-select-options="ul.rangeSelectOptions"
 														   control="dateRangePickerControl" class="game-data-remain-datepicker"/>
-													<md-button show-date-range-picker class="md-primary btn-remain-time" id="btn-all-remain-date">
+													<md-button show-date-range-picker class="md-primary btn-remain-time" id="btn-all-remain-date" aria-label="allremainbtn">
 														<md-icon md-svg-icon="calendar"></md-icon>
 													</md-button>
 
@@ -1052,10 +1051,10 @@
 													<!--<span class="trend-chart-indicator">-->
                                                     <div hide-gt-sm></div>
 													<input id="ActiveRemainDatePicker" type="text"
-														   date-range-picker ng-model="ul.ActiveRemainDateRaw" ranged="false"
+														   date-range-picker ng-model="misc.ActiveRemainDate" ranged="false"
 														   custom-select-options="ul.rangeSelectOptions"
 														   control="dateRangePickerControl" class="game-data-remain-datepicker"/>
-													<md-button show-date-range-picker class="md-primary btn-remain-time" id="btn-active-remain-date">
+													<md-button show-date-range-picker class="md-primary btn-remain-time" id="btn-active-remain-date" aria-label="activeremainbtn">
 														<md-icon md-svg-icon="calendar"></md-icon>
 													</md-button>
 												</div>
@@ -1157,10 +1156,10 @@
 													<!--<span class="trend-chart-indicator">-->
                                                     <div hide-gt-sm></div>
 													<input id="RechargersDatePicker" type="text"
-														   date-range-picker ng-model="ul.RechargersDateRaw" ranged="false"
+														   date-range-picker ng-model="misc.RechRemainDate" ranged="false"
 														   custom-select-options="ul.rangeSelectOptions"
 														   control="dateRangePickerControl" class="game-data-remain-datepicker"/>
-													<md-button show-date-range-picker class="md-primary btn-remain-time" id="btn-rechargers-date">
+													<md-button show-date-range-picker class="md-primary btn-remain-time" id="btn-rechargers-date" aria-label="rechremainbtn">
 														<md-icon md-svg-icon="calendar"></md-icon>
 													</md-button>
 												</div>

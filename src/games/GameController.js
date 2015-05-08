@@ -13,8 +13,7 @@
 			$scope.cpsChosen = function () {
 				$mdSidenav('cpsPanel').close()
 					.then(function () {
-                        //发送更新数据请求
-                        request();
+                        //after closing cps panel
 					});
 			};
 		}).directive('stopEvent', function () {
@@ -371,11 +370,15 @@
     function UserController(gameService, $mdSidenav, $mdBottomSheet, $log, $q, $scope, $mdDialog, $mdUtil, $mdToast) {
         var self = this;
 
+        // controller params ↓
         // 初始化请求参数
         self.gid = 0;                       //默认全部
         self.datetype = 1;                  //默认实时
         self.daterangeStart = "";
         self.daterangeEnd = "";
+        self.allremaindate = "";
+        self.activeremaindate = "";
+        self.rechremaindate = "";
         self.channel = 0;                   //默认全部
         self.platform = 0;                  //默认全部
         self.server = 0;                    //默认全部
@@ -387,13 +390,11 @@
         self.tY = 1;                        //默认1年前
         self.tDS = "";
         self.tDE = "";
-        self.cunit = 1;                     //默认RMB
         self.topType = 1;                   //默认TOP100
-        self.AllRemainDate = 0;				//所有用户留存时间选择
-        self.ActiveRemainDate = 0;			//活跃用户留存时间选择
-        self.RechargersDate = 0;			//充值用户留存时间选择
-        self.DiyDateRange = 0;				//自定义时间范围（DateRange类型，需要处理成self.daterangeStart, self.daterangeEnd）
-
+        $scope.AllRemainDate = 0;			//所有用户留存时间选择
+        $scope.ActiveRemainDate = 0;			//活跃用户留存时间选择
+        $scope.RechRemainDate = 0;			//充值用户留存时间选择
+        $scope.DiyDateRange = 0;				//自定义时间范围（DateRange类型，需要处理成self.daterangeStart, self.daterangeEnd）
 
         self.selected = null;
         self.games = [];
@@ -431,81 +432,94 @@
 
 		self.showTrend = showTrend;
         self.showDist = showDist;
-		
 		self.selectTotal = selectTotal;
-
 		self.toggleCps = buildToggle('cpsPanel');
 		self.channels = [
 			{name: 'IOS', id: 1},
 			{name: 'Android', id: 2}
 		];
 		self.selectChannel = selectChannel;
-		self.platforms = [
-			{name: '360', id: 1},
-			{name: '4399', id: 2},
-			{name: '百度', id: 3},
-			{name: '豌豆荚', id: 4}
-		];
+		self.platforms = [];
 		self.selectPlatform = selectPlatform;
-		self.servers = [
-			{name: '电信1区', id: 1},
-			{name: '电信2区', id: 2},
-			{name: '电信3区', id: 3},
-			{name: '电信4区', id: 4},
-			{name: '电信5区', id: 5},
-		];
+		self.servers = [];
 		self.selectServer = selectServer;
-
 		self.getGameNameById = getGameNameById;
-
 		self.topTypes = {
 			1: 'TOP100',
 			2: 'TOP500',
 			3: 'TOP1000'
 		};
+        self.loadGameBoardData = loadGameBoardData;
+        self.cuTitle = "当前在线";
+        self.cunits = [
+            {id: 1, name: 'RMB', selected: true},
+            {id: 2, name: '韩元', selected: false},
+            {id: 3, name: '越南盾', selected: false},
+            {id: 4, name: '美元', selected: false}
+        ];
 
+        $scope.misc = {
+            cunit: 1,               //默认RMB
+            topType: 1              //默认TOP100用户数
+        };
+        // controller params ↑
 
 
         showProgressBar();
 
 
+        // watch model change ↓
+        $scope.$watch('DiyDateRange', function() {
+            self.daterangeStart = moment($scope.DiyDateRange.start).format('YYYY-MM-DD');
+            self.daterangeEnd = moment($scope.DiyDateRange.end).format('YYYY-MM-DD');
 
-        function showProgressBar() {
-            self.hideProgressBar = false;
-        }
-        function hideProgressBar() {
-            setTimeout(function() {
-                self.hideProgressBar = true;
-            }, 2000);
-        }
-        function notifyLoading(notification, position) {
-            notification = notification || "数据已刷新...";
-            position = position || "right";
-            $mdToast.show(
-                $mdToast.simple()
-                    .content(notification)
-                    .position(position)
-                    .hideDelay(2000)
-            );
-        }
+            if (0 !=$scope.DiyDateRange) {
+                console.log('loadGameBoardData: 1');
+                loadGameBoardData();
+            }
+        });
+        $scope.$watch('misc.cunit', function(newval, oldval) {
+            if (oldval == newval)
+                return false;
+            //if (0 == self.gid) {                //如果为总览
+            //    //refresh profit card value
+            //} else {                            //如果为某个游戏
+            //    //refresh profit card value and ARPU value
+            //}
+            loadProfitByUnit();
+        });
+        $scope.$watch('misc.topType', function(newval, oldval) {
+            if (oldval == newval == 1)
+                return false;
+            //refresh topxxx card value
+            loadTopByToptype();
+        });
+        $scope.$watch('misc.AllRemainDate', function(newval, oldval) {
+            if (oldval == newval)
+                return false;
+            self.allremaindate = moment(newval).format('YYYY-MM-DD');
+            //refresh all remain card value by allremaindate
+            loadRemainByDate(1);
+        });
+        $scope.$watch('misc.ActiveRemainDate', function(newval, oldval) {
+            if (oldval == newval)
+                return false;
+            self.activeremaindate = moment(newval).format('YYYY-MM-DD');
+            //refresh active remain card value by activeremaindate
+            loadRemainByDate(2);
+        });
+        $scope.$watch('misc.RechRemainDate', function(newval, oldval) {
+            if (oldval == newval)
+                return false;
+            self.rechremaindate = moment(newval).format('YYYY-MM-DD');
+            //refresh rech remain card value by rechremaindate
+            loadRemainByDate(3);
+        });
+        // watch model change ↑
 
-		function chooseDateType (item) {
-			for (key in self.timeItems) {
-				self.timeItems[key].primary = false;
-			}
-			item.primary = true;
-			
-			if ('btn-timediy' == item.el_pc_id) {
-				self.showPcDateRangePicker = true;
-			} else {
-				self.showPcDateRangePicker = false;
-			}
 
-            self.datetype = item.id;
-		};
-
-
-        // Load all available games
+        // data manipulation ↓
+        // Load game list
         gameService
             .loadAllGames()
             .then(function (games) {
@@ -523,6 +537,7 @@
 			}
 		}
 		// Load all data vars
+        console.log('loadGameBoardData: 2');
         loadGameBoardData();
 
         function loadGameBoardData() {
@@ -540,6 +555,82 @@
                     hideProgressBar();
                 });
         }
+        // Load profit card value due to unit change
+        function loadProfitByUnit() {
+            showProgressBar();
+            var param = {
+                'act': 'getData',
+                'datatype': 111111111,
+                'gid': self.gid,
+                'cunit': $scope.misc.cunit
+            };
+            gameService
+                .loadProfitByUnit(param)
+                .then (function (profitdata) {
+                    self.gd.profit = profitdata;
+                    hideProgressBar();
+                });
+        }
+        // Load top card value due to toptype change
+        function loadTopByToptype() {
+            showProgressBar();
+            var param = {
+                'act': 'getData',
+                'datatype': 123123,
+                'gid' : self.gid,
+                'topType' : self.topType
+            };
+            gameService
+                .loadTopByToptype(param)
+                .then (function (topdata) {
+                    self.gd.people.topRech = topdata.topRech;
+                    self.gd.people.topLost = topdata.topLost;
+                    self.gd.people.topLostTotal = topdata.topLostTotal;
+                    hideProgressBar();
+                });
+        }
+        // Load remain card value due to allremaindate change
+        function loadRemainByDate(type) {
+            showProgressBar();
+
+            var datatype = 123123123123;
+            switch (type) {
+                case 1:
+                    datatype = 333333333333333;
+                    break;
+                case 2:
+                    datatype = 222222222222222;
+                    break;
+                case 3:
+                    datatype = 11111111111111;
+                    break;
+            }
+
+            var param = {
+                'act': 'getData',
+                'datatype': datatype,
+                'gid' : self.gid,
+                'AllRemainDate' : self.allremaindate,
+                'ActiveRemainDate' : self.activeremaindate,
+                'RechargersDate' : self.rechremaindate
+            };
+            gameService
+                .loadRemainByDate(param)
+                .then (function (allremaindata) {
+                    switch (type) {
+                        case 1:
+                            self.gd.remain.overall = allremaindata.overall;
+                            break;
+                        case 2:
+                            self.gd.remain.active = allremaindata.active;
+                            break;
+                        case 3:
+                            self.gd.remain.rech = allremaindata.rech;
+                            break;
+                    }
+                    hideProgressBar();
+                });
+        }
 
         // Load all data category
         gameService
@@ -548,13 +639,32 @@
                 self.dcd = datacatedata;
                 hideProgressBar();
             });
+        // data manipulation ↑
 
 
 
-        /**
-         * First hide the bottomsheet IF visible, then
-         * hide or Show the 'left' sideNav area
-         */
+        function chooseDateType (item) {
+            for (key in self.timeItems) {
+                self.timeItems[key].primary = false;
+            }
+            item.primary = true;
+
+            if (6 == item.id) {                     //btn-diy
+                self.showPcDateRangePicker = true;
+            } else {
+                self.showPcDateRangePicker = false;
+                console.log('loadGameBoardData: 3');
+                loadGameBoardData();
+            }
+
+            if (1 == item.id) {                     //btn-realtime
+                self.cuTitle = self.dcd.overall[3];
+            } else {
+                self.cuTitle = self.dcd.overall[12];
+            }
+            self.datetype = item.id;
+        };
+
         function toggleUsersList(e) {
             var pending = $mdBottomSheet.hide() || $q.when(true);
 
@@ -567,14 +677,12 @@
             //............
         }
 
-        /**
-         * Select the current games
-         * @param menuId
-         */
         function selectGame(game) {
             self.selected = angular.isNumber(game) ? $scope.games[game] : game;
             self.toggleList();
             self.gid = game.gid;
+            console.log('loadGameBoardData: 4');
+            loadGameBoardData();
         }
 		function selectTotal() {
 			self.selected = false;
@@ -594,6 +702,7 @@
             });
 
             function TimeSelSheetController($mdBottomSheet, $scope) {
+                $scope.DiyDateRange = 0;
 				this.showDateRangePicker = false;
 				
                 this.items = self.timeItems;
@@ -612,29 +721,33 @@
                         $mdBottomSheet.hide(item);
 					}
                 };
-				
+
+                $scope.$watch('DiyDateRange', function() {
+                    self.daterangeStart = moment($scope.DiyDateRange.start).format('YYYY-MM-DD');
+                    self.daterangeEnd = moment($scope.DiyDateRange.end).format('YYYY-MM-DD');
+                });
             }
         }
 
-		function toggleTimeDiyPanel($event) {
-			$mdBottomSheet.show({
-				parent: angular.element(document.getElementById("content")),
-				templateUrl: 'template/timeDiySelSheet.html',
-				controller: ['$mdBottomSheet', TimeDiySelSheetController],
-				controllerAs: 'tsdiy',
-				bindToController: true,
-				targetEvent: $event
-			}).then(function (clickedItem) {
-				console.log('time diy clicked!');
-			});
-			
-			function TimeDiySelSheetController($mdBottomSheet) {
-				this.chooseDiyTs = function () {
-					$mdBottomSheet.hide(action);
-					toggleTimePanel($event);
-				}
-			}
-		}
+		//function toggleTimeDiyPanel($event) {
+		//	$mdBottomSheet.show({
+		//		parent: angular.element(document.getElementById("content")),
+		//		templateUrl: 'template/timeDiySelSheet.html',
+		//		controller: ['$mdBottomSheet', TimeDiySelSheetController],
+		//		controllerAs: 'tsdiy',
+		//		bindToController: true,
+		//		targetEvent: $event
+		//	}).then(function (clickedItem) {
+		//		console.log('time diy clicked!');
+		//	});
+		//
+		//	function TimeDiySelSheetController($mdBottomSheet) {
+		//		this.chooseDiyTs = function () {
+		//			$mdBottomSheet.hide(action);
+		//			toggleTimePanel($event);
+		//		}
+		//	}
+		//}
 		
 		
 		function showTrend($event, title, mode) {
@@ -809,12 +922,17 @@
 				{name: '百度', id: 3},
 				{name: '豌豆荚', id: 4}
 			];
+			self.servers = [];
 
 			if (0 == channelId) {
 				self.platforms = {};
 			}
 
-			console.log(channelId);
+			self.platform = 0;
+			self.server = 0;
+
+            console.log('loadGameBoardData: 5');
+			loadGameBoardData();
 		}
 
 		function selectPlatform(platformId) {
@@ -833,13 +951,48 @@
 				self.servers = {};
 			}
 
-			console.log(platformId);
+			self.server = 0;
+            console.log('loadGameBoardData: 6');
+			loadGameBoardData();
 		}
 
+        var initload = true;
 		function selectServer(serverId) {
-			console.log(serverId);
+			self.server = serverId;
+            if (!initload) {
+                console.log('loadGameBoardData: 7');
+                loadGameBoardData();
+            }
+            initload = false;
 		}
-		
 
+
+
+
+
+
+
+
+
+        // tools ↓
+        function showProgressBar() {
+            self.hideProgressBar = false;
+        }
+        function hideProgressBar() {
+            setTimeout(function() {
+                self.hideProgressBar = true;
+            }, 500);
+        }
+        function notifyLoading(notification, position) {
+            notification = notification || "数据已刷新...";
+            position = position || "right";
+            $mdToast.show(
+                $mdToast.simple()
+                    .content(notification)
+                    .position(position)
+                    .hideDelay(2000)
+            );
+        }
+        // tools ↑
   	};
 })();

@@ -220,7 +220,6 @@
                             }
                         } else {
                             $scope.selection = moment(day.date);
-                            console.log($scope.selection);
                         }
                         return _prepare();
                     };

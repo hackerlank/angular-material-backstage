@@ -36,8 +36,17 @@
                     case 1:                             //获取游戏列表
                         genGamesObj(deferral, data);
                         break;
-                    case 2:
+                    case 2:                             //获取面板数据
                         genGamesData(deferral, data, params);
+                        break;
+                    case 3:                             //获取收入数据
+                        genProfitData(deferral, data, params);
+                        break;
+                    case 4:                             //获取TOP数据
+                        genTopData(deferral, data, params);
+                        break;
+                    case 5:                             //获取留存数据
+                        genRemainData(deferral, data, params);
                         break;
                 }
             }).error(function() {
@@ -70,7 +79,6 @@
             }
             deferral.resolve(games);
         }
-
         function genGamesData(deferral, data, params) {
             var gamedata = {};
             if ("OK" == data.status) {
@@ -83,6 +91,19 @@
             }
             deferral.resolve(gamedata);
         }
+        function genProfitData(deferral, data, params) {
+            var gamedata = {};
+            deferral.resolve(gamedata);
+        }
+        function genTopData(deferral, data, params) {
+            var gamedata = {};
+            deferral.resolve(gamedata);
+        }
+        function genRemainData(deferral, data, params) {
+            var gamedata = {};
+            deferral.resolve(gamedata);
+        }
+
 
         // 1 获取游戏列表
         function getGameList() {
@@ -93,6 +114,21 @@
         // 2 获取面板数据
         function getGameBoardData(param) {
             return getByJsonp(requestUrl, param, 2);
+        }
+
+        // 3 获取收入面板数据
+        function getProfitByUnit(param) {
+            return getByJsonp(requestUrl, param, 3);
+        }
+
+        // 4 获取最高xxx面板数据
+        function getTopByToptype(param) {
+            return getByJsonp(requestUrl, param, 4);
+        }
+
+        // 5 活跃留存面板数据
+        function getRemainByDate(param) {
+            return getByJsonp(requestUrl, param, 5);
         }
 
         var games = [{
@@ -333,7 +369,8 @@
                 8: '净新增用户数',
                 9: '活跃用户数',
                 10: '新增用户数',
-                11: '流失用户数'
+                11: '流失用户数',
+                12: '平均在线'
             },
             specgame: {
                 1: '收入',
@@ -376,8 +413,16 @@
             },
             loadAllDataCategory: function() {
                 return $q.when(datacatedata);
+            },
+            loadProfitByUnit: function(param) {
+                return $q.when(getProfitByUnit(param));
+            },
+            loadTopByToptype: function(param) {
+                return $q.when(getTopByToptype(param));
+            },
+            loadRemainByDate: function(param) {
+                return $q.when(getRemainByDate(param));
             }
-
         };
     }
 

@@ -50,7 +50,7 @@
                         break;
                 }
             }).error(function() {
-                //alert('连接异常，请重试！');
+                alert('连接异常，请重试！');
             });
             return deferral.promise;
         }

@@ -40,7 +40,7 @@
         </md-button>
         <!-- 用户管理按钮 ↑ -->
     </md-content>
-    <md-progress-linear ng-hide="ul.hideProgressBar" md-mode="indeterminate" class="game-progress-bar"></md-progress-linear>
+    <md-progress-linear ng-if="!ul.hideProgressBar" md-mode="indeterminate" class="game-progress-bar"></md-progress-linear>
 </md-toolbar>
 <!-- 顶部导航条 ↑ -->
 

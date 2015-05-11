@@ -51,32 +51,57 @@
 			};
 		}).directive('showChain', function () {
 			return {
-				require: '?ngModel',
 				restrict: 'A',
-				link: function ($scope, element, attrs, ngModel) {
+				link: function ($scope, element, attrs) {
+                    ///////////////////////////////////
+                    drawChainChart({});return false;
 					
 					//数据请求
-					request();
-					
-					var option = {};
-					drawChainChart(option);
-					
-					
+					var option = $scope.loadChainChartData($scope.datatype, $scope.mode);
+                    switch ($scope.mode) {
+                        case 1:                     //环比
+                            drawChainChart(option);
+                            break;
+                        case 2:                     //在线曲线
+                            drawTrendChart(option);
+                            break;
+                        case 3:                     //环比
+                            drawChainChart(option);
+                            break;
+                        case 4:                     //留存曲线
+                            drawTrendChart(option);
+                            break;
+                    }
 				}
 			}
 		}).directive('showDist', function () {
 			return {
-				require: '?ngModel',
 				restrict: 'A',
-				link: function ($scope, element, attrs, ngModel) {
-					
+				link: function ($scope, element, attrs) {
+                    ////////////////////////////////////////////////////////
+                    drawDistChart({});return false;
+
 					//数据请求
-					request();
-					
-					var option = {};
-					drawDistChart(option);
-					
-					
+					var option = $scope.loadDistChartData($scope.dtypeleft, $scope.modeleft);
+                    switch ($scope.modeleft) {
+                        case 1:                     //产品贡献结构
+                            drawDistChart(option);
+                            break;
+                        case 2:                     //渠道贡献结构
+                            drawDistChart(option);
+                            break;
+                        case 3:                     //分布净新增付费用户、净新增用户（横向双柱状图）
+                            drawDistBarChart(option);
+                            break;
+                        case 4:                     //付费用户、活跃用户（双饼图）
+                            drawDoubleDistChart(option);
+                            break;
+                        case 5:                     //新增付费用户、流失付费用户、流失用户
+                            break;
+                        case 6:                     //top付费用户、top流失用户、top总流失用户（单饼图）
+                            break;
+
+                    }
 				}
 			}
 		}).directive('showTrend', function () {
@@ -84,14 +109,9 @@
 				require: '?ngModel',
 				restrict: 'A',
 				link: function ($scope, element, attrs, ngModel) {
-					
 					//数据请求
-					request();
-					
-					var option = {};
-					drawTrendChart(option);
-					
-					
+					//var option = {};
+					//drawTrendChart(option);
 				}
 			}
 		});
@@ -110,7 +130,7 @@
 			function (ec, theme) {
 				// 基于准备好的dom，初始化echarts图表
 				setTimeout(function() {
-					var myChart = ec.init(document.getElementById('chain-chart-p'), theme);
+					var myChart = ec.init(document.getElementById('trend-chart-p'), theme);
 
 					option = {
 						tooltip : {
@@ -247,8 +267,7 @@
 							trigger: 'axis',
 							formatter: function(params) {
 								return params[0].name + '<br/>'
-									   + params[0].seriesName + ' : ' + params[0].value + ' (m^3/s)<br/>'
-									   + params[1].seriesName + ' : ' + -params[1].value + ' (mm)';
+									   + params[0].value + ' RMB';
 							}
 						},
 						legend: {
@@ -354,7 +373,7 @@
 
 					// 为echarts对象加载数据
 					myChart.setOption(option);
-				}, 100);
+				}, 200);
 			}
 		);
 	}
@@ -536,9 +555,23 @@
 				}
 			}
 		}
+        // Load all data category
+        gameService
+            .loadAllDataCategory()
+            .then (function (datacatedata) {
+            self.dcd = datacatedata;
+            hideProgressBar();
+        });
 		// Load all data vars
         console.log('loadGameBoardData: 2');
         loadGameBoardData();
+        //每5秒刷新数据
+        setInterval(function() {
+            if (1 == self.datetype) {
+                console.log('loadGameBoardData: interval');
+                loadGameBoardData();
+            }
+        }, 5000);
 
         function loadGameBoardData() {
             showProgressBar();
@@ -560,7 +593,7 @@
             showProgressBar();
             var param = {
                 'act': 'getData',
-                'datatype': 111111111,
+                'datatype': 100,
                 'gid': self.gid,
                 'cunit': $scope.misc.cunit
             };
@@ -576,7 +609,7 @@
             showProgressBar();
             var param = {
                 'act': 'getData',
-                'datatype': 123123,
+                'datatype': 101,
                 'gid' : self.gid,
                 'topType' : self.topType
             };
@@ -589,20 +622,20 @@
                     hideProgressBar();
                 });
         }
-        // Load remain card value due to allremaindate change
+        // Load remain card value due to remaindate change
         function loadRemainByDate(type) {
             showProgressBar();
 
-            var datatype = 123123123123;
+            var datatype = 102;
             switch (type) {
                 case 1:
-                    datatype = 333333333333333;
+                    datatype = 102;
                     break;
                 case 2:
-                    datatype = 222222222222222;
+                    datatype = 103;
                     break;
                 case 3:
-                    datatype = 11111111111111;
+                    datatype = 104;
                     break;
             }
 
@@ -631,14 +664,71 @@
                     hideProgressBar();
                 });
         }
+        function loadChainChartData(dtype, mode) {
+            showProgressBar();
 
-        // Load all data category
-        gameService
-            .loadAllDataCategory()
-            .then (function (datacatedata) {
-                self.dcd = datacatedata;
-                hideProgressBar();
-            });
+            var param = reloadParam();
+
+            gameService
+                .loadChainChartData(param, mode)
+                .then (function (chartdata) {
+                    hideProgressBar();
+                    return chartdata;
+                });
+        }
+        function loadDistChartData(dtype, mode) {
+            showProgressBar();
+
+            var param = reloadParam();
+            param.dtype = dtype;
+
+            gameService
+                .loadDistChartData(param, mode)
+                .then (function (chartdata) {
+                    hideProgressBar();
+                    return chartdata;
+                });
+        }
+        function loadTrendChartData(dtype, mode) {
+            showProgressBar();
+
+            var param = reloadParam();
+            param.dtype = dtype;
+
+            gameService
+                .loadTrendChartData(param, mode)
+                .then (function (chartdata) {
+                    hideProgressBar();
+                    return chartdata;
+                });
+        }
+
+        function reloadParam(act) {
+            var act = act || 'getData';
+            return {
+                'act': act,
+                'gid': self.gid,
+                'datetype' : self.datetype,
+                'daterangeStart' : self.daterangeStart,
+                'daterangeEnd' : self.daterangeEnd,
+                'channel' : self.channel,
+                'platform' : self.platform,
+                'server' : self.server,
+                'dtype' : dtype,
+                'tD' : self.tD,
+                'tW' : self.tW,
+                'tM' : self.tM,
+                'tQ' : self.tQ,
+                'tY' : self.tY,
+                'tDS' : self.tDS,
+                'tDE' : self.tDE,
+                'cunit' : $scope.misc.cunit,
+                'topType' : $scope.misc.topType,
+                'AllRemainDate' : self.allremaindate,
+                'ActiveRemainDate' : self.activeremaindate,
+                'RechargersDate' : self.rechremaindate
+            };
+        }
         // data manipulation ↑
 
 
@@ -763,7 +853,7 @@
 		//}
 		
 		
-		function showTrend($event, title, mode) {
+		function showTrend($event, title, datatype, mode) {
 			$mdDialog.show({
 				controller: TrendDialogController,
 				templateUrl: 'template/trendChartTpl.html',
@@ -782,6 +872,7 @@
 				4: '留存曲线'
 			};
 
+            var datatype = datatype || 1;
 			var mode = mode || 1;
 			
 			
@@ -798,6 +889,7 @@
 				};
 				$scope.games = self.games;
 				$scope.mode = mode;
+                $scope.datatype = datatype;
 
                 $scope.tablabel = modes[mode];
 				if (3 == mode) {
@@ -806,10 +898,12 @@
                 $scope.chartlabel = title + modes[mode] + "图";
 
 				$scope.cps_indicator = genCpsIndicator();
+
+                $scope.loadChainChartData = loadChainChartData;
 			}
 		}
 		
-		function showDist($event, title, modeleft, moderight) {
+		function showDist($event, title, dtypeleft, dtyperight, modeleft, moderight) {
 			$mdDialog.show({
 				controller: DistDialogController,
 				templateUrl: 'template/distChartTpl.html',
@@ -836,6 +930,8 @@
 				2: '趋势'				//净新增付费用户、净新增用户（双面积曲线）
 			};
 
+            var dtypeleft = dtypeleft || 1;
+            var dtyperight = dtyperight || 1;
 			var modeleft = modeleft || 1;
 			var moderight = moderight || 1;
 
@@ -851,21 +947,24 @@
 					$mdDialog.hide(answer);
 				};
 				$scope.games = self.games;
+
+                $scope.dtypeleft = dtypeleft;
+                $scope.dtyperight = dtyperight;
+                $scope.modeleft = modeleft;
+                $scope.moderight = moderight;
 				
 				$scope.callDrawChartOnce = false;
 				$scope.callDrawTrendChart = function() {
 					if (!$scope.callDrawChartOnce) {
-						
-						//数据请求
-						request();
-						var option = {};
+                        ////////////////////////////////////
+                        drawTrendChart({});
+
+
+						var option = loadTrendChartData($scope.dtyperight, $scope.moderight);
 						drawTrendChart(option);
 						$scope.callDrawChartOnce = true;
 					}
 				}
-
-				$scope.modeleft = modeleft;
-				$scope.moderight = moderight;
 
 				if (6 == modeleft) {
 					title = self.topTypes[self.topType] + title;
@@ -878,6 +977,8 @@
 				$scope.chartlabelright = title + modesright[moderight] + "图";
 
 				$scope.cps_indicator = genCpsIndicator();
+
+                $scope.loadDistChartData = loadDistChartData;
 			}
 		}
 

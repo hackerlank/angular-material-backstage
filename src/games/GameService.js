@@ -15,7 +15,7 @@
         1: '端游',
         2: '手游',
         3: '页游'
-    }
+    };
 
     /**
      * Users DataService
@@ -26,6 +26,8 @@
      * @constructor
      */
     function GameService($q, $http) {
+        var self = this;
+
         function getByJsonp(url, params, type) {
             var deferral = $q.defer();
             url = url  + '?callback=JSON_CALLBACK';
@@ -48,9 +50,18 @@
                     case 5:                             //获取留存数据
                         genRemainData(deferral, data, params);
                         break;
+                    case 6:                             //环比数据
+                        genChainChartData(deferral, data, params);
+                        break;
+                    case 7:                             //分布图/结构图数据
+                        genDistChartData(deferral, data, params);
+                        break;
+                    case 8:                             //趋势
+                        genTrendChartData(deferral, data, params);
+                        break;
                 }
             }).error(function() {
-                alert('连接异常，请重试！');
+                console.log('连接异常，请重试！');
             });
             return deferral.promise;
         }
@@ -103,6 +114,50 @@
             var gamedata = {};
             deferral.resolve(gamedata);
         }
+        function genChainChartData(deferral, data, params) {
+            var options = {};
+
+            switch (self.mode) {
+                case 1:             //环比
+                    break;
+                case 2:             //在线曲线
+                    break;
+                case 3:             //TOP付费用户、流失用户、总流失用户环比
+                    break;
+                case 4:             //留存曲线
+                    break;
+            }
+
+            deferral.resolve(options);
+        }
+        function genDistChartData(deferral, data, params) {
+            var options = {};
+
+            switch (self.mode) {
+                case 1:             //产品贡献结构
+                    break;
+                case 2:             //渠道贡献结构
+                    break;
+                case 3:             //分布结构(净新增付费用户、净新增用户（横向双柱状图）)
+                    break;
+                case 4:             //分布结构(付费用户、活跃用户（双饼图）)
+                    break;
+                case 5:             //分布结构(新增付费用户、流失付费用户、流失用户)
+                    break;
+                case 6:             //分布结构(top付费用户、top流失用户、top总流失用户（单饼图）)
+                    break;
+            }
+        }
+        function genTrendChartData(deferral, data, params) {
+            var options = {};
+
+            switch (self.mode) {
+                case 1:             //趋势
+                    break;
+                case 2:             //趋势(净新增付费用户、净新增用户（双面积曲线）)
+                    break;
+            }
+        }
 
 
         // 1 获取游戏列表
@@ -129,6 +184,24 @@
         // 5 活跃留存面板数据
         function getRemainByDate(param) {
             return getByJsonp(requestUrl, param, 5);
+        }
+
+        // 6 环比数据
+        function getChainChartData(param, mode) {
+            self.mode = mode || 1;
+            return getByJsonp(requestUrl, param, 6);
+        }
+
+        // 7 分布图/结构图数据
+        function getDistChartData(param, mode) {
+            self.mode = mode || 1;
+            return getByJsonp(requestUrl, param, 7);
+        }
+
+        // 8 趋势
+        function getTrendChartData(param, mode) {
+            self.mode = mode || 1;
+            return getByJsonp(requestUrl, param, 8);
         }
 
         var games = [{
@@ -405,10 +478,16 @@
         return {
             loadAllGames : function() {
                 // Simulate async nature of real remote calls
+                /////////////////////////////////////////
+                return $q.when(games);
+
                 return $q.when(getGameList());
             },
             loadAllGameData : function(param) {
                 // Simulate async nature of real remote calls
+                /////////////////////////////////////////
+                return $q.when(gamedata);
+
                 return $q.when(getGameBoardData(param));
             },
             loadAllDataCategory: function() {
@@ -422,6 +501,15 @@
             },
             loadRemainByDate: function(param) {
                 return $q.when(getRemainByDate(param));
+            },
+            loadChainChartData: function(param, mode) {
+                return $q.when(getChainChartData(param, mode))
+            },
+            loadDistChartData: function(param, mode) {
+                return $q.when(getDistChartData(param, mode));
+            },
+            loadTrendChartData: function(param, mode) {
+                return $q.when(getTrendChartData(param, mode));
             }
         };
     }

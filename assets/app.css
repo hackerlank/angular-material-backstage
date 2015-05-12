@@ -268,6 +268,11 @@ md-toolbar h1 {
     position: absolute;
     bottom: 5px;
 }
+.game-head-nav .game-data-progress-circular {
+    position: absolute;
+    top: 3px;
+    right: 50px;
+}
 .game-head-nav .md-ready {
     /*height: 3px;*/
 }
@@ -355,7 +360,7 @@ span.name {
 .content .trendup-literal {
     font-size: 16px;
     color: #b20000;
-    margin-left: 10px;
+    margin: 0px 10px;
 }
 .content .trenddown-literal {
     font-size: 16px;
@@ -366,6 +371,7 @@ span.name {
     vertical-align: middle;
 }
 .content .data-literal {
+    font-family: "Microsoft YaHei";
 	font-size: 72px;
 	color: #333333;
 }
@@ -469,7 +475,15 @@ md-card md-card-content {
     float: right;
 }
 .game-chart-dialog .dialog-chart-p {
-	width:99%; min-height:500px;
+	width:99%;
+    height: 100%;
+}
+.game-chart-dialog .md-tabs-content {
+    height: 100%;
+}
+.game-data-tabs-trend {
+    height: 90%;
+    overflow: hidden;
 }
 
 md-backdrop.md-select-backdrop {
@@ -480,8 +494,17 @@ md-backdrop.md-select-backdrop {
 .game-data-tab-trend {
     width: 100%; max-width: 100%; height: 100%; max-height: 100%;
 }
+.game-data-tab-trend-content {
+    overflow: hidden;
+    height: 88%;
+}
+
 .btn-game-chart-dialog {
-    padding: 8px 20px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 0 20px;
+    font-size: 36px;
 }
 .btn-game-chps {
     height: 68px;
@@ -499,6 +522,20 @@ md-backdrop.md-select-backdrop {
 
 
 @media screen and (max-width: 600px) {
+    .menu {
+        background-color: transparent;
+        border: none;
+        height: 38px;
+        margin: 0;
+        width: 36px;
+    }
+    .game-head-nav .game-giant-logo {
+        padding: 3px;
+        margin: 0;
+    }
+    md-toolbar .toolbar_logo {
+        margin: 0;
+    }
     #right-content .game-subheader {
         height: 0px;
         background-color: #F6F7F9;
@@ -526,40 +563,50 @@ md-backdrop.md-select-backdrop {
         margin-top: 2px;
         margin-right: 2px;
     }
+    .game-head-nav .game-data-progress-circular {
+        top: -7px;
+    }
 
     .content {
         padding: 0;
         margin-top: 0;
     }
 	.content .content-part1 {
-		min-height: 622px;
+		min-height: 405px;
 	}
 	.content .content-part2 {
-		min-height: 1310px;
+		min-height: 780px;
 	}
     .content .content-part1-1 {
-        min-height: 837px;
+        min-height: 470px;
     }
     .content .content-part1-2 {
-        min-height: 1627px;
+        min-height: 825px;
     }
     .content .content-part1-3 {
-        min-height: 1860px;
+        min-height: 425px;
     }
 	.content .data-literal {
-		font-size: 41px;
+        font-family: "Helvetica Neue";
+		font-size: 38px;
 	}
+    .content .data-sub-literal {
+        font-family: "Helvetica Neue";
+    }
 	.content .border-right {
-		border-right:0px
+		border-right:0px;
 	}
+    .content .margintop10 {
+        margin-top: 10px;
+    }
     .content .game-data-card-profit {
-        max-height: 226px;
+        max-height: 150px;
     }
     .content .game-data-card-ol {
-
+        max-height: 255px;
     }
     .content .game-data-card-spec-profit {
-        min-height: 469px;
+        min-height: 280px;
     }
 	.content .game-data-card-divider-hide-sm {
 		display: none;
@@ -571,6 +618,30 @@ md-backdrop.md-select-backdrop {
         height: 40px;
     }
     .content .game-data-card-header .card-header-title {
+        margin: 0;
+    }
+    .content .game-data-card-inner {
+        text-align: center;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .content .btn-game-data-literal {
+        margin-left: 0px;
+        padding: 0 2px;
+    }
+    .content .game-data-card-content-row-left {
+        text-align: left;
+        margin-left: 20px;
+    }
+    .content .game-data-card-content-row-right {
+        text-align: center;
+    }
+    .content .game-data-card-online {
+        padding: 5px;
+    }
+    .content .game-data-card-rech-adt {
+        padding: 5px;
         margin: 0;
     }
 
@@ -587,13 +658,40 @@ md-backdrop.md-select-backdrop {
         float: none;
     }
 
+    .game-chart-dialog .dialog-chart-p {
+        width: 100%;
+        /*margin-left: -30px;*/
+        height: 90%;
+    }
+    .game-chart-dialog .md-actions {
+        padding: 5px;
+    }
+
+    .game-data-tab-trend-content {
+        padding: 0;
+    }
+
+    .game-data-tabs-trend {
+        height: 100%;
+    }
+
+    .game-data-tab-trend-content {
+        height: 88%;
+    }
+
     .content .game-data-remain-datepicker {
         margin-left: 0px;
+    }
+    .content .trend-title {
+        font-size: 18px;
+    }
+    .content .topgame {
+        font-size: 14px;
     }
 
     .btn-remain-time {
         padding: 5px;
-        margin: 0 0;
+        margin: 8px 0;
         border-radius: 0;
         font-size: 14px;
         font-size:16px;
@@ -602,4 +700,23 @@ md-backdrop.md-select-backdrop {
     #mobiledaterangepicker {
         margin-left: 30px;
     }
+
+    .btn-game-chart-dialog {
+        padding: 0 15px;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+
+    md-card {
+        margin: 0;
+    }
+
+    md-toolbar {
+        height: 35px;
+        min-height: 35px;
+        z-index: 69;
+        opacity: 0.95;
+    }
+
 }

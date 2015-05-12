@@ -1,5 +1,5 @@
 <md-dialog aria-label="分布图+趋势图" class="game-chart-dialog">
-    <md-tabs md-border-bottom>
+    <md-tabs class="game-data-tabs-trend">
         <md-tab>
             <md-tab-label>{{tablabelleft}}</md-tab-label>
             <md-subheader class="md-primary">
@@ -8,7 +8,7 @@
                     {{cps_indicator}}
                 </div>
             </md-subheader>
-            <md-content class="md-padding">
+            <md-content class="md-padding game-data-tab-trend-content">
                 <p show-dist class="dialog-chart-p" id="dist-chart-p" layout="row" layout-align="center center">
                     <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                 </p>
@@ -30,7 +30,7 @@
                     {{cps_indicator}}
                 </div>
             </md-subheader>
-            <md-content class="md-padding">
+            <md-content class="md-padding game-data-tab-trend-content">
                 <p class="dialog-chart-p" id="trend-chart-p" layout="row" layout-align="center center">
                     <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                 </p>
@@ -38,12 +38,16 @@
         </md-tab>
     </md-tabs>
 
-    <div flex></div>
+    <!--<div flex></div>-->
 
-    <div class="md-actions" layout="row">
+    <md-button ng-click="answer('dist chart closed!')" class="md-primary btn-game-chart-dialog">
+        ×
+    </md-button>
+
+    <!--<div class="md-actions" layout="row">
         <span flex></span>
         <md-button ng-click="answer('dist chart closed!')" class="md-primary md-raised btn-game-chart-dialog">
             关闭
         </md-button>
-    </div>
+    </div>-->
 </md-dialog>

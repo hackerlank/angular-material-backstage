@@ -1,6 +1,6 @@
 <md-dialog aria-label="环比图" class="game-chart-dialog">
-    <md-tabs md-stretch-tabs>
-        <md-tab class="game-data-tab-trend">
+    <md-tabs class="game-data-tabs-trend">
+        <md-tab>
             <md-tab-label>{{tablabel}}</md-tab-label>
             <md-subheader class="md-primary">
                 <span class="game-chart-subtitle" id="game-chart-trend-title-name">{{chartlabel}}</span>
@@ -18,7 +18,7 @@
 
 
             </md-subheader>
-            <md-content>
+            <md-content class="game-data-tab-trend-content">
                 <p show-chain class="dialog-chart-p" id="trend-chart-p" layout="row" layout-align="center center">
                     <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                 </p>
@@ -26,12 +26,16 @@
         </md-tab>
     </md-tabs>
 
-    <div flex></div>
+    <!--<div flex></div>-->
 
-    <div class="md-actions" layout="row">
+    <md-button ng-click="answer('trend chart closed!')" class="md-primary btn-game-chart-dialog">
+        ×
+    </md-button>
+
+    <!--<div class="md-actions" layout="row" class="game-data-tabs-trend-actions">
         <span flex></span>
         <md-button ng-click="answer('trend chart closed!')" class="md-primary md-raised btn-game-chart-dialog">
             关闭
         </md-button>
-    </div>
+    </div>-->
 </md-dialog>

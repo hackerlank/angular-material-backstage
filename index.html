@@ -27,20 +27,21 @@
         <!-- 菜单按钮 ↑ -->
 
         <!-- logo ↓ -->
-        <md-button class="md-primary" ng-click="ul.selectTotal()" aria-label="select total">
+        <md-button class="md-primary game-giant-logo" ng-click="ul.selectTotal()" aria-label="select total">
             <img src="assets/images/giant_logo.png" class="toolbar_logo">
         </md-button>
         <!-- logo ↑ -->
 
         <span flex></span>
 
+		<span ng-if="!ul.hideProgressBar"><md-progress-circular md-diameter="26" class="game-data-progress-circular"  md-mode="indeterminate"></md-progress-circular></span>
         <!-- 用户管理按钮 ↓ -->
         <md-button class="menu md-icon-button" ng-click="ul.toggleUserCtrl()" aria-label="Show User Administration">
             <md-icon md-svg-icon="user"></md-icon>
         </md-button>
         <!-- 用户管理按钮 ↑ -->
     </md-content>
-    <md-progress-linear ng-if="!ul.hideProgressBar" md-mode="indeterminate" class="game-progress-bar"></md-progress-linear>
+    <!--<md-progress-linear ng-if="!ul.hideProgressBar" md-mode="indeterminate" class="game-progress-bar"></md-progress-linear>-->
 </md-toolbar>
 <!-- 顶部导航条 ↑ -->
 
@@ -148,12 +149,12 @@
 						<md-card-content class="game-data-card-content">
 							<div class="game-data-card-inner">
 								<div>
-									<div class="game-data-card-content-row">
+									<div class="game-data-card-content-row game-data-card-content-row-left">
 										<span class="trend-title">{{ul.dcd.overall[1]}}</span>
 										<!--<span class="trend-chart-indicator">-->
 										<md-button ng-click="ul.showTrend($event, ul.dcd.overall[1], 1)">
 											<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.overall.profit.chain < 0}">{{ul.gd.overall.profit.chain | number:1 }}%</span>
-											<span class="trend-icon">
+											<span hide-sm class="trend-icon">
 												<img ng-if="ul.gd.overall.profit.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 												<img ng-if="ul.gd.overall.profit.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 												<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -173,7 +174,7 @@
 											</span>
 										</md-button>
 									</div>
-									<div class="game-data-card-content-row">
+									<div class="game-data-card-content-row game-data-card-content-row-right">
 										<span class="topgame">最高：《</span><span class="topgame">{{ul.getGameNameById(ul.gd.overall.profit.topgid)}}</span><span class="topgame">》</span>
 									</div>
 								</div>
@@ -188,12 +189,12 @@
 						<md-card-content class="game-data-card-content">
 							<div class="game-data-card-inner">
 								<div>
-									<div class="game-data-card-content-row">
+									<div class="game-data-card-content-row game-data-card-content-row-left">
 										<span class="trend-title">{{ul.dcd.overall[2]}}</span>
 										<!--<span class="trend-chart-indicator">-->
 										<md-button ng-click="ul.showTrend($event, ul.dcd.overall[2], 4)">
 											<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.overall.ol.pcu.chain < 0}">{{ul.gd.overall.ol.pcu.chain | number:1}}%</span>
-											<span class="trend-icon">
+											<span hide-sm class="trend-icon">
 												<img ng-if="ul.gd.overall.ol.pcu.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 												<img ng-if="ul.gd.overall.ol.pcu.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 												<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -206,14 +207,14 @@
 											<span class="data-literal-unit">人</span>
 										</md-button>
 									</div>
-									<div class="game-data-card-content-row">
+									<div class="game-data-card-content-row game-data-card-content-row-right">
 										<span class="topgame">最高：《</span><span class="topgame">{{ul.getGameNameById(ul.gd.overall.ol.pcu.topgid)}}</span><span class="topgame">》</span>
 									</div>
 								</div>
 							</div>
 							<md-divider class="game-data-card-divider"></md-divider>
 							<div class="game-data-card-online">
-								<div class="game-data-card-content-row">
+								<div class="game-data-card-content-row game-data-card-content-row-left">
 									<span class="trend-title" dynamic-title-cu>{{ul.cuTitle}}</span>
 								</div>
 								<div class="game-data-card-content-row">
@@ -222,7 +223,7 @@
 										<span class="data-literal-unit">人</span>
 									</md-button>
 								</div>
-								<div class="game-data-card-content-row">
+								<div class="game-data-card-content-row game-data-card-content-row-right">
 									<span class="topgame">最高：《</span><span class="topgame">{{ul.getGameNameById(ul.gd.overall.ol.cu.topgid)}}</span><span class="topgame">》</span>
 								</div>
 							</div>
@@ -241,12 +242,12 @@
 									<div flex flex-order='1' class="border-right">
 										<div class="game-data-card-inner">
 											<div>
-												<div class="game-data-card-content-row">
+												<div class="game-data-card-content-row game-data-card-content-row-left">
 													<span class="trend-title">{{ul.dcd.overall[4]}}</span>
 													<!--<span class="trend-chart-indicator">-->
 													<md-button ng-click="ul.showTrend($event, ul.dcd.overall[4], 8)">
 														<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.overall.people.netNewRech.chain < 0}">{{ul.gd.overall.people.netNewRech.chain | number: 1}}%</span>
-														<span class="trend-icon">
+														<span hide-sm class="trend-icon">
 															<img ng-if="ul.gd.overall.people.netNewRech.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 															<img ng-if="ul.gd.overall.people.netNewRech.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 															<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -259,7 +260,7 @@
 														<span class="data-literal-unit">人</span>
 													</md-button>
 												</div>
-												<div class="game-data-card-content-row">
+												<div class="game-data-card-content-row game-data-card-content-row-right">
 													<span class="topgame">最高：《</span><span class="topgame">{{ul.getGameNameById(ul.gd.overall.people.netNewRech.topgid)}}</span><span class="topgame">》</span>
 												</div>
 											</div>
@@ -271,12 +272,12 @@
 											<div flex flex-order="1" class="border-right">
 												<div class="game-data-card-inner game-data-card-inner2">
 													<div>
-														<div class="game-data-card-content-row">
+														<div class="game-data-card-content-row game-data-card-content-row-left">
 															<span class="trend-title">{{ul.dcd.overall[5]}}</span>
 															<!--<span class="trend-chart-indicator">-->
 															<md-button ng-click="ul.showTrend($event, ul.dcd.overall[5], 11)">
 																<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.overall.people.rech.chain < 0}">{{ul.gd.overall.people.rech.chain | number: 1}}%</span>
-																<span class="trend-icon">
+																<span hide-sm class="trend-icon">
 																	<img ng-if="ul.gd.overall.people.rech.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 																	<img ng-if="ul.gd.overall.people.rech.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 																	<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -289,7 +290,7 @@
 																<span class="data-literal-unit">人</span>
 															</md-button>
 														</div>
-														<div class="game-data-card-content-row">
+														<div class="game-data-card-content-row game-data-card-content-row-right">
 															<span class="topgame">最高：《</span><span class="topgame">{{ul.getGameNameById(ul.gd.overall.people.rech.topgid)}}</span><span class="topgame">》</span>
 														</div>
 													</div>
@@ -298,12 +299,12 @@
 											<div flex flex-order="2">
 												<div class="game-data-card-inner game-data-card-inner2">
 													<div>
-														<div class="game-data-card-content-row">
+														<div class="game-data-card-content-row game-data-card-content-row-left">
 															<span class="trend-title">{{ul.dcd.overall[6]}}</span>
 															<!--<span class="trend-chart-indicator">-->
 															<md-button ng-click="ul.showTrend($event, ul.dcd.overall[6], 14)">
 																<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.overall.people.newRech.chain < 0}">{{ul.gd.overall.people.newRech.chain | number: 1}}%</span>
-																<span class="trend-icon">
+																<span hide-sm class="trend-icon">
 																	<img ng-if="ul.gd.overall.people.newRech.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 																	<img ng-if="ul.gd.overall.people.newRech.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 																	<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -316,7 +317,7 @@
 																<span class="data-literal-unit">人</span>
 															</md-button>
 														</div>
-														<div class="game-data-card-content-row">
+														<div class="game-data-card-content-row game-data-card-content-row-right">
 															<span class="topgame">最高：《</span><span class="topgame">{{ul.getGameNameById(ul.gd.overall.people.newRech.topgid)}}</span><span class="topgame">》</span>
 														</div>
 													</div>
@@ -330,12 +331,12 @@
 											<div flex flex-order="1" class="border-right">
 												<div class="game-data-card-inner game-data-card-inner2">
 													<div>
-														<div class="game-data-card-content-row">
+														<div class="game-data-card-content-row game-data-card-content-row-left">
 															<span class="trend-title">{{ul.dcd.overall[7]}}</span>
 															<!--<span class="trend-chart-indicator">-->
 															<md-button ng-click="ul.showTrend($event, ul.dcd.overall[7], 17)">
 																<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.overall.people.lostRech.chain < 0}">{{ul.gd.overall.people.lostRech.chain | number: 1}}%</span>
-																<span class="trend-icon">
+																<span hide-sm class="trend-icon">
 																	<img ng-if="ul.gd.overall.people.lostRech.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 																	<img ng-if="ul.gd.overall.people.lostRech.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 																	<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -348,7 +349,7 @@
 																<span class="data-literal-unit">人</span>
 															</md-button>
 														</div>
-														<div class="game-data-card-content-row">
+														<div class="game-data-card-content-row game-data-card-content-row-right">
 															<span class="topgame">最高：《</span><span class="topgame">{{ul.getGameNameById(ul.gd.overall.people.lostRech.topgid)}}</span><span class="topgame">》</span>
 														</div>
 													</div>
@@ -368,12 +369,12 @@
 
 										<div class="game-data-card-inner">
 											<div>
-												<div class="game-data-card-content-row">
+												<div class="game-data-card-content-row game-data-card-content-row-left">
 													<span class="trend-title">{{ul.dcd.overall[8]}}</span>
 													<!--<span class="trend-chart-indicator">-->
 													<md-button ng-click="ul.showTrend($event, ul.dcd.overall[8], 20)">
 														<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.overall.people.netNew.chain < 0}">{{ul.gd.overall.people.netNew.chain | number: 1}}%</span>
-														<span class="trend-icon">
+														<span hide-sm class="trend-icon">
 															<img ng-if="ul.gd.overall.people.netNew.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 															<img ng-if="ul.gd.overall.people.netNew.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 															<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -386,7 +387,7 @@
 														<span class="data-literal-unit">人</span>
 													</md-button>
 												</div>
-												<div class="game-data-card-content-row">
+												<div class="game-data-card-content-row game-data-card-content-row-right">
 													<span class="topgame">最高：《</span><span class="topgame">{{ul.getGameNameById(ul.gd.overall.people.netNew.topgid)}}</span><span class="topgame">》</span>
 												</div>
 											</div>
@@ -398,12 +399,12 @@
 											<div flex flex-order="1" class="border-right">
 												<div class="game-data-card-inner game-data-card-inner2">
 													<div>
-														<div class="game-data-card-content-row">
+														<div class="game-data-card-content-row game-data-card-content-row-left">
 															<span class="trend-title">{{ul.dcd.overall[9]}}</span>
 															<!--<span class="trend-chart-indicator">-->
 															<md-button ng-click="ul.showTrend($event, ul.dcd.overall[9], 23)">
 																<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.overall.people.active.chain < 0}">{{ul.gd.overall.people.active.chain | number: 1}}%</span>
-																<span class="trend-icon">
+																<span hide-sm class="trend-icon">
 																	<img ng-if="ul.gd.overall.people.active.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 																	<img ng-if="ul.gd.overall.people.active.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 																	<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -416,7 +417,7 @@
 																<span class="data-literal-unit">人</span>
 															</md-button>
 														</div>
-														<div class="game-data-card-content-row">
+														<div class="game-data-card-content-row game-data-card-content-row-right">
 															<span class="topgame">最高：《</span><span class="topgame">{{ul.getGameNameById(ul.gd.overall.people.active.topgid)}}</span><span class="topgame">》</span>
 														</div>
 													</div>
@@ -425,12 +426,12 @@
 											<div flex flex-order="2">
 												<div class="game-data-card-inner game-data-card-inner2">
 													<div>
-														<div class="game-data-card-content-row">
+														<div class="game-data-card-content-row game-data-card-content-row-left">
 															<span class="trend-title">{{ul.dcd.overall[10]}}</span>
 															<!--<span class="trend-chart-indicator">-->
 															<md-button ng-click="ul.showTrend($event, ul.dcd.overall[10], 26)">
 																<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.overall.people.new.chain < 0}">{{ul.gd.overall.people.new.chain | number: 1}}%</span>
-																<span class="trend-icon">
+																<span hide-sm class="trend-icon">
 																	<img ng-if="ul.gd.overall.people.new.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 																	<img ng-if="ul.gd.overall.people.new.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 																	<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -443,7 +444,7 @@
 																<span class="data-literal-unit">人</span>
 															</md-button>
 														</div>
-														<div class="game-data-card-content-row">
+														<div class="game-data-card-content-row game-data-card-content-row-right">
 															<span class="topgame">最高：《</span><span class="topgame">{{ul.getGameNameById(ul.gd.overall.people.new.topgid)}}</span><span class="topgame">》</span>
 														</div>
 													</div>
@@ -457,12 +458,12 @@
 											<div flex flex-order="1" class="border-right">
 												<div class="game-data-card-inner game-data-card-inner2">
 													<div>
-														<div class="game-data-card-content-row">
+														<div class="game-data-card-content-row game-data-card-content-row-left">
 															<span class="trend-title">{{ul.dcd.overall[11]}}</span>
 															<!--<span class="trend-chart-indicator">-->
 															<md-button ng-click="ul.showTrend($event, ul.dcd.overall[11], 29)">
 																<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.overall.people.lost.chain < 0}">{{ul.gd.overall.people.lost.chain | number: 1}}%</span>
-																<span class="trend-icon">
+																<span hide-sm class="trend-icon">
 																	<img ng-if="ul.gd.overall.people.lost.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 																	<img ng-if="ul.gd.overall.people.lost.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 																	<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -475,7 +476,7 @@
 																<span class="data-literal-unit">人</span>
 															</md-button>
 														</div>
-														<div class="game-data-card-content-row">
+														<div class="game-data-card-content-row game-data-card-content-row-right">
 															<span class="topgame">最高：《</span><span class="topgame">{{ul.getGameNameById(ul.gd.overall.people.lost.topgid)}}</span><span class="topgame">》</span>
 														</div>
 													</div>
@@ -511,12 +512,12 @@
 						<md-card-content class="game-data-card-content">
 							<div class="game-data-card-inner">
 								<div>
-									<div class="game-data-card-content-row">
+									<div class="game-data-card-content-row game-data-card-content-row-left">
 										<span class="trend-title">{{ul.dcd.specgame[1]}}</span>
 										<!--<span class="trend-chart-indicator">-->
 										<md-button ng-click="ul.showTrend($event, ul.dcd.specgame[1], 1)">
 											<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.specgame.profit.income.chain < 0}">{{ul.gd.specgame.profit.income.chain | number: 1}}%</span>
-											<span class="trend-icon">
+											<span hide-sm class="trend-icon">
 												<img ng-if="ul.gd.specgame.profit.income.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 												<img ng-if="ul.gd.specgame.profit.income.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 												<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -540,7 +541,7 @@
 							<md-divider class="game-data-card-divider"></md-divider>
 							<div layout="row" layout-sm="column">
 								<div flex flex-order="1" class="game-data-card-rech-adt border-right-dotted">
-									<div class="game-data-card-content-row">
+									<div class="game-data-card-content-row game-data-card-content-row-left">
 										<span class="trend-title">{{ul.dcd.specgame[2]}}</span>
 									</div>
 									<div class="game-data-card-content-row">
@@ -551,7 +552,7 @@
 									</div>
 								</div>
 								<div flex flex-order="2" class="game-data-card-rech-adt">
-									<div class="game-data-card-content-row">
+									<div class="game-data-card-content-row game-data-card-content-row-left">
 										<span class="trend-title">{{ul.dcd.specgame[3]}}</span>
 									</div>
 									<div class="game-data-card-content-row">
@@ -572,12 +573,12 @@
 						<md-card-content class="game-data-card-content">
 							<div class="game-data-card-inner">
 								<div>
-									<div class="game-data-card-content-row">
+									<div class="game-data-card-content-row game-data-card-content-row-left">
 										<span class="trend-title">{{ul.dcd.specgame[4]}}</span>
 										<!--<span class="trend-chart-indicator">-->
 										<md-button ng-click="ul.showTrend($event, ul.dcd.specgame[4], 8)">
 											<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.specgame.ol.pcu.chain < 0}">{{ul.gd.specgame.ol.pcu.chain | number: 1}}%</span>
-											<span class="trend-icon">
+											<span hide-sm class="trend-icon">
 												<img ng-if="ul.gd.specgame.ol.pcu.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 												<img ng-if="ul.gd.specgame.ol.pcu.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 												<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -594,7 +595,7 @@
 							</div>
 							<md-divider class="game-data-card-divider"></md-divider>
 							<div class="game-data-card-rech-adt">
-								<div class="game-data-card-content-row">
+								<div class="game-data-card-content-row game-data-card-content-row-left">
 									<span class="trend-title">{{ul.cuTitle}}</span>
 								</div>
 								<div class="game-data-card-content-row">
@@ -620,12 +621,12 @@
 									<div flex flex-order='1' class="border-right">
 										<div class="game-data-card-inner">
 											<div>
-												<div class="game-data-card-content-row">
+												<div class="game-data-card-content-row game-data-card-content-row-left">
 													<span class="trend-title">{{ul.dcd.specgame[6]}}</span>
 													<!--<span class="trend-chart-indicator">-->
 													<md-button ng-click="ul.showTrend($event, ul.dcd.specgame[6], 11)">
 														<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.specgame.people.netNewRech.chain < 0}">{{ul.gd.specgame.people.netNewRech.chain | number: 1}}%</span>
-														<span class="trend-icon">
+														<span hide-sm class="trend-icon">
 															<img ng-if="ul.gd.specgame.people.netNewRech.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 															<img ng-if="ul.gd.specgame.people.netNewRech.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 															<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -643,15 +644,15 @@
 										<md-divider class="game-data-card-divider-hide-sm"></md-divider>
 									</div>
 
-									<div flex flex-order='2' class="border-right">
+									<div flex flex-order='2' class="border-right margintop10">
 										<div class="game-data-card-inner">
 											<div>
-												<div class="game-data-card-content-row">
+												<div class="game-data-card-content-row game-data-card-content-row-left">
 													<span class="trend-title">{{ul.dcd.specgame[7]}}</span>
 													<!--<span class="trend-chart-indicator">-->
 													<md-button ng-click="ul.showTrend($event, ul.dcd.specgame[7], 14)">
 														<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.specgame.people.rech.chain < 0}">{{ul.gd.specgame.people.rech.chain | number: 1}}%</span>
-														<span class="trend-icon">
+														<span hide-sm class="trend-icon">
 															<img ng-if="ul.gd.specgame.people.rech.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 															<img ng-if="ul.gd.specgame.people.rech.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 															<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -672,12 +673,12 @@
 									<div flex flex-order='3' class="border-right">
 										<div class="game-data-card-inner">
 											<div>
-												<div class="game-data-card-content-row">
+												<div class="game-data-card-content-row game-data-card-content-row-left">
 													<span class="trend-title">{{ul.dcd.specgame[8]}}</span>
 													<!--<span class="trend-chart-indicator">-->
 													<md-button ng-click="ul.showTrend($event, ul.dcd.specgame[8], 17)">
 														<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.specgame.people.newRech.chain < 0}">{{ul.gd.specgame.people.newRech.chain | number: 1}}%</span>
-														<span class="trend-icon">
+														<span hide-sm class="trend-icon">
 															<img ng-if="ul.gd.specgame.people.newRech.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 															<img ng-if="ul.gd.specgame.people.newRech.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 															<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -698,12 +699,12 @@
 									<div flex flex-order='4' class="border-right">
 										<div class="game-data-card-inner">
 											<div>
-												<div class="game-data-card-content-row">
+												<div class="game-data-card-content-row game-data-card-content-row-left">
 													<span class="trend-title">{{ul.dcd.specgame[9]}}</span>
 													<!--<span class="trend-chart-indicator">-->
 													<md-button ng-click="ul.showTrend($event, ul.dcd.specgame[9], 20)">
 														<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.specgame.people.lostRech.chain < 0}">{{ul.gd.specgame.people.lostRech.chain | number: 1}}%</span>
-														<span class="trend-icon">
+														<span hide-sm class="trend-icon">
 															<img ng-if="ul.gd.specgame.people.lostRech.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 															<img ng-if="ul.gd.specgame.people.lostRech.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 															<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -728,12 +729,12 @@
 									<div flex flex-order='1' class="border-right">
 										<div class="game-data-card-inner">
 											<div>
-												<div class="game-data-card-content-row">
+												<div class="game-data-card-content-row game-data-card-content-row-left">
 													<span class="trend-title">{{ul.dcd.specgame[10]}}</span>
 													<!--<span class="trend-chart-indicator">-->
 													<md-button ng-click="ul.showTrend($event, ul.dcd.specgame[10], 23)">
 														<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.specgame.people.netNew.chain < 0}">{{ul.gd.specgame.people.netNew.chain | number: 1}}%</span>
-														<span class="trend-icon">
+														<span hide-sm class="trend-icon">
 															<img ng-if="ul.gd.specgame.people.netNew.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 															<img ng-if="ul.gd.specgame.people.netNew.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 															<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -751,15 +752,15 @@
 										<md-divider class="game-data-card-divider-hide-sm"></md-divider>
 									</div>
 
-									<div flex flex-order='2' class="border-right">
+									<div flex flex-order='2' class="border-right margintop10">
 										<div class="game-data-card-inner">
 											<div>
-												<div class="game-data-card-content-row">
+												<div class="game-data-card-content-row game-data-card-content-row-left">
 													<span class="trend-title">{{ul.dcd.specgame[11]}}</span>
 													<!--<span class="trend-chart-indicator">-->
 													<md-button ng-click="ul.showTrend($event, ul.dcd.specgame[11], 26)">
 														<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.specgame.people.active.chain < 0}">{{ul.gd.specgame.people.active.chain | number: 1}}%</span>
-														<span class="trend-icon">
+														<span hide-sm class="trend-icon">
 															<img ng-if="ul.gd.specgame.people.active.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 															<img ng-if="ul.gd.specgame.people.active.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 															<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -780,12 +781,12 @@
 									<div flex flex-order='3' class="border-right">
 										<div class="game-data-card-inner">
 											<div>
-												<div class="game-data-card-content-row">
+												<div class="game-data-card-content-row game-data-card-content-row-left">
 													<span class="trend-title">{{ul.dcd.specgame[12]}}</span>
 													<!--<span class="trend-chart-indicator">-->
 													<md-button ng-click="ul.showTrend($event, ul.dcd.specgame[12], 29)">
 														<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.specgame.people.new.chain < 0}">{{ul.gd.specgame.people.new.chain | number: 1}}%</span>
-														<span class="trend-icon">
+														<span hide-sm class="trend-icon">
 															<img ng-if="ul.gd.specgame.people.new.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 															<img ng-if="ul.gd.specgame.people.new.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 															<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -806,12 +807,12 @@
 									<div flex flex-order='4' class="border-right">
 										<div class="game-data-card-inner">
 											<div>
-												<div class="game-data-card-content-row">
+												<div class="game-data-card-content-row game-data-card-content-row-left">
 													<span class="trend-title">{{ul.dcd.specgame[13]}}</span>
 													<!--<span class="trend-chart-indicator">-->
 													<md-button ng-click="ul.showTrend($event, ul.dcd.specgame[13], 32)">
 														<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.specgame.people.lost.chain}">{{ul.gd.specgame.people.lost.chain | number: 1}}%</span>
-														<span class="trend-icon">
+														<span hide-sm class="trend-icon">
 															<img ng-if="ul.gd.specgame.people.lost.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 															<img ng-if="ul.gd.specgame.people.lost.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 															<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -835,7 +836,7 @@
 									<div flex flex-order='1' class="">
 										<div class="game-data-card-inner">
 											<div>
-												<div class="game-data-card-content-row">
+												<div class="game-data-card-content-row game-data-card-content-row-left">
 													<span class="trend-title">
 														<md-select ng-model="misc.topType" class="game-top-rech-sel">
 															<md-list ng-repeat="toptype in ul.topTypes track by $index">
@@ -847,7 +848,7 @@
 													<!--<span class="trend-chart-indicator">-->
 													<md-button ng-click="ul.showTrend($event, ul.dcd.specgame[14], 35, 3)">
 														<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.specgame.people.topRech.chain < 0}">{{ul.gd.specgame.people.topRech.chain | number: 1}}%</span>
-														<span class="trend-icon">
+														<span hide-sm class="trend-icon">
 															<img ng-if="ul.gd.specgame.people.topRech.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 															<img ng-if="ul.gd.specgame.people.topRech.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 															<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -865,15 +866,15 @@
 										<md-divider class="game-data-card-divider-hide-sm"></md-divider>
 									</div>
 
-									<div flex flex-order='2' class="">
+									<div flex flex-order='2' class="margintop10">
 										<div class="game-data-card-inner">
 											<div>
-												<div class="game-data-card-content-row">
+												<div class="game-data-card-content-row game-data-card-content-row-left">
 													<span class="trend-title">{{ul.dcd.specgame[15]}}</span>
 													<!--<span class="trend-chart-indicator">-->
 													<md-button ng-click="ul.showTrend($event, ul.dcd.specgame[15], 38, 3)">
 														<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.specgame.people.topLost.chain < 0}">{{ul.gd.specgame.people.topLost.chain | number: 1}}%</span>
-														<span class="trend-icon">
+														<span hide-sm class="trend-icon">
 															<img ng-if="ul.gd.specgame.people.topLost.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 															<img ng-if="ul.gd.specgame.people.topLost.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 															<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -894,12 +895,12 @@
 									<div flex flex-order='3' class="">
 										<div class="game-data-card-inner">
 											<div>
-												<div class="game-data-card-content-row">
+												<div class="game-data-card-content-row game-data-card-content-row-left">
 													<span class="trend-title">{{ul.dcd.specgame[16]}}</span>
 													<!--<span class="trend-chart-indicator">-->
 													<md-button ng-click="ul.showTrend($event, ul.dcd.specgame[16], 41, 3)">
 														<span class="trendup-literal" ng-class="{'trenddown-literal' : ul.gd.specgame.people.topLostTotal.chain < 0}">{{ul.gd.specgame.people.topLostTotal.chain | number: 1}}%</span>
-														<span class="trend-icon">
+														<span hide-sm class="trend-icon">
 															<img ng-if="ul.gd.specgame.people.topLostTotal.chain>0" class="trend-img" src="assets/images/trendup.png"/>
 															<img ng-if="ul.gd.specgame.people.topLostTotal.chain<0" class="trend-img" src="assets/images/trenddown.png"/>
 															<!--<md-icon ng-if="ul.rechup" md-svg-icon="trendup"></md-icon><md-icon ng-if="!ul.rechup" md-svg-icon="trenddown"></md-icon>-->
@@ -917,7 +918,7 @@
 										<md-divider class="game-data-card-divider-hide-sm"></md-divider>
 									</div>
 
-									<div flex flex-order='4' class="border-right">
+									<div hide-sm flex flex-order='4' class="border-right">
 										<div class="game-data-card-inner" style="height:125px;">
 										</div>
 									</div>
@@ -935,7 +936,7 @@
 					<md-card flex flex-order='1' class="game-data-card">
 						<md-subheader class="game-data-card-header"><span class="card-header-title">留存</span></md-subheader>
 						<md-card-content class="game-data-card-content">
-							<div layout="row" layout-sm="column">
+							<div layout="row" layout-sm="row">
 
 								<div flex flex-order="1" layout="column">
 									<div flex flex-order='1' class="border-right">
@@ -949,7 +950,7 @@
 														   date-range-picker ng-model="misc.AllRemainDate" ranged="false"
 														   custom-select-options="ul.rangeSelectOptions"
 														   control="dateRangePickerControl" class="game-data-remain-datepicker"/>
-													<md-button show-date-range-picker class="md-primary btn-remain-time" id="btn-all-remain-date" aria-label="allremainbtn">
+													<md-button hide-sm show-date-range-picker class="md-primary btn-remain-time" id="btn-all-remain-date" aria-label="allremainbtn">
 														<md-icon md-svg-icon="calendar"></md-icon>
 													</md-button>
 
@@ -1038,7 +1039,7 @@
 												</div>
 											</div>
 										</div>
-										<md-divider class="game-data-card-divider-sm"></md-divider>
+										<!--<md-divider class="game-data-card-divider-sm"></md-divider>-->
 									</div>
 								</div>
 
@@ -1054,7 +1055,7 @@
 														   date-range-picker ng-model="misc.ActiveRemainDate" ranged="false"
 														   custom-select-options="ul.rangeSelectOptions"
 														   control="dateRangePickerControl" class="game-data-remain-datepicker"/>
-													<md-button show-date-range-picker class="md-primary btn-remain-time" id="btn-active-remain-date" aria-label="activeremainbtn">
+													<md-button hide-sm show-date-range-picker class="md-primary btn-remain-time" id="btn-active-remain-date" aria-label="activeremainbtn">
 														<md-icon md-svg-icon="calendar"></md-icon>
 													</md-button>
 												</div>
@@ -1142,7 +1143,7 @@
 												</div>
 											</div>
 										</div>
-										<md-divider class="game-data-card-divider-sm"></md-divider>
+										<!--<md-divider class="game-data-card-divider-sm"></md-divider>-->
 									</div>
 								</div>
 
@@ -1159,7 +1160,7 @@
 														   date-range-picker ng-model="misc.RechRemainDate" ranged="false"
 														   custom-select-options="ul.rangeSelectOptions"
 														   control="dateRangePickerControl" class="game-data-remain-datepicker"/>
-													<md-button show-date-range-picker class="md-primary btn-remain-time" id="btn-rechargers-date" aria-label="rechremainbtn">
+													<md-button hide-sm show-date-range-picker class="md-primary btn-remain-time" id="btn-rechargers-date" aria-label="rechremainbtn">
 														<md-icon md-svg-icon="calendar"></md-icon>
 													</md-button>
 												</div>

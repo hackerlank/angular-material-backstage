@@ -189,3 +189,28 @@
 .angular-date-range-picker__cancel {
   text-decoration: none;
 }
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 600px) {
+    .angular-date-range-picker__input {
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        height: 20px;
+        line-height: 20px;
+        display: inline-block;
+        position: relative;
+        top: 0;
+        left: 0;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        width: 60px;
+    }
+}

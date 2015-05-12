@@ -571,20 +571,21 @@
                 console.log('loadGameBoardData: interval');
                 loadGameBoardData();
             }
-        }, 5000);
+        }, 10000000000);
 
         function loadGameBoardData() {
             showProgressBar();
-            var param = {
-                'act': 'getData',
-                'datatype': 4,
-                'gid': self.gid
-            };
+            //var param = {
+            //    'act': 'getData',
+            //    'datatype': 4,
+            //    'gid': self.gid
+            //};
+            var param = reloadParam();
             gameService
                 .loadAllGameData(param)
                 .then (function (gamedata) {
                     self.gd = gamedata;
-                    notifyLoading();
+                    //notifyLoading();
                     hideProgressBar();
                 });
         }
@@ -714,7 +715,7 @@
                 'channel' : self.channel,
                 'platform' : self.platform,
                 'server' : self.server,
-                'dtype' : dtype,
+                'dtype' : self.dtype,
                 'tD' : self.tD,
                 'tW' : self.tW,
                 'tM' : self.tM,
@@ -739,6 +740,13 @@
             }
             item.primary = true;
 
+            if (1 == item.id) {                     //btn-realtime
+                self.cuTitle = self.dcd.overall[3];
+            } else {
+                self.cuTitle = self.dcd.overall[12];
+            }
+            self.datetype = item.id;
+
             if (6 == item.id) {                     //btn-diy
                 self.showPcDateRangePicker = true;
             } else {
@@ -746,13 +754,6 @@
                 console.log('loadGameBoardData: 3');
                 loadGameBoardData();
             }
-
-            if (1 == item.id) {                     //btn-realtime
-                self.cuTitle = self.dcd.overall[3];
-            } else {
-                self.cuTitle = self.dcd.overall[12];
-            }
-            self.datetype = item.id;
         };
 
         function toggleUsersList(e) {

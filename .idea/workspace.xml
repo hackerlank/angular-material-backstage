@@ -22,27 +22,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/app.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="268" column="16" selection-start-line="268" selection-start-column="16" selection-end-line="268" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GameController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/games/GameController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="568" column="32" selection-start-line="568" selection-start-column="32" selection-end-line="568" selection-end-column="32" />
+            <state vertical-scroll-proportion="-4.7">
+              <caret line="709" column="27" selection-start-line="709" selection-start-column="27" selection-end-line="709" selection-end-column="27" />
               <folding>
                 <element signature="e#404#529#0" expanded="false" />
                 <element signature="e#583#736#0" expanded="false" />
                 <element signature="e#800#1538#0" expanded="false" />
-                <element signature="e#1592#2516#0" expanded="false" />
-                <element signature="e#2568#3785#0" expanded="false" />
                 <element signature="e#3838#4016#0" expanded="false" />
                 <element signature="e#4124#5358#0" expanded="false" />
                 <element signature="e#5393#6818#0" expanded="false" />
@@ -60,23 +48,44 @@
                 <element signature="e#86619#86858#0" expanded="false" />
                 <element signature="e#86933#87181#0" expanded="false" />
                 <element signature="e#87254#87496#0" expanded="false" />
-                <element signature="e#93880#94569#0" expanded="false" />
-                <element signature="e#94608#94786#0" expanded="false" />
-                <element signature="e#94823#94861#0" expanded="false" />
-                <element signature="e#94897#95134#0" expanded="false" />
-                <element signature="e#95160#95217#0" expanded="false" />
-                <element signature="e#95260#97199#0" expanded="false" />
-                <element signature="e#97203#97242#0" expanded="false" />
+                <element signature="e#94671#94849#0" expanded="false" />
+                <element signature="e#94886#94924#0" expanded="false" />
+                <element signature="e#94960#95197#0" expanded="false" />
+                <element signature="e#95223#95280#0" expanded="false" />
+                <element signature="e#95323#97262#0" expanded="false" />
+                <element signature="e#97266#97305#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.4483516">
-              <caret line="1321" column="0" selection-start-line="1321" selection-start-column="0" selection-end-line="1321" selection-end-column="0" />
+            <state vertical-scroll-proportion="-7.509804">
+              <caret line="945" column="91" selection-start-line="945" selection-start-column="91" selection-end-line="945" selection-end-column="91" />
+              <folding>
+                <element signature="n#style#0;n#span#1;n#div#0;n#md-content#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/app.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-20.0">
+              <caret line="709" column="0" selection-start-line="709" selection-start-column="0" selection-end-line="709" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="angular-date-range-picker.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-27.666666">
+              <caret line="213" column="17" selection-start-line="213" selection-start-column="17" selection-end-line="213" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -85,8 +94,8 @@
       <file leaf-file-name="trendChartTpl.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/template/trendChartTpl.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.730769">
-              <caret line="21" column="62" selection-start-line="21" selection-start-column="62" selection-end-line="21" selection-end-column="62" />
+            <state vertical-scroll-proportion="-18.307692">
+              <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -95,25 +104,23 @@
       <file leaf-file-name="distChartTpl.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/template/distChartTpl.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.160714">
-              <caret line="17" column="54" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="54" />
+            <state vertical-scroll-proportion="-23.23077">
+              <caret line="40" column="27" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameService.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameService.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/games/GameService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.0">
-              <caret line="63" column="27" selection-start-line="63" selection-start-column="27" selection-end-line="63" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.6004273">
+              <caret line="465" column="29" selection-start-line="465" selection-start-column="29" selection-end-line="465" selection-end-column="29" />
               <folding>
-                <element signature="e#7060#7982#0" expanded="false" />
-                <element signature="e#7984#9052#0" expanded="false" />
-                <element signature="e#9080#13607#0" expanded="false" />
-                <element signature="e#13636#14775#0" expanded="false" />
-                <element signature="e#16311#20838#0" expanded="false" />
-                <element signature="e#21100#22382#0" expanded="false" />
+                <element signature="e#7146#8068#0" expanded="false" />
+                <element signature="e#8070#9138#0" expanded="false" />
+                <element signature="e#16337#16369#0" expanded="false" />
+                <element signature="e#21477#21509#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -122,8 +129,8 @@
       <file leaf-file-name="api_test.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api_test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.576923">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state vertical-scroll-proportion="-15.038462">
+              <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -142,7 +149,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/users/UserService.js" />
         <option value="$PROJECT_DIR$/src/games/Games.js" />
         <option value="$PROJECT_DIR$/template/timeDiySelSheet.html" />
@@ -151,16 +157,17 @@
         <option value="$PROJECT_DIR$/src/users/UserController.js" />
         <option value="$PROJECT_DIR$/bower_components/jquery/dist/jquery.js" />
         <option value="$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker_original.css" />
-        <option value="$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker.css" />
         <option value="$PROJECT_DIR$/api_test.html" />
-        <option value="$PROJECT_DIR$/assets/app.css" />
         <option value="$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker.js" />
         <option value="$PROJECT_DIR$/template/timeSelSheet.html" />
-        <option value="$PROJECT_DIR$/template/distChartTpl.html" />
-        <option value="$PROJECT_DIR$/template/trendChartTpl.html" />
-        <option value="$PROJECT_DIR$/src/games/GameService.js" />
         <option value="$PROJECT_DIR$/index_new.html" />
         <option value="$PROJECT_DIR$/src/games/GameController.js" />
+        <option value="$PROJECT_DIR$/template/trendChartTpl.html" />
+        <option value="$PROJECT_DIR$/template/distChartTpl.html" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/assets/app.css" />
+        <option value="$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker.css" />
+        <option value="$PROJECT_DIR$/src/games/GameService.js" />
       </list>
     </option>
   </component>
@@ -295,7 +302,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="echarts" />
+              <option name="myItemId" value="angular-date-range-picker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bower_components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular-date-range-picker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -377,7 +420,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="-1928" y="-8" width="1936" height="1096" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21296784" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -689,14 +732,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4722222">
-          <caret line="54" column="8" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bower_components/angular-material/modules/js/toast/toast.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23717949">
@@ -720,14 +755,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api_test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.576923">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/template/timeSelSheet.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14945056">
@@ -736,55 +763,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/app.css">
+    <entry file="file://$PROJECT_DIR$/bower_components/echarts/echarts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="268" column="16" selection-start-line="268" selection-start-column="16" selection-end-line="268" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="3" column="26452" selection-start-line="3" selection-start-column="26445" selection-end-line="3" selection-end-column="26452" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/distChartTpl.html">
+    <entry file="file://$PROJECT_DIR$/api_test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.160714">
-          <caret line="17" column="54" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="54" />
+        <state vertical-scroll-proportion="-15.038462">
+          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/template/trendChartTpl.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.730769">
-          <caret line="21" column="62" selection-start-line="21" selection-start-column="62" selection-end-line="21" selection-end-column="62" />
+        <state vertical-scroll-proportion="-18.307692">
+          <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/games/GameService.js">
+    <entry file="file://$PROJECT_DIR$/template/distChartTpl.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.0">
-          <caret line="63" column="27" selection-start-line="63" selection-start-column="27" selection-end-line="63" selection-end-column="27" />
-          <folding>
-            <element signature="e#7060#7982#0" expanded="false" />
-            <element signature="e#7984#9052#0" expanded="false" />
-            <element signature="e#9080#13607#0" expanded="false" />
-            <element signature="e#13636#14775#0" expanded="false" />
-            <element signature="e#16311#20838#0" expanded="false" />
-            <element signature="e#21100#22382#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="-23.23077">
+          <caret line="40" column="27" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.0">
+          <caret line="709" column="0" selection-start-line="709" selection-start-column="0" selection-end-line="709" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-27.666666">
+          <caret line="213" column="17" selection-start-line="213" selection-start-column="17" selection-end-line="213" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/games/GameController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="568" column="32" selection-start-line="568" selection-start-column="32" selection-end-line="568" selection-end-column="32" />
+        <state vertical-scroll-proportion="-4.7">
+          <caret line="709" column="27" selection-start-line="709" selection-start-column="27" selection-end-line="709" selection-end-column="27" />
           <folding>
             <element signature="e#404#529#0" expanded="false" />
             <element signature="e#583#736#0" expanded="false" />
             <element signature="e#800#1538#0" expanded="false" />
-            <element signature="e#1592#2516#0" expanded="false" />
-            <element signature="e#2568#3785#0" expanded="false" />
             <element signature="e#3838#4016#0" expanded="false" />
             <element signature="e#4124#5358#0" expanded="false" />
             <element signature="e#5393#6818#0" expanded="false" />
@@ -802,30 +836,36 @@
             <element signature="e#86619#86858#0" expanded="false" />
             <element signature="e#86933#87181#0" expanded="false" />
             <element signature="e#87254#87496#0" expanded="false" />
-            <element signature="e#93880#94569#0" expanded="false" />
-            <element signature="e#94608#94786#0" expanded="false" />
-            <element signature="e#94823#94861#0" expanded="false" />
-            <element signature="e#94897#95134#0" expanded="false" />
-            <element signature="e#95160#95217#0" expanded="false" />
-            <element signature="e#95260#97199#0" expanded="false" />
-            <element signature="e#97203#97242#0" expanded="false" />
+            <element signature="e#94671#94849#0" expanded="false" />
+            <element signature="e#94886#94924#0" expanded="false" />
+            <element signature="e#94960#95197#0" expanded="false" />
+            <element signature="e#95223#95280#0" expanded="false" />
+            <element signature="e#95323#97262#0" expanded="false" />
+            <element signature="e#97266#97305#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bower_components/echarts/echarts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="3" column="26452" selection-start-line="3" selection-start-column="26445" selection-end-line="3" selection-end-column="26452" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4483516">
-          <caret line="1321" column="0" selection-start-line="1321" selection-start-column="0" selection-end-line="1321" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="-7.509804">
+          <caret line="945" column="91" selection-start-line="945" selection-start-column="91" selection-end-line="945" selection-end-column="91" />
+          <folding>
+            <element signature="n#style#0;n#span#1;n#div#0;n#md-content#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/games/GameService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6004273">
+          <caret line="465" column="29" selection-start-line="465" selection-start-column="29" selection-end-line="465" selection-end-column="29" />
+          <folding>
+            <element signature="e#7146#8068#0" expanded="false" />
+            <element signature="e#8070#9138#0" expanded="false" />
+            <element signature="e#16337#16369#0" expanded="false" />
+            <element signature="e#21477#21509#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

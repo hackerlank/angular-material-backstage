@@ -32,6 +32,46 @@
         ×
     </md-button>
 
+    <md-item class="day-comp-box">
+        <span>
+            <md-button class="md-primary" ng-click="CmpDateSubstract('tD')">-</md-button>
+            <span><span>{{tD}}</span>天前</span>
+            <md-button class="md-primary" ng-click="CmpDatePlus('tD')">+</md-button>
+        </span>
+
+        <span>
+            <md-button class="md-primary" ng-click="CmpDateSubstract('tW')">-</md-button>
+            <span><span>{{tW}}</span>周前</span>
+            <md-button class="md-primary" ng-click="CmpDatePlus('tW')">+</md-button>
+        </span>
+
+        <span>
+            <md-button class="md-primary" ng-click="CmpDateSubstract('tM')">-</md-button>
+            <span><span>{{tM}}</span>月前</span>
+            <md-button class="md-primary" ng-click="CmpDatePlus('tM')">+</md-button>
+        </span>
+
+        <span>
+            <md-button class="md-primary" ng-click="CmpDateSubstract('tQ')">-</md-button>
+            <span><span>{{tQ}}</span>季度前</span>
+            <md-button class="md-primary" ng-click="CmpDatePlus('tQ')">+</md-button>
+        </span>
+
+        <span>
+            <md-button class="md-primary" ng-click="CmpDateSubstract('tY')">-</md-button>
+            <span><span>{{tY}}</span>年前</span>
+            <md-button class="md-primary" ng-click="CmpDatePlus('tY')">+</md-button>
+        </span>
+
+        <span>
+            <span>自定义对比</span>
+            <input id="diydaterangecomp" type="text" date-range-picker ng-model="DiyDateRangeComp" ranged="true" />
+            <md-button hide-sm show-date-range-picker class="md-primary btn-remain-time" id="btn-diycomp-date" aria-label="rechremainbtn">
+                <md-icon md-svg-icon="calendar"></md-icon>
+            </md-button>
+        </span>
+    </md-item>
+
     <!--<div class="md-actions" layout="row" class="game-data-tabs-trend-actions">
         <span flex></span>
         <md-button ng-click="answer('trend chart closed!')" class="md-primary md-raised btn-game-chart-dialog">

@@ -45,6 +45,9 @@
 						if ('btn-rechargers-date' == element[0].id) {
 							myjquery('#RechargersDatePicker').trigger('click');
 						}
+                        if ('btn-diycomp-date' == element[0].id) {
+                            myjquery('#diydaterangecomp').trigger('click');
+                        }
 						e.stopPropagation();
 					});
 				}
@@ -159,19 +162,19 @@
 						yAxis : [
 							{
 								type : 'category',
-								data : ['自定义','年','月','周','日']
+								data : ['自定义\n\n\n','年\n\n\n', '季度\n\n\n', '月\n\n\n','周\n\n\n','日\n\n\n']
 							}
 						],
 						series : [
 							{
-								name:'当前',
-								type:'bar',
-								data:[18203, 23489, 630230, 29034, 104970]
-							},
-							{
 								name:'对比',
 								type:'bar',
-								data:[19325, 681807, 23438, 31000, 121594]
+								data:[18203, 23489, 123321, 630230, 29034, 104970]
+							},
+							{
+								name:'当前',
+								type:'bar',
+								data:[19325, 681807, 333333, 23438, 31000, 121594]
 							}
 						]
 					};
@@ -411,15 +414,15 @@
         self.tDE = "";
         self.topType = 1;                   //默认TOP100
         $scope.AllRemainDate = 0;			//所有用户留存时间选择
-        $scope.ActiveRemainDate = 0;			//活跃用户留存时间选择
+        $scope.ActiveRemainDate = 0;		//活跃用户留存时间选择
         $scope.RechRemainDate = 0;			//充值用户留存时间选择
-        $scope.DiyDateRange = 0;				//自定义时间范围（DateRange类型，需要处理成self.daterangeStart, self.daterangeEnd）
+        $scope.DiyDateRange = 0;			//自定义时间范围（DateRange类型，需要处理成self.daterangeStart, self.daterangeEnd）
 
         self.selected = null;
         self.games = [];
 		self.gamelist = [];
-		self.gd = [];							//data model definition
-        self.dcd = [];                          //data category data
+		self.gd = [];						//data model definition
+        self.dcd = [];                      //data category data
         self.selectGame = selectGame;
         self.toggleList = toggleUsersList;
         self.toggleUserCtrl = toggleUserCtrl;
@@ -453,6 +456,7 @@
         self.showDist = showDist;
 		self.selectTotal = selectTotal;
 		self.toggleCps = buildToggle('cpsPanel');
+        self.channellist = {};
 		self.channels = [
 			{name: 'IOS', id: 1},
 			{name: 'Android', id: 2}
@@ -539,30 +543,12 @@
 
         // data manipulation ↓
         // Load game list
-        gameService
-            .loadAllGames()
-            .then(function (games) {
-                self.games = [].concat(games);
-				for (typegame in self.games) {
-					self.gamelist = myjquery.merge(self.gamelist, self.games[typegame].gamelist);
-				}
-                hideProgressBar();
-            });
-		function getGameNameById(gid) {
-			for (id in self.gamelist) {
-				if (gid == self.gamelist[id].gid) {
-					return self.gamelist[id].name;
-				}
-			}
-		}
+        loadGameList();
         // Load all data category
-        gameService
-            .loadAllDataCategory()
-            .then (function (datacatedata) {
-            self.dcd = datacatedata;
-            hideProgressBar();
-        });
-		// Load all data vars
+        loadGameDataCategory();
+        // Load all channels
+        loadChannelData();
+		// Load board data
         console.log('loadGameBoardData: 2');
         loadGameBoardData();
         //每5秒刷新数据
@@ -573,6 +559,38 @@
             }
         }, 10000000000);
 
+
+        // Func for Load game list
+        function loadGameList() {
+            gameService
+                .loadAllGames()
+                .then(function (games) {
+                    self.games = [].concat(games);
+                    for (typegame in self.games) {
+                        self.gamelist = myjquery.merge(self.gamelist, self.games[typegame].gamelist);
+                    }
+                    hideProgressBar();
+            });
+        }
+        // Func for Load data category
+        function loadGameDataCategory() {
+            gameService
+                .loadAllDataCategory()
+                .then(function (datacatedata) {
+                   self.dcd = datacatedata;
+                    hideProgressBar();
+            });
+        }
+        // Func for Load channel data
+        function loadChannelData() {
+            gameService
+                .loadAllChannels()
+                .then (function (channeldata) {
+                    self.channellist = channeldata;
+            });
+        }
+
+        // Func for Load board data
         function loadGameBoardData() {
             showProgressBar();
             //var param = {
@@ -587,9 +605,9 @@
                     self.gd = gamedata;
                     //notifyLoading();
                     hideProgressBar();
-                });
+            });
         }
-        // Load profit card value due to unit change
+        // Func for Load profit card value due to unit change
         function loadProfitByUnit() {
             showProgressBar();
             var param = {
@@ -603,9 +621,9 @@
                 .then (function (profitdata) {
                     self.gd.profit = profitdata;
                     hideProgressBar();
-                });
+            });
         }
-        // Load top card value due to toptype change
+        // Func for Load top card value due to toptype change
         function loadTopByToptype() {
             showProgressBar();
             var param = {
@@ -621,9 +639,9 @@
                     self.gd.people.topLost = topdata.topLost;
                     self.gd.people.topLostTotal = topdata.topLostTotal;
                     hideProgressBar();
-                });
+            });
         }
-        // Load remain card value due to remaindate change
+        // Func for Load remain card value due to remaindate change
         function loadRemainByDate(type) {
             showProgressBar();
 
@@ -663,7 +681,7 @@
                             break;
                     }
                     hideProgressBar();
-                });
+            });
         }
         function loadChainChartData(dtype, mode) {
             showProgressBar();
@@ -675,7 +693,7 @@
                 .then (function (chartdata) {
                     hideProgressBar();
                     return chartdata;
-                });
+            });
         }
         function loadDistChartData(dtype, mode) {
             showProgressBar();
@@ -688,7 +706,7 @@
                 .then (function (chartdata) {
                     hideProgressBar();
                     return chartdata;
-                });
+            });
         }
         function loadTrendChartData(dtype, mode) {
             showProgressBar();
@@ -701,7 +719,7 @@
                 .then (function (chartdata) {
                     hideProgressBar();
                     return chartdata;
-                });
+            });
         }
 
         function reloadParam(act) {
@@ -803,7 +821,14 @@
 						this.items[key].primary = false;
 					}
 					item.primary = true;
-					
+
+                    if (1 == item.id) {                     //btn-realtime
+                        self.cuTitle = self.dcd.overall[3];
+                    } else {
+                        self.cuTitle = self.dcd.overall[12];
+                    }
+                    self.datetype = item.id;
+
 					if (6 == item.id) {
 						this.showDateRangePicker = true;
 					} else {
@@ -813,13 +838,6 @@
                         console.log('loadGameBoardData: ts1');
                         loadGameBoardData();
 					}
-
-                    if (1 == item.id) {                     //btn-realtime
-                        self.cuTitle = self.dcd.overall[3];
-                    } else {
-                        self.cuTitle = self.dcd.overall[12];
-                    }
-                    self.datetype = item.id;
                 };
 
                 $scope.$watch('DiyDateRange', function() {
@@ -901,6 +919,26 @@
 				$scope.cps_indicator = genCpsIndicator();
 
                 $scope.loadChainChartData = loadChainChartData;
+
+                var datetypes = ['tD', 'tW', 'tM', 'tQ', 'tY'];
+                for (var key in datetypes) {
+                    $scope[datetypes[key]] = self[datetypes[key]];
+                }
+                $scope.CmpDateSubstract = function(datetype) {
+                    self[datetype] = self[datetype] > 1 ? --self[datetype] : self[datetype];
+                    $scope[datetype] = self[datetype];
+
+                    var option = loadChainChartData($scope.datatype, $scope.mode);
+                    drawChainChart(option);
+                }
+                $scope.CmpDatePlus = function(datetype) {
+                    self[datetype] = self[datetype] < 30 ? ++self[datetype] : self[datetype];
+                    $scope[datetype] = self[datetype];
+
+                    var option = loadChainChartData($scope.datatype, $scope.mode);
+                    drawChainChart(option);
+                }
+
 			}
 		}
 		
@@ -986,16 +1024,16 @@
 		function genCpsIndicator() {
 			var cps_indicator = "";
 			if (0 == self.channel) {
-				cps_indicator += '全渠道 ';
+				cps_indicator += '全渠道';
 			} else {
 				for (k in self.channels) {
 					if (self.channel == self.channels[k].id) {
-						cps_indicator += self.channels[k].name + '';
+						cps_indicator += self.channels[k].name + ' ';
 					}
 				}
 			}
 			if (0 == self.platform) {
-				cps_indicator += "> 全平台 ";
+				cps_indicator += " > 全平台";
 			} else {
 				for (k in self.platforms) {
 					if (self.platform == self.platforms[k].id) {
@@ -1004,7 +1042,7 @@
 				}
 			}
 			if (0 == self.server) {
-				cps_indicator += "> 全区服 ";
+				cps_indicator += " > 全区服 ";
 			} else {
 				for (k in self.servers) {
 					if (self.server == self.servers[k].id) {
@@ -1028,15 +1066,11 @@
 		}
 
 		function selectChannel(channelId) {
-			/**
-			 * 由游戏ID、渠道ID获取平台列表
-			 */
-			self.platforms = [
-				{name: '360', id: 1},
-				{name: '4399', id: 2},
-				{name: '百度', id: 3},
-				{name: '豌豆荚', id: 4}
-			];
+            if (1 == channelId) {               //IOS
+                self.platforms = self.channellist.ios;
+            } else if (2 == channelId) {
+                self.platforms = self.channellist.android;
+            }
 			self.servers = [];
 
 			if (0 == channelId) {
@@ -1051,16 +1085,10 @@
 		}
 
 		function selectPlatform(platformId) {
-			/**
-			 * 由游戏ID、渠道ID、平台ID获取区服列表
-			 */
-			self.servers = [
-				{name: '电信1区', id: 1},
-				{name: '电信2区', id: 2},
-				{name: '电信3区', id: 3},
-				{name: '电信4区', id: 4},
-				{name: '电信5区', id: 5},
-			];
+            self.servers = [];
+			for (var i=1; i<100; i++) {
+                self.servers.push({name: '双线'+i+'区', id: i});
+            }
 
 			if (0 == platformId) {
 				self.servers = {};
@@ -1090,6 +1118,13 @@
 
 
         // tools ↓
+        function getGameNameById(gid) {
+            for (var id in self.gamelist) {
+                if (gid == self.gamelist[id].gid) {
+                    return self.gamelist[id].name;
+                }
+            }
+        }
         function showProgressBar() {
             self.hideProgressBar = false;
         }

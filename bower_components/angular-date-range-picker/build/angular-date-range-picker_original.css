@@ -136,6 +136,18 @@
   -moz-box-sizing: content-box;
   box-sizing: content-box;
 }
+.angular-date-range-picker__picker_diyrangecmp {
+  position: absolute;
+  top: -298px;
+  left: -1px;
+  overflow: hidden;
+  background: #fff;
+  z-index: 1000;
+  border: 1px solid #ccc;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
 
 .angular-date-range-picker--ranged {
   width: 230px;

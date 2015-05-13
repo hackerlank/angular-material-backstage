@@ -481,6 +481,10 @@ md-card md-card-content {
 .game-chart-dialog .md-tabs-content {
     height: 100%;
 }
+.game-chart-dialog .day-comp-box {
+
+}
+
 .game-data-tabs-trend {
     height: 90%;
     overflow: hidden;

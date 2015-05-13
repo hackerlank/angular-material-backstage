@@ -7,14 +7,14 @@
 
     angular.module('games')
         .service('gameService', ['$q', '$http', GameService])
-        .service('gameDataService', ['$q', GameDataService])
-        .service('dataCateService', ['$q', DataCateService]);
+        /*.service('gameDataService', ['$q', GameDataService])
+        .service('dataCateService', ['$q', DataCateService])*/;
 
     var requestUrl = 'http://rpttest.ztgame.com/api/api.php';
     var gametype = {
         1: '端游',
-        2: '手游',
-        3: '页游'
+        3: '手游',
+        2: '页游'
     };
 
     /**
@@ -36,11 +36,9 @@
             }).success(function(data, status, headers, config) {
                 switch (type) {
                     case 1:                             //获取游戏列表
-                        console.log(data);
                         genGamesObj(deferral, data);
                         break;
                     case 2:                             //获取面板数据
-                        console.log(data);
                         genGamesData(deferral, data, params);
                         break;
                     case 3:                             //获取收入数据
@@ -60,6 +58,9 @@
                         break;
                     case 8:                             //趋势
                         genTrendChartData(deferral, data, params);
+                        break;
+                    case 9:
+                        genChannelData(deferral, data);
                         break;
                 }
             }).error(function() {
@@ -160,12 +161,39 @@
                     break;
             }
         }
+        function genChannelData(deferral, data) {
+            var channels = {};
+            channels.ios = [];
+            channels.android = [];
+            if ("OK" == data.status) {
+                for (var key in data.data) {
+                    var item = {
+                        name: data.data[key].custname_cn,
+                        id: data.data[key].cust
+                    };
+                    if (2 == data.data[key].cust) {             //IOS
+                        channels.ios.push(item);
+                    } else {                                    //ANDROID
+                        channels.android.push(item);
+                    }
+                }
+            }
+
+            channels.android.sort(test);
+
+            function test(a, b) {
+                return a.name.localeCompare(b.name);
+            }
+
+            console.log(channels);
+            deferral.resolve(channels);
+        }
 
 
         // 1 获取游戏列表
         function getGameList() {
-            var data = {'act':'userpriv', 'type':'gamePriv', 'username':'songhua', 'area':1}
-            return getByJsonp(requestUrl, data, 1);
+            var param = {'act':'userpriv', 'type':'gamePriv', 'username':'songhua', 'area':1};
+            return getByJsonp(requestUrl, param, 1);
         }
 
         // 2 获取面板数据
@@ -204,6 +232,12 @@
         function getTrendChartData(param, mode) {
             self.mode = mode || 1;
             return getByJsonp(requestUrl, param, 8);
+        }
+
+        // 9 获取渠道列表
+        function getChannelList() {
+            var param = {'act':'getData', 'datetype': 'channel'};
+            return getByJsonp(requestUrl, param, 9);
         }
 
         var games = [{
@@ -481,14 +515,17 @@
             loadAllGames : function() {
                 // Simulate async nature of real remote calls
                 /////////////////////////////////////////
-                return $q.when(games);
+                //return $q.when(games);
 
                 return $q.when(getGameList());
+            },
+            loadAllChannels : function() {
+                return $q.when(getChannelList());
             },
             loadAllGameData : function(param) {
                 // Simulate async nature of real remote calls
                 /////////////////////////////////////////
-                return $q.when(gamedata);
+                //return $q.when(gamedata);
 
                 return $q.when(getGameBoardData(param));
             },

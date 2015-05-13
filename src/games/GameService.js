@@ -118,17 +118,69 @@
             deferral.resolve(gamedata);
         }
         function genChainChartData(deferral, data, params) {
-            var options = {};
-
-            switch (self.mode) {
-                case 1:             //环比
-                    break;
-                case 2:             //在线曲线
-                    break;
-                case 3:             //TOP付费用户、流失用户、总流失用户环比
-                    break;
-                case 4:             //留存曲线
-                    break;
+            var options = {
+                tooltip : {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['当前', '对比']
+                },
+                toolbox: {
+                    show : false,
+                    feature : {
+                        mark : {show: true},
+                        /*dataView : {show: true, readOnly: false},
+                         magicType: {show: true, type: ['line', 'bar']},
+                         restore : {show: true},*/
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                xAxis : [{
+                    type : 'value',
+                    boundaryGap : [0, 0.01]
+                }],
+                yAxis : [{
+                    type : 'category',
+                    data : []
+                }],
+                series: [{
+                    name: '对比',
+                    type: 'bar',
+                    data: []
+                }, {
+                    name: '当前',
+                    type: 'bar',
+                    data: []
+                }]
+            };
+            if ("OK" == data.status) {
+                switch (self.mode) {
+                    case 1:             //环比
+                        var segDef = {
+                            'day' : '日\n\n\n',
+                            'week' : '周\n\n\n',
+                            'month' : '月\n\n\n',
+                            'quarter' : '季度\n\n\n',
+                            'year' : '年\n\n\n',
+                            'diy' : '自定义\n\n\n'
+                        };
+                        for (var key in data.data) {
+                            options.yAxis[0].data.push(segDef[key]);
+                            options.series[0].data.push(data.data[key].cmp);
+                            options.series[1].data.push(data.data[key].curl);
+                        }
+                        options.yAxis[0].data = options.yAxis[0].data.reverse();
+                        options.series[0].data = options.series[0].data.reverse();
+                        options.series[1].data = options.series[1].data.reverse();
+                        break;
+                    case 2:             //在线曲线
+                        break;
+                    case 3:             //TOP付费用户、流失用户、总流失用户环比
+                        break;
+                    case 4:             //留存曲线
+                        break;
+                }
             }
 
             deferral.resolve(options);

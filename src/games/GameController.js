@@ -57,24 +57,10 @@
 				restrict: 'A',
 				link: function ($scope, element, attrs) {
                     ///////////////////////////////////
-                    drawChainChart({});return false;
+                    //drawChainChart({});return false;
 					
 					//数据请求
-					var option = $scope.loadChainChartData($scope.datatype, $scope.mode);
-                    switch ($scope.mode) {
-                        case 1:                     //环比
-                            drawChainChart(option);
-                            break;
-                        case 2:                     //在线曲线
-                            drawTrendChart(option);
-                            break;
-                        case 3:                     //环比
-                            drawChainChart(option);
-                            break;
-                        case 4:                     //留存曲线
-                            drawTrendChart(option);
-                            break;
-                    }
+					$scope.loadChainChartData($scope.datatype, $scope.mode);
 				}
 			}
 		}).directive('showDist', function () {
@@ -135,49 +121,49 @@
 				setTimeout(function() {
 					var myChart = ec.init(document.getElementById('trend-chart-p'), theme);
 
-					option = {
-						tooltip : {
-							trigger: 'axis'
-						},
-						legend: {
-							data:['当前', '对比']
-						},
-						toolbox: {
-							show : false,
-							feature : {
-								mark : {show: true},
-								/*dataView : {show: true, readOnly: false},
-								magicType: {show: true, type: ['line', 'bar']},
-								restore : {show: true},*/
-								saveAsImage : {show: true}
-							}
-						},
-						calculable : true,
-						xAxis : [
-							{
-								type : 'value',
-								boundaryGap : [0, 0.01]
-							}
-						],
-						yAxis : [
-							{
-								type : 'category',
-								data : ['自定义\n\n\n','年\n\n\n', '季度\n\n\n', '月\n\n\n','周\n\n\n','日\n\n\n']
-							}
-						],
-						series : [
-							{
-								name:'对比',
-								type:'bar',
-								data:[18203, 23489, 123321, 630230, 29034, 104970]
-							},
-							{
-								name:'当前',
-								type:'bar',
-								data:[19325, 681807, 333333, 23438, 31000, 121594]
-							}
-						]
-					};
+					//option = {
+					//	tooltip : {
+					//		trigger: 'axis'
+					//	},
+					//	legend: {
+					//		data:['当前', '对比']
+					//	},
+					//	toolbox: {
+					//		show : false,
+					//		feature : {
+					//			mark : {show: true},
+					//			/*dataView : {show: true, readOnly: false},
+					//			magicType: {show: true, type: ['line', 'bar']},
+					//			restore : {show: true},*/
+					//			saveAsImage : {show: true}
+					//		}
+					//	},
+					//	calculable : true,
+					//	xAxis : [
+					//		{
+					//			type : 'value',
+					//			boundaryGap : [0, 0.01]
+					//		}
+					//	],
+					//	yAxis : [
+					//		{
+					//			type : 'category',
+					//			data : ['自定义\n\n\n','年\n\n\n', '季度\n\n\n', '月\n\n\n','周\n\n\n','日\n\n\n']
+					//		}
+					//	],
+					//	series : [
+					//		{
+					//			name:'对比',
+					//			type:'bar',
+					//			data:[18203, 23489, 123321, 630230, 29034, 104970]
+					//		},
+					//		{
+					//			name:'当前',
+					//			type:'bar',
+					//			data:[19325, 681807, 333333, 23438, 31000, 121594]
+					//		}
+					//	]
+					//};
 
 					// 为echarts对象加载数据
 					myChart.setOption(option);
@@ -690,9 +676,22 @@
 
             gameService
                 .loadChainChartData(param, mode)
-                .then (function (chartdata) {
+                .then (function (options) {
                     hideProgressBar();
-                    return chartdata;
+                    switch (mode) {
+                        case 1:                     //环比
+                            drawChainChart(options);
+                            break;
+                        case 2:                     //在线曲线
+                            drawTrendChart(options);
+                            break;
+                        case 3:                     //环比
+                            drawChainChart(options);
+                            break;
+                        case 4:                     //留存曲线
+                            drawTrendChart(options);
+                            break;
+                    }
             });
         }
         function loadDistChartData(dtype, mode) {
@@ -909,6 +908,7 @@
 				$scope.games = self.games;
 				$scope.mode = mode;
                 $scope.datatype = datatype;
+                self.dtype = datatype;
 
                 $scope.tablabel = modes[mode];
 				if (3 == mode) {
@@ -928,16 +928,24 @@
                     self[datetype] = self[datetype] > 1 ? --self[datetype] : self[datetype];
                     $scope[datetype] = self[datetype];
 
-                    var option = loadChainChartData($scope.datatype, $scope.mode);
-                    drawChainChart(option);
+                    loadChainChartData($scope.datatype, $scope.mode);
                 }
                 $scope.CmpDatePlus = function(datetype) {
                     self[datetype] = self[datetype] < 30 ? ++self[datetype] : self[datetype];
                     $scope[datetype] = self[datetype];
 
-                    var option = loadChainChartData($scope.datatype, $scope.mode);
-                    drawChainChart(option);
+                    loadChainChartData($scope.datatype, $scope.mode);
                 }
+
+
+                $scope.$watch('DiyDateRangeComp', function() {
+                    self.tDS = moment($scope.DiyDateRangeComp.start).format('YYYY-MM-DD');
+                    self.tDE = moment($scope.DiyDateRangeComp.end).format('YYYY-MM-DD');
+                    console.log(self);
+                    if (0 !=$scope.DiyDateRangeComp) {
+                        loadChainChartData($scope.datatype, $scope.mode);
+                    }
+                });
 
 			}
 		}

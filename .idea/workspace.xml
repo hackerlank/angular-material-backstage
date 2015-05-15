@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/src/games/GameController.js" line="813" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="03b0ea69-0d0e-4324-bbf1-98a0eea222c2" name="Default" comment="" />
     <ignored path="app.iws" />
@@ -21,39 +24,36 @@
     <favorites_list name="app" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.47601476">
+    <splitter split-orientation="horizontal" split-proportion="0.4717976">
       <split-first>
         <leaf>
-          <file leaf-file-name="GameController.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="GameController.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/games/GameController.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.7147436">
-                  <caret line="943" column="36" selection-start-line="943" selection-start-column="36" selection-end-line="943" selection-end-column="36" />
+                <state vertical-scroll-proportion="18.833334">
+                  <caret line="1152" column="38" selection-start-line="1152" selection-start-column="38" selection-end-line="1152" selection-end-column="38" />
                   <folding>
                     <element signature="e#583#736#0" expanded="false" />
                     <element signature="e#800#1707#0" expanded="false" />
-                    <element signature="e#2081#3298#0" expanded="false" />
-                    <element signature="e#3351#3529#0" expanded="false" />
-                    <element signature="e#3637#5016#0" expanded="false" />
-                    <element signature="e#5051#6476#0" expanded="false" />
-                    <element signature="e#6513#80876#0" expanded="false" />
-                    <element signature="e#7556#64857#0" expanded="false" />
-                    <element signature="e#65120#80769#0" expanded="false" />
-                    <element signature="e#82730#83031#0" expanded="false" />
-                    <element signature="e#84618#84671#0" expanded="false" />
-                    <element signature="e#84778#84989#0" expanded="false" />
-                    <element signature="e#85014#85119#0" expanded="false" />
-                    <element signature="e#85264#85599#0" expanded="false" />
-                    <element signature="e#85663#86011#0" expanded="false" />
-                    <element signature="e#86077#86229#0" expanded="false" />
-                    <element signature="e#86301#86540#0" expanded="false" />
-                    <element signature="e#86615#86863#0" expanded="false" />
-                    <element signature="e#86936#87178#0" expanded="false" />
-                    <element signature="e#95476#95654#0" expanded="false" />
-                    <element signature="e#95691#95729#0" expanded="false" />
-                    <element signature="e#95765#96002#0" expanded="false" />
-                    <element signature="e#96028#96085#0" expanded="false" />
-                    <element signature="e#98066#98105#0" expanded="false" />
+                    <element signature="e#1761#2029#0" expanded="false" />
+                    <element signature="e#2421#2533#0" expanded="false" />
+                    <element signature="e#2545#2567#0" expanded="false" />
+                    <element signature="e#2907#2919#0" expanded="false" />
+                    <element signature="e#4338#4350#0" expanded="false" />
+                    <element signature="e#5876#5888#0" expanded="false" />
+                    <element signature="e#81682#86245#0" expanded="false" />
+                    <element signature="e#88445#88498#0" expanded="false" />
+                    <element signature="e#88605#88816#0" expanded="false" />
+                    <element signature="e#88841#88946#0" expanded="false" />
+                    <element signature="e#89965#90180#0" expanded="false" />
+                    <element signature="e#93338#93358#0" expanded="false" />
+                    <element signature="e#93938#93958#0" expanded="false" />
+                    <element signature="e#94695#94715#0" expanded="false" />
+                    <element signature="e#100612#100790#0" expanded="false" />
+                    <element signature="e#100827#100865#0" expanded="false" />
+                    <element signature="e#100901#101138#0" expanded="false" />
+                    <element signature="e#101164#101221#0" expanded="false" />
+                    <element signature="e#103202#103241#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -63,14 +63,15 @@
             <entry file="file://$PROJECT_DIR$/src/games/GameService.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="183" column="13" selection-start-line="183" selection-start-column="13" selection-end-line="183" selection-end-column="13" />
+                  <caret line="292" column="54" selection-start-line="292" selection-start-column="54" selection-end-line="292" selection-end-column="54" />
                   <folding>
-                    <element signature="e#10426#11348#0" expanded="false" />
-                    <element signature="e#11350#12418#0" expanded="false" />
-                    <element signature="e#12446#16973#0" expanded="false" />
-                    <element signature="e#17002#18135#0" expanded="false" />
-                    <element signature="e#19729#19761#0" expanded="false" />
-                    <element signature="e#24869#24901#0" expanded="false" />
+                    <element signature="e#28822#29744#0" expanded="false" />
+                    <element signature="e#29746#30814#0" expanded="false" />
+                    <element signature="e#30842#35369#0" expanded="false" />
+                    <element signature="e#35398#36527#0" expanded="false" />
+                    <element signature="e#38122#38154#0" expanded="false" />
+                    <element signature="e#43262#43294#0" expanded="false" />
+                    <marker date="1431658311939" expanded="true" signature="15809:16275" placeholder="/*...*/" />
                   </folding>
                 </state>
               </provider>
@@ -79,8 +80,8 @@
           <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-4.3333335">
-                  <caret line="154" column="66" selection-start-line="154" selection-start-column="66" selection-end-line="154" selection-end-column="66" />
+                <state vertical-scroll-proportion="-6.1294117">
+                  <caret line="925" column="0" selection-start-line="925" selection-start-column="0" selection-end-line="926" selection-end-column="0" />
                   <folding>
                     <element signature="n#style#0;n#span#1;n#div#0;n#md-content#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                   </folding>
@@ -98,21 +99,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
+          <file leaf-file-name="app.css" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/assets/app.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-15.3">
-                  <caret line="480" column="37" selection-start-line="480" selection-start-column="37" selection-end-line="480" selection-end-column="37" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="distChartTpl.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/template/distChartTpl.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-23.23077">
-                  <caret line="40" column="27" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
+                <state vertical-scroll-proportion="0.5209713">
+                  <caret line="689" column="20" selection-start-line="689" selection-start-column="20" selection-end-line="689" selection-end-column="20" />
                   <folding />
                 </state>
               </provider>
@@ -132,28 +123,42 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="GameService.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="GameService.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/games/GameService.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="154" column="18" selection-start-line="154" selection-start-column="18" selection-end-line="154" selection-end-column="18" />
+                <state vertical-scroll-proportion="0.5694444">
+                  <caret line="405" column="37" selection-start-line="405" selection-start-column="37" selection-end-line="405" selection-end-column="37" />
                   <folding>
-                    <element signature="e#10426#11348#0" expanded="false" />
-                    <element signature="e#11350#12418#0" expanded="false" />
-                    <element signature="e#12446#16973#0" expanded="false" />
-                    <element signature="e#17002#18135#0" expanded="false" />
-                    <element signature="e#19729#19761#0" expanded="false" />
-                    <element signature="e#24869#24901#0" expanded="false" />
+                    <element signature="e#3886#9049#0" expanded="false" />
+                    <element signature="e#22525#26558#0" expanded="false" />
+                    <element signature="e#26607#27383#0" expanded="false" />
+                    <element signature="e#28822#29744#0" expanded="false" />
+                    <element signature="e#29746#30814#0" expanded="false" />
+                    <element signature="e#29795#29961#0" expanded="false" />
+                    <element signature="e#30842#35369#0" expanded="false" />
+                    <element signature="e#35398#36527#0" expanded="false" />
+                    <element signature="e#38122#38154#0" expanded="false" />
+                    <element signature="e#43262#43294#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="trendChartTpl.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="trendChartTpl.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/template/trendChartTpl.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.64505494">
-                  <caret line="67" column="97" selection-start-line="67" selection-start-column="81" selection-end-line="67" selection-end-column="97" />
+                <state vertical-scroll-proportion="-22.23077">
+                  <caret line="34" column="43" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="distChartTpl.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/template/distChartTpl.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-11.115385">
+                  <caret line="17" column="80" selection-start-line="17" selection-start-column="80" selection-end-line="17" selection-end-column="80" />
                   <folding />
                 </state>
               </provider>
@@ -183,16 +188,16 @@
         <option value="$PROJECT_DIR$/bower_components/jquery/dist/jquery.js" />
         <option value="$PROJECT_DIR$/template/timeSelSheet.html" />
         <option value="$PROJECT_DIR$/index_new.html" />
-        <option value="$PROJECT_DIR$/template/distChartTpl.html" />
-        <option value="$PROJECT_DIR$/assets/app.css" />
+        <option value="$PROJECT_DIR$/api_test.html" />
+        <option value="$PROJECT_DIR$/template/trendChartTpl.html" />
+        <option value="$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker.js" />
         <option value="$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker_original.css" />
         <option value="$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker.css" />
-        <option value="$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker.js" />
-        <option value="$PROJECT_DIR$/template/trendChartTpl.html" />
-        <option value="$PROJECT_DIR$/api_test.html" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/src/games/GameService.js" />
         <option value="$PROJECT_DIR$/src/games/GameController.js" />
+        <option value="$PROJECT_DIR$/template/distChartTpl.html" />
+        <option value="$PROJECT_DIR$/assets/app.css" />
+        <option value="$PROJECT_DIR$/src/games/GameService.js" />
       </list>
     </option>
   </component>
@@ -341,6 +346,68 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="bower_components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular-date-range-picker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bower_components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular-date-range-picker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bower_components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="angular-date-range-picker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -465,7 +532,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="16" />
+      <option name="time" value="20" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -744,42 +811,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker_original.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.48">
-          <caret line="141" column="10" selection-start-line="141" selection-start-column="10" selection-end-line="141" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.366667">
-          <caret line="143" column="33" selection-start-line="143" selection-start-column="33" selection-end-line="143" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/users/UserController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7275641">
           <caret line="98" column="16" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/template/distChartTpl.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.23077">
-          <caret line="40" column="27" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -792,36 +827,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/app.css">
+    <entry file="file://$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker_original.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.3">
-          <caret line="480" column="37" selection-start-line="480" selection-start-column="37" selection-end-line="480" selection-end-column="37" />
+        <state vertical-scroll-proportion="-27.6">
+          <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.3333335">
-          <caret line="154" column="66" selection-start-line="154" selection-start-column="66" selection-end-line="154" selection-end-column="66" />
-          <folding>
-            <element signature="n#style#0;n#span#1;n#div#0;n#md-content#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.6434879">
+          <caret line="203" column="1" selection-start-line="203" selection-start-column="1" selection-end-line="203" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/games/GameService.js">
+    <entry file="file://$PROJECT_DIR$/bower_components/angular-date-range-picker/build/angular-date-range-picker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="183" column="13" selection-start-line="183" selection-start-column="13" selection-end-line="183" selection-end-column="13" />
-          <folding>
-            <element signature="e#10426#11348#0" expanded="false" />
-            <element signature="e#11350#12418#0" expanded="false" />
-            <element signature="e#12446#16973#0" expanded="false" />
-            <element signature="e#17002#18135#0" expanded="false" />
-            <element signature="e#19729#19761#0" expanded="false" />
-            <element signature="e#24869#24901#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.6567329">
+          <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/trendChartTpl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.23077">
+          <caret line="34" column="43" selection-start-line="34" selection-start-column="43" selection-end-line="34" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -833,43 +867,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/trendChartTpl.html">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64505494">
-          <caret line="67" column="97" selection-start-line="67" selection-start-column="81" selection-end-line="67" selection-end-column="97" />
-          <folding />
+        <state vertical-scroll-proportion="-6.1294117">
+          <caret line="925" column="0" selection-start-line="925" selection-start-column="0" selection-end-line="926" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#span#1;n#div#0;n#md-content#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/games/GameController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7147436">
-          <caret line="943" column="36" selection-start-line="943" selection-start-column="36" selection-end-line="943" selection-end-column="36" />
+        <state vertical-scroll-proportion="18.833334">
+          <caret line="1152" column="38" selection-start-line="1152" selection-start-column="38" selection-end-line="1152" selection-end-column="38" />
           <folding>
             <element signature="e#583#736#0" expanded="false" />
             <element signature="e#800#1707#0" expanded="false" />
-            <element signature="e#2081#3298#0" expanded="false" />
-            <element signature="e#3351#3529#0" expanded="false" />
-            <element signature="e#3637#5016#0" expanded="false" />
-            <element signature="e#5051#6476#0" expanded="false" />
-            <element signature="e#6513#80876#0" expanded="false" />
-            <element signature="e#7556#64857#0" expanded="false" />
-            <element signature="e#65120#80769#0" expanded="false" />
-            <element signature="e#82730#83031#0" expanded="false" />
-            <element signature="e#84618#84671#0" expanded="false" />
-            <element signature="e#84778#84989#0" expanded="false" />
-            <element signature="e#85014#85119#0" expanded="false" />
-            <element signature="e#85264#85599#0" expanded="false" />
-            <element signature="e#85663#86011#0" expanded="false" />
-            <element signature="e#86077#86229#0" expanded="false" />
-            <element signature="e#86301#86540#0" expanded="false" />
-            <element signature="e#86615#86863#0" expanded="false" />
-            <element signature="e#86936#87178#0" expanded="false" />
-            <element signature="e#95476#95654#0" expanded="false" />
-            <element signature="e#95691#95729#0" expanded="false" />
-            <element signature="e#95765#96002#0" expanded="false" />
-            <element signature="e#96028#96085#0" expanded="false" />
-            <element signature="e#98066#98105#0" expanded="false" />
+            <element signature="e#1761#2029#0" expanded="false" />
+            <element signature="e#2421#2533#0" expanded="false" />
+            <element signature="e#2545#2567#0" expanded="false" />
+            <element signature="e#2907#2919#0" expanded="false" />
+            <element signature="e#4338#4350#0" expanded="false" />
+            <element signature="e#5876#5888#0" expanded="false" />
+            <element signature="e#81682#86245#0" expanded="false" />
+            <element signature="e#88445#88498#0" expanded="false" />
+            <element signature="e#88605#88816#0" expanded="false" />
+            <element signature="e#88841#88946#0" expanded="false" />
+            <element signature="e#89965#90180#0" expanded="false" />
+            <element signature="e#93338#93358#0" expanded="false" />
+            <element signature="e#93938#93958#0" expanded="false" />
+            <element signature="e#94695#94715#0" expanded="false" />
+            <element signature="e#100612#100790#0" expanded="false" />
+            <element signature="e#100827#100865#0" expanded="false" />
+            <element signature="e#100901#101138#0" expanded="false" />
+            <element signature="e#101164#101221#0" expanded="false" />
+            <element signature="e#103202#103241#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/distChartTpl.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.115385">
+          <caret line="17" column="80" selection-start-line="17" selection-start-column="80" selection-end-line="17" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5209713">
+          <caret line="689" column="20" selection-start-line="689" selection-start-column="20" selection-end-line="689" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/games/GameService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5694444">
+          <caret line="405" column="37" selection-start-line="405" selection-start-column="37" selection-end-line="405" selection-end-column="37" />
+          <folding>
+            <element signature="e#3886#9049#0" expanded="false" />
+            <element signature="e#22525#26558#0" expanded="false" />
+            <element signature="e#26607#27383#0" expanded="false" />
+            <element signature="e#28822#29744#0" expanded="false" />
+            <element signature="e#29746#30814#0" expanded="false" />
+            <element signature="e#29795#29961#0" expanded="false" />
+            <element signature="e#30842#35369#0" expanded="false" />
+            <element signature="e#35398#36527#0" expanded="false" />
+            <element signature="e#38122#38154#0" expanded="false" />
+            <element signature="e#43262#43294#0" expanded="false" />
           </folding>
         </state>
       </provider>

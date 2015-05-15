@@ -8,8 +8,14 @@
                     {{cps_indicator}}
                 </div>
             </md-subheader>
-            <md-content class="md-padding game-data-tab-trend-content">
-                <p show-dist class="dialog-chart-p" id="dist-chart-p" layout="row" layout-align="center center">
+            <md-content class="md-padding game-data-tab-trend-content" layout="row" layout-sm="column">
+                <p show-dist
+                   ng-class="{'dialog-chart-p':gid==0 || (15!=dtypeleft&&27!=dtypeleft), 'dialog-chart-p-half':gid>0 && (15==dtypeleft || 27==dtypeleft)}"
+                   id="dist-chart-p" layout="row" layout-align="center center">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </p>
+                <p ng-if="gid>0 && (15==dtypeleft || 27==dtypeleft)" class="dialog-chart-p2"
+                   id="dist-chart-p2" layout="row" layout-align="center center">
                     <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                 </p>
             </md-content>

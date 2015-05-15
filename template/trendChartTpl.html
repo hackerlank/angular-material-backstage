@@ -32,7 +32,7 @@
         ×
     </md-button>
 
-    <md-item class="day-comp-box">
+    <md-item ng-hide="!(mode==1 || mode==3)" class="day-comp-box">
         <span>
             <md-button class="md-primary" ng-click="CmpDateSubstract('tD')">-</md-button>
             <span><span>{{tD}}</span>天前</span>

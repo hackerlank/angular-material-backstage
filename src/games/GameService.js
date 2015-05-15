@@ -16,6 +16,8 @@
         3: '手游',
         2: '页游'
     };
+    var overallGamelist = [];
+    var overallChannels = [];
 
     /**
      * Users DataService
@@ -33,7 +35,7 @@
             url = url  + '?callback=JSON_CALLBACK';
             $http.jsonp (url, {
                 params: params
-            }).success(function(data, status, headers, config) {
+            }).success(function(data, status, headers, config) {console.log(data);
                 switch (type) {
                     case 1:                             //获取游戏列表
                         genGamesObj(deferral, data);
@@ -72,7 +74,7 @@
         function genGamesObj(deferral, data) {
             var games = [];
             var gameids = [];
-            if ("OK" == data.status) {
+            if (verifyRet(data)) {
                 var game;
                 var gametypeid = -1;
                 for (game in data.data) {
@@ -90,12 +92,166 @@
                     };
                     games[gametypeid].gamelist = games[gametypeid].gamelist.concat(thisgame);
                 }
+                for (var typegame in games) {
+                    overallGamelist = myjquery.merge(overallGamelist, games[typegame].gamelist);
+                }
             }
+
             deferral.resolve(games);
         }
         function genGamesData(deferral, data, params) {
-            var gamedata = {};
-            if ("OK" == data.status) {
+            var gamedata = {
+                //overall: {
+                //    profit: {
+                //        chain: 0,
+                //        num: 0,
+                //        topgid: 0
+                //    },
+                //    ol: {
+                //        pcu: {
+                //            chain: 0,
+                //            num: 0,
+                //            topgid: 0
+                //        },
+                //        cu: {
+                //            num: 0,
+                //            topgid: 0
+                //        }
+                //    },
+                //    people: {
+                //        netNewRech: {
+                //            chain: 0,
+                //            num: 0,
+                //            topgid: 0
+                //        },
+                //        rech: {
+                //            chain: 0,
+                //            num: 0,
+                //            topgid: 0
+                //        },
+                //        newRech: {
+                //            chain: 0,
+                //            num: 0,
+                //            topgid: 0
+                //        },
+                //        lostRech: {
+                //            chain: 0,
+                //            num: 0,
+                //            topgid: 0
+                //        },
+                //        netNew: {
+                //            chain: 0,
+                //            num: 0,
+                //            topgid: 0
+                //        },
+                //        active: {
+                //            chain: 0,
+                //            num: 0,
+                //            topgid: 0
+                //        },
+                //        new: {
+                //            chain: 0,
+                //            num: 0,
+                //            topgid: 0
+                //        },
+                //        lost: {
+                //            chain: 0,
+                //            num: 0,
+                //            topgid: 0
+                //        }
+                //    }
+                //},
+                //specgame: {
+                //    profit: {
+                //        income: {
+                //            chain: 0,
+                //            num: 0
+                //        },
+                //        arpu: {
+                //            num: 0
+                //        },
+                //        ratio: {
+                //            num: 0
+                //        }
+                //    },
+                //    ol: {
+                //        pcu: {
+                //            chain: 0,
+                //            num: 0
+                //        },
+                //        cu: {
+                //            num: 0
+                //        }
+                //    },
+                //    people: {
+                //        netNewRech: {
+                //            chain: 0,
+                //            num: 0
+                //        },
+                //        rech: {
+                //            chain: 0,
+                //            num: 0
+                //        },
+                //        newRech: {
+                //            chain: 0,
+                //            num: 0
+                //        },
+                //        lostRech: {
+                //            chain: 0,
+                //            num: 0
+                //        },
+                //        netNew: {
+                //            chain: 0,
+                //            num: 0
+                //        },
+                //        active: {
+                //            chain: 0,
+                //            num: 0
+                //        },
+                //        new: {
+                //            chain: 0,
+                //            num: 0
+                //        },
+                //        lost: {
+                //            chain: 0,
+                //            num: 0
+                //        },
+                //        topRech: {
+                //            chain: 0,
+                //            num: 0
+                //        },
+                //        topLost: {
+                //            chain: 0,
+                //            num: 0
+                //        },
+                //        topLostTotal: {
+                //            chain: 0,
+                //            num: 0
+                //        }
+                //    },
+                //    remain: {
+                //        overall: {
+                //            d: 0,
+                //            w: 0,
+                //            dw: 0,
+                //            m: 0
+                //        },
+                //        active: {
+                //            d: 0,
+                //            w: 0,
+                //            dw: 0,
+                //            m: 0
+                //        },
+                //        rech: {
+                //            d: 0,
+                //            w: 0,
+                //            dw: 0,
+                //            m: 0
+                //        }
+                //    }
+                //}
+            };
+            if (verifyRet(data)) {
                 if (0 == params.gid) {              //总览面板数据
                     gamedata.overall  = data.data;
                     gamedata.overall.profit = data.data.profile;
@@ -118,43 +274,45 @@
             deferral.resolve(gamedata);
         }
         function genChainChartData(deferral, data, params) {
-            var options = {
-                tooltip : {
-                    trigger: 'axis'
-                },
-                legend: {
-                    data: ['当前', '对比']
-                },
-                toolbox: {
-                    show : false,
-                    feature : {
-                        mark : {show: true},
-                        /*dataView : {show: true, readOnly: false},
-                         magicType: {show: true, type: ['line', 'bar']},
-                         restore : {show: true},*/
-                        saveAsImage : {show: true}
-                    }
-                },
-                calculable : true,
-                xAxis : [{
-                    type : 'value',
-                    boundaryGap : [0, 0.01]
-                }],
-                yAxis : [{
-                    type : 'category',
-                    data : []
-                }],
-                series: [{
-                    name: '对比',
-                    type: 'bar',
-                    data: []
-                }, {
-                    name: '当前',
-                    type: 'bar',
-                    data: []
-                }]
-            };
-            if ("OK" == data.status) {
+            if (verifyRet(data)) {
+                var options = {
+                    animation: false,
+                    tooltip : {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['当前', '对比']
+                    },
+                    toolbox: {
+                        show : false,
+                        feature : {
+                            mark : {show: true},
+                            /*dataView : {show: true, readOnly: false},
+                             magicType: {show: true, type: ['line', 'bar']},
+                             restore : {show: true},*/
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    calculable : true,
+                    xAxis : [{
+                        type : 'value',
+                        boundaryGap : [0, 0.01]
+                    }],
+                    yAxis : [{
+                        type : 'category',
+                        data : []
+                    }],
+                    series: [{
+                        name: '对比',
+                        type: 'bar',
+                        data: []
+                    }, {
+                        name: '当前',
+                        type: 'bar',
+                        data: []
+                    }]
+                };
+
                 switch (self.mode) {
                     case 1:             //环比
                         var segDef = {
@@ -168,17 +326,102 @@
                         for (var key in data.data) {
                             options.yAxis[0].data.push(segDef[key]);
                             options.series[0].data.push(data.data[key].cmp);
-                            options.series[1].data.push(data.data[key].curl);
+                            options.series[1].data.push(data.data[key].cur);
                         }
                         options.yAxis[0].data = options.yAxis[0].data.reverse();
                         options.series[0].data = options.series[0].data.reverse();
                         options.series[1].data = options.series[1].data.reverse();
                         break;
                     case 2:             //在线曲线
+                        options.legend.data = ['在线曲线'];
+                        options.dataZoom = {
+                            show: true,
+                            realtime: true,
+                            start: 0,
+                            end: 100
+                        };
+                        options.xAxis[0].type = 'category';
+                        options.xAxis[0].boundaryGap = false;
+                        options.xAxis[0].data = [];
+                        options.yAxis[0].type = 'value';
+                        /*options.yAxis[0].axisLabel = {
+                            formatter: '{value}人'
+                        };*/
+                        options.series = [{
+                            name: '在线曲线',
+                            type: 'line',
+                            data: [],
+                            markPoint: {
+                                symbol: 'pin',
+                                data : [{
+                                    type: 'max', name: '最大值', symbolSize: 20
+                                }, {
+                                    type: 'min', name: '最小值', symbolSize: 20
+                                }]
+                            },
+                            markLine: {
+                                data : [{
+                                    type: 'average', name: '平均值'
+                                }]
+                            }
+                        }];
+                        for (var key in data.data) {
+                            options.xAxis[0].data.push(moment(new Date(data.data[key].time * 1000)).format('YYYY-MM-DD'));
+                            options.series[0].data.push(parseInt(data.data[key].amount));
+
+                            options.xAxis[0].data = options.xAxis[0].data.reverse();
+                            options.series[0].data = options.series[0].data.reverse();
+                        }
                         break;
                     case 3:             //TOP付费用户、流失用户、总流失用户环比
+                        var segDef = {
+                            'day' : '日\n\n\n',
+                            'week' : '周\n\n\n',
+                            'month' : '月\n\n\n',
+                            'quarter' : '季度\n\n\n',
+                            'year' : '年\n\n\n',
+                            'diy' : '自定义\n\n\n'
+                        };
+                        for (var key in data.data) {
+                            options.yAxis[0].data.push(segDef[key]);
+                            options.series[0].data.push(data.data[key].cmp);
+                            options.series[1].data.push(data.data[key].cur);
+                        }
+                        options.yAxis[0].data = options.yAxis[0].data.reverse();
+                        options.series[0].data = options.series[0].data.reverse();
+                        options.series[1].data = options.series[1].data.reverse();
                         break;
                     case 4:             //留存曲线
+                        options.legend.data = ['留存曲线'];
+                        options.dataZoom = {};
+                        options.xAxis[0].type = 'category';
+                        options.xAxis[0].boundaryGap = false;
+                        options.xAxis[0].data = [];
+                        options.yAxis[0].type = 'value';
+                        options.yAxis[0].axisLabel = {formatter: '{value}%'};
+                        options.tooltip = {
+                            trigger: 'axis',
+                            formatter: function (params) {console.log(params[0].seriesName);
+                                return params[0].seriesName +
+                                    '<br/>' +
+                                    (1==params[0].name?"次":params[0].name) + '日留存：' +
+                                    params[0].data + "%";
+                            }
+                        };
+                        options.series = [{
+                            name: '留存曲线',
+                            type: 'line',
+                            data: []
+                        }];
+                        for (var key in data.data) {
+                            if (0 == key)
+                                continue;
+                            options.xAxis[0].data.push(data.data[key].time);
+                            options.series[0].data.push((data.data[key].amount/data.data[0].amount*100).toFixed(2));
+
+                            //options.xAxis[0].data = options.xAxis[0].data.reverse();
+                            //options.series[0].data = options.series[0].data.reverse();
+                        }
                         break;
                 }
             }
@@ -186,38 +429,225 @@
             deferral.resolve(options);
         }
         function genDistChartData(deferral, data, params) {
-            var options = {};
+            if (!verifyRet(data)) {
+            } else {
+                var options = {
+                    animation: false,
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        x: 'left',
+                        data: []
+                    },
+                    toolbox: {
+                        show: false,
+                        feature: {
+                            mark: {show: true},
+                            dataView: {show: true, readOnly: false},
+                            magicType: {
+                                show: true,
+                                type: ['pie', 'funnel'],
+                                option: {
+                                    funnel: {
+                                        x: '25%',
+                                        width: '50%',
+                                        funnelAlign: 'left',
+                                        max: 1548
+                                    }
+                                }
+                            },
+                            restore: {show: true},
+                            saveAsImage: {show: true}
+                        }
+                    },
+                    calculable: true,
+                    series: [{
+                        name: '',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['50%', '60%'],
+                        data: []
+                    }]
+                };
 
-            switch (self.mode) {
-                case 1:             //产品贡献结构
-                    break;
-                case 2:             //渠道贡献结构
-                    break;
-                case 3:             //分布结构(净新增付费用户、净新增用户（横向双柱状图）)
-                    break;
-                case 4:             //分布结构(付费用户、活跃用户（双饼图）)
-                    break;
-                case 5:             //分布结构(新增付费用户、流失付费用户、流失用户)
-                    break;
-                case 6:             //分布结构(top付费用户、top流失用户、top总流失用户（单饼图）)
-                    break;
+                switch (self.mode) {
+                    case 1:             //产品贡献结构
+                        break;
+                    case 2:             //渠道贡献结构
+                        for (var key in data.data) {
+                            options.legend.data.push(getChannelNameById(data.data[key].gid));
+                            var seriesData = {
+                                value: data.data[key].amount,
+                                name: getChannelNameById(data.data[key].gid)
+                            };
+                            options.series[0].data.push(seriesData);
+                        }
+                        options.series[0].name = "渠道贡献结构";
+                        break;
+                    case 3:             //分布结构(净新增付费用户、净新增用户（横向双柱状图）)
+                        var tooltipTitle = 12 == params.dtype ? '净新增付费用户数' : (24 == params.dtype ? '净新增用户数' : '');
+                        options.tooltip = {
+                            trigger: 'axis',
+                            formatter: function (params) {
+                                return tooltipTitle +
+                                    '<br/>新增：' + params[0].data +
+                                    '<br/>流失：' + params[1].data +
+                                    '<br/>净新增：' + (params[0].data - params[1].data);
+                            }
+                        };
+                        options.legend = {data: ['新增', '流失']};
+                        options.xAxis = [{
+                            type: 'value',
+                            boundaryGap: [0, 0.01]
+                        }];
+                        options.yAxis = [{
+                            type: 'category',
+                            data: ['0~10元', '11~100元', '101~500元', '501~3000元', '3001~10000元', '10000元以上']
+                        }];
+                        options.series = [{
+                            name: '新增',
+                            type: 'bar',
+                            data: [1, 2, 3, 4, 5, 6]
+                        }, {
+                            name: '流失',
+                            type: 'bar',
+                            data: [6, 5, 4, 3, 2, 1]
+                        }];
+
+                        break;
+                    case 4:             //分布结构(付费用户、活跃用户（双饼图）)
+
+
+                    case 5:             //分布结构(新增付费用户、流失付费用户、流失用户)
+                        for (var key in data.data) {
+                            options.legend.data.push(getChannelNameById(data.data[key].gid));
+                            var seriesData = {
+                                value: data.data[key].amount,
+                                name: getChannelNameById(data.data[key].gid)
+                            };
+                            options.series[0].data.push(seriesData);
+                        }
+                        options.series[0].name = "分布结构";
+                        break;
+                    case 6:             //分布结构(top付费用户、top流失用户、top总流失用户（单饼图）)
+                        for (var key in data.data) {
+                            options.legend.data.push(getChannelNameById(data.data[key].gid));
+                            var seriesData = {
+                                value: data.data[key].amount,
+                                name: getChannelNameById(data.data[key].gid)
+                            };
+                            options.series[0].data.push(seriesData);
+                        }
+                        options.series[0].name = "分布结构";
+                        break;
+                }
             }
+
+            deferral.resolve(options);
         }
         function genTrendChartData(deferral, data, params) {
-            var options = {};
+            if (verifyRet(data)) {
+                var options = {
+                    animation: false,
+                    tooltip : {
+                        trigger: 'axis'
+                    },
+                    legend : {
+                        data: ['趋势']
+                    },
+                    toolbox: {
+                        show : false,
+                        feature : {
+                            mark : {show: true},
+                            /*dataView : {show: true, readOnly: false},
+                             magicType: {show: true, type: ['line', 'bar']},
+                             restore : {show: true},*/
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    calculable : true,
+                    xAxis : [{
+                        type : 'category',
+                        boundaryGap : false,
+                        data: []
+                    }],
+                    yAxis : [{
+                        type : 'value',
+                        data : []
+                    }],
+                    series: [{
+                        name: '趋势',
+                        type: 'line',
+                        data: [],
+                        markPoint: {
+                            symbol: 'pin',
+                            data : [{
+                                type: 'max', name: '最大值', symbolSize: 20
+                            }, {
+                                type: 'min', name: '最小值', symbolSize: 20
+                            }]
+                        },
+                        markLine: {
+                            data : [{
+                                type: 'average', name: '平均值'
+                            }]
+                        }
+                    }],
+                    dataZoom : {
+                        show: true,
+                        realtime: true,
+                        start: 0,
+                        end: 100
+                    }
+                };
 
-            switch (self.mode) {
-                case 1:             //趋势
-                    break;
-                case 2:             //趋势(净新增付费用户、净新增用户（双面积曲线）)
-                    break;
+                switch (self.mode) {
+                    case 1:             //趋势
+                        for (var key in data.data) {
+                            options.xAxis[0].data.push(moment(new Date(data.data[key].time * 1000)).format('YYYY-MM-DD'));
+                            options.series[0].data.push(parseInt(data.data[key].amount));
+
+                            options.xAxis[0].data = options.xAxis[0].data.reverse();
+                            options.series[0].data = options.series[0].data.reverse();
+                        }
+                        break;
+                    case 2:             //趋势(净新增付费用户、净新增用户（双面积曲线）)
+                        options.legend.data = ["新增", "流失"];
+                        options.series[0] = {
+                            name: '新增',
+                            type: 'line',
+                            data: [],
+                            itemStyle: {normal: {areaStyle: {type: 'default'}}}
+                        };
+                        options.series[1] = {
+                            name: '流失',
+                            type: 'line',
+                            data: [],
+                            itemStyle: {normal: {areaStyle: {type: 'default'}}}
+                        };
+                        for (var key in data.data) {
+                            options.xAxis[0].data.push(moment(new Date(data.data[key].time * 1000)).format('YYYY-MM-DD'));
+                            options.series[0].data.push(parseInt(data.data[key].amount));
+                            options.series[1].data.push(parseInt(data.data[key].amount2));
+
+                            options.xAxis[0].data = options.xAxis[0].data.reverse();
+                            options.series[0].data = options.series[0].data.reverse();
+                            options.series[1].data = options.series[1].data.reverse();
+                        }
+                        break;
+                }
             }
+
+            deferral.resolve(options);
         }
         function genChannelData(deferral, data) {
             var channels = {};
             channels.ios = [];
             channels.android = [];
-            if ("OK" == data.status) {
+            if (verifyRet(data)) {
                 for (var key in data.data) {
                     var item = {
                         name: data.data[key].custname_cn,
@@ -230,14 +660,10 @@
                     }
                 }
             }
+            channels.android.sort(byAlpha);
 
-            channels.android.sort(test);
+            overallChannels = channels;
 
-            function test(a, b) {
-                return a.name.localeCompare(b.name);
-            }
-
-            console.log(channels);
             deferral.resolve(channels);
         }
 
@@ -525,8 +951,8 @@
                 3: '当前在线',
                 4: '净新增付费用户数',
                 5: '付费用户数',
-                6: '新增付费用户数',
-                7: '流失付费用户数',
+                6: '新增付费用户',
+                7: '流失付费用户',
                 8: '净新增用户数',
                 9: '活跃用户数',
                 10: '新增用户数',
@@ -541,8 +967,8 @@
                 5: '当前在线',
                 6: '净新增付费用户数',
                 7: '付费用户数',
-                8: '新增付费用户数',
-                9: '流失付费用户数',
+                8: '新增付费用户',
+                9: '流失付费用户',
                 10: '净新增用户数',
                 11: '活跃用户数',
                 12: '新增用户数',
@@ -603,6 +1029,7 @@
                 return $q.when(getTrendChartData(param, mode));
             }
         };
+
     }
 
 
@@ -819,4 +1246,34 @@
     //        }
     //    };
     //}
+
+
+
+    //tools ↓
+    function byAlpha(a, b) {
+        return a.name.localeCompare(b.name);
+    }
+    function getGameNameById(gid) {
+        for (var id in overallGamelist) {
+            if (gid == overallGamelist[id].gid) {
+                return overallGamelist[id].name;
+            }
+        }
+    }
+    function getChannelNameById(chid) {
+        for (var sys in overallChannels) {
+            for (var key in overallChannels[sys]) {
+                if (chid == parseInt(overallChannels[sys][key].id)) {
+                    return overallChannels[sys][key].name;
+                }
+            }
+        }
+    }
+    function verifyRet(data) {
+        if ("OK" == data.status && "\u4e0d\u5b58\u5728\u8be5\u63a5\u53e3" != data.data)
+            return true;
+        else
+            return false;
+    }
+    //tools ↑
 })();

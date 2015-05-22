@@ -345,7 +345,8 @@ span.name {
     box-shadow: 0 0 10px 0 #ccc;
 }
 .content .trend-title {
-	font-size: 18px;
+	/*font-size: 18px;*/
+    font-size: 1vw;
 	color: #A5A5A5;
 }
 .content .game-data-remain-datepicker {
@@ -438,6 +439,12 @@ span.name {
 .content .border-right {
 	border-right:2px solid #E0E0E0
 }
+.content .heightfixedRemain1 {
+    height: 76px;
+}
+.content .heightfixedRemain2 {
+    height: 114px;
+}
 .content .border-right-dotted {
     border-right:2px dashed #EFEFEF;
 }
@@ -497,7 +504,7 @@ md-card md-card-content {
     height: 100%;
 }
 .game-chart-dialog .day-comp-box {
-
+    text-align: center;
 }
 
 .game-data-tabs-trend {
@@ -516,6 +523,7 @@ md-backdrop.md-select-backdrop {
 .game-data-tab-trend-content {
     overflow: hidden;
     height: 88%;
+    padding: 0;
 }
 
 .btn-game-chart-dialog {
@@ -694,16 +702,13 @@ md-backdrop.md-select-backdrop {
         padding: 5px;
     }
 
-    .game-data-tab-trend-content {
-        padding: 0;
-    }
-
     .game-data-tabs-trend {
         height: 100%;
     }
 
     .game-data-tab-trend-content {
         height: 88%;
+        padding: 0;
     }
 
     .content .game-data-remain-datepicker {

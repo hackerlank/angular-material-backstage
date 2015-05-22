@@ -20,8 +20,8 @@
                 </p>
             </md-content>
         </md-tab>
-		<md-tab>
-            <md-tab-label ng-click="callDrawTrendChart()">{{tablabelright}}</md-tab-label>
+		<md-tab call-draw-trend-chart>
+            <md-tab-label>{{tablabelright}}</md-tab-label>
             <md-subheader class="md-primary">
                 <span class="game-chart-subtitle" id="game-chart-disttrend-title-name">{{chartlabelright}}</span>
                 <md-select ng-if="!selected" placeholder="选择产品" ng-model="game" class="game-chart-game-sel">

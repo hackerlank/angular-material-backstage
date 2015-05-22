@@ -82,6 +82,15 @@
 
 				}
 			}
+		}).directive('callDrawTrendChart', function () {
+			return {
+				restrict: 'A',
+				link: function ($scope, element, attrs) {
+					element.bind('click', function() {
+						$scope.callDrawTrendChart();
+					});
+				}
+			}
 		});
 
     //function request() {
@@ -218,6 +227,22 @@
 			}
 		);
 	}
+
+    function drawDoubleDistChart(option) {
+        require(
+            [
+                'echarts',
+                'echarts/theme/blue',
+                'echarts/chart/pie'
+            ],
+            function (ec, theme) {
+                var myChart1 = ec.init(document.getElementById('dist-chart-p'), theme);
+                myChart1.setOption(option[0]);
+                var myChart2 = ec.init(document.getElementById('dist-chart-p2'), theme);
+                myChart2.setOption(option[1]);
+            }
+        );
+    }
 	
 	function drawTrendChart (option) {
 		require(
@@ -387,155 +412,155 @@
         self.games = [];
 		self.gamelist = [];
 		self.gd = {
-            //overall: {
-            //    profit: {
-            //        chain: 0,
-            //        num: 0,
-            //        topgid: 0
-            //    },
-            //    ol: {
-            //        pcu: {
-            //            chain: 0,
-            //            num: 0,
-            //            topgid: 0
-            //        },
-            //        cu: {
-            //            num: 0,
-            //            topgid: 0
-            //        }
-            //    },
-            //    people: {
-            //        netNewRech: {
-            //            chain: 0,
-            //            num: 0,
-            //            topgid: 0
-            //        },
-            //        rech: {
-            //            chain: 0,
-            //            num: 0,
-            //            topgid: 0
-            //        },
-            //        newRech: {
-            //            chain: 0,
-            //            num: 0,
-            //            topgid: 0
-            //        },
-            //        lostRech: {
-            //            chain: 0,
-            //            num: 0,
-            //            topgid: 0
-            //        },
-            //        netNew: {
-            //            chain: 0,
-            //            num: 0,
-            //            topgid: 0
-            //        },
-            //        active: {
-            //            chain: 0,
-            //            num: 0,
-            //            topgid: 0
-            //        },
-            //        new: {
-            //            chain: 0,
-            //            num: 0,
-            //            topgid: 0
-            //        },
-            //        lost: {
-            //            chain: 0,
-            //            num: 0,
-            //            topgid: 0
-            //        }
-            //    }
-            //},
-            //specgame: {
-            //    profit: {
-            //        income: {
-            //            chain: 0,
-            //            num: 0
-            //        },
-            //        arpu: {
-            //            num: 0
-            //        },
-            //        ratio: {
-            //            num: 0
-            //        }
-            //    },
-            //    ol: {
-            //        pcu: {
-            //            chain: 0,
-            //            num: 0
-            //        },
-            //        cu: {
-            //            num: 0
-            //        }
-            //    },
-            //    people: {
-            //        netNewRech: {
-            //            chain: 0,
-            //            num: 0
-            //        },
-            //        rech: {
-            //            chain: 0,
-            //            num: 0
-            //        },
-            //        newRech: {
-            //            chain: 0,
-            //            num: 0
-            //        },
-            //        lostRech: {
-            //            chain: 0,
-            //            num: 0
-            //        },
-            //        netNew: {
-            //            chain: 0,
-            //            num: 0
-            //        },
-            //        active: {
-            //            chain: 0,
-            //            num: 0
-            //        },
-            //        new: {
-            //            chain: 0,
-            //            num: 0
-            //        },
-            //        lost: {
-            //            chain: 0,
-            //            num: 0
-            //        },
-            //        topRech: {
-            //            chain: 0,
-            //            num: 0
-            //        },
-            //        topLost: {
-            //            chain: 0,
-            //            num: 0
-            //        },
-            //        topLostTotal: {
-            //            chain: 0,
-            //            num: 0
-            //        }
-            //    },
-            //    remain: {
-            //        overall: {
-            //            d: 0,
-            //            w: 0,
-            //            dw: 0,
-            //            m: 0
-            //        },
-            //        active: {
-            //            d: 0,
-            //            w: 0,
-            //            dw: 0,
-            //            m: 0
-            //        },
-            //        rech: {
-            //            d: 0,
-            //            w: 0,
-            //            dw: 0,
-            //            m: 0
-            //        }
-            //    }
-            //}
+            overall: {
+                profit: {
+                    chain: '',
+                    num: '',
+                    topgid: ''
+                },
+                ol: {
+                    pcu: {
+                        chain: '',
+                        num: '',
+                        topgid: ''
+                    },
+                    cu: {
+                        num: '',
+                        topgid: ''
+                    }
+                },
+                people: {
+                    netNewRech: {
+                        chain: '',
+                        num: '',
+                        topgid: ''
+                    },
+                    rech: {
+                        chain: '',
+                        num: '',
+                        topgid: ''
+                    },
+                    newRech: {
+                        chain: '',
+                        num: '',
+                        topgid: ''
+                    },
+                    lostRech: {
+                        chain: '',
+                        num: '',
+                        topgid: ''
+                    },
+                    netNew: {
+                        chain: '',
+                        num: '',
+                        topgid: ''
+                    },
+                    active: {
+                        chain: '',
+                        num: '',
+                        topgid: ''
+                    },
+                    new: {
+                        chain: '',
+                        num: '',
+                        topgid: ''
+                    },
+                    lost: {
+                        chain: '',
+                        num: '',
+                        topgid: ''
+                    }
+                }
+            },
+            specgame: {
+                profit: {
+                    income: {
+                        chain: '',
+                        num: ''
+                    },
+                    arpu: {
+                        num: ''
+                    },
+                    ratio: {
+                        num: ''
+                    }
+                },
+                ol: {
+                    pcu: {
+                        chain: '',
+                        num: ''
+                    },
+                    cu: {
+                        num: ''
+                    }
+                },
+                people: {
+                    netNewRech: {
+                        chain: '',
+                        num: ''
+                    },
+                    rech: {
+                        chain: '',
+                        num: ''
+                    },
+                    newRech: {
+                        chain: '',
+                        num: ''
+                    },
+                    lostRech: {
+                        chain: '',
+                        num: ''
+                    },
+                    netNew: {
+                        chain: '',
+                        num: ''
+                    },
+                    active: {
+                        chain: '',
+                        num: ''
+                    },
+                    new: {
+                        chain: '',
+                        num: ''
+                    },
+                    lost: {
+                        chain: '',
+                        num: ''
+                    },
+                    topRech: {
+                        chain: '',
+                        num: ''
+                    },
+                    topLost: {
+                        chain: '',
+                        num: ''
+                    },
+                    topLostTotal: {
+                        chain: '',
+                        num: ''
+                    }
+                },
+                remain: {
+                    overall: {
+                        d: '',
+                        w: '',
+                        dw: '',
+                        m: ''
+                    },
+                    active: {
+                        d: '',
+                        w: '',
+                        dw: '',
+                        m: ''
+                    },
+                    rech: {
+                        d: '',
+                        w: '',
+                        dw: '',
+                        m: ''
+                    }
+                }
+            }
         };						            //data model definition
         self.dcd = [];                      //data category data
         self.selectGame = selectGame;
@@ -699,8 +724,7 @@
             gameService
                 .loadAllDataCategory()
                 .then(function (datacatedata) {
-                   self.dcd = datacatedata;
-                    hideProgressBar();
+                    self.dcd = datacatedata;
             });
         }
         // Func for Load channel data
@@ -716,6 +740,7 @@
         function loadGameBoardData() {
             showProgressBar();
 
+            self.dtype = 0;
             var param = reloadParam();
             gameService
                 .loadAllGameData(param)
@@ -728,38 +753,10 @@
         // Func for Load profit card value due to unit change
         function loadProfitByUnit() {
             loadGameBoardData();
-            //showProgressBar();
-            //var param = {
-            //    'act': 'getData',
-            //    'datatype': 100,
-            //    'gid': self.gid,
-            //    'cunit': $scope.misc.cunit
-            //};
-            //gameService
-            //    .loadProfitByUnit(param)
-            //    .then (function (profitdata) {
-            //        self.gd.profit = profitdata;
-            //        hideProgressBar();
-            //});
         }
         // Func for Load top card value due to toptype change
         function loadTopByToptype() {
             loadGameBoardData();
-            //showProgressBar();
-            //var param = {
-            //    'act': 'getData',
-            //    'datatype': 101,
-            //    'gid' : self.gid,
-            //    'topType' : self.topType
-            //};
-            //gameService
-            //    .loadTopByToptype(param)
-            //    .then (function (topdata) {
-            //        self.gd.people.topRech = topdata.topRech;
-            //        self.gd.people.topLost = topdata.topLost;
-            //        self.gd.people.topLostTotal = topdata.topLostTotal;
-            //        hideProgressBar();
-            //});
         }
         // Func for Load remain card value due to remaindate change
         function loadRemainByDate(type) {
@@ -1094,7 +1091,10 @@
                 }
 
 
-                $scope.$watch('DiyDateRangeComp', function() {
+                $scope.$watch('DiyDateRangeComp', function(newval, oldval) {
+                    if (oldval == newval)
+                        return false;
+
                     self.tDS = moment($scope.DiyDateRangeComp.start).format('YYYY-MM-DD');
                     self.tDE = moment($scope.DiyDateRangeComp.end).format('YYYY-MM-DD');
 
@@ -1184,6 +1184,7 @@
 				$scope.cps_indicator = genCpsIndicator();
 
                 $scope.loadDistChartData = loadDistChartData;
+
 			}
 		}
 
@@ -1290,14 +1291,15 @@
                     return self.gamelist[id].name;
                 }
             }
+            return "--";
         }
         function showProgressBar() {
             self.hideProgressBar = false;
         }
         function hideProgressBar() {
-            setTimeout(function() {
+            //setTimeout(function() {
                 self.hideProgressBar = true;
-            }, 1000);
+            //}, 100);
         }
         function notifyLoading(notification, position) {
             notification = notification || "数据已刷新...";

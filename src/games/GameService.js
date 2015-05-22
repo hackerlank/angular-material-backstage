@@ -61,7 +61,7 @@
                     case 8:                             //趋势
                         genTrendChartData(deferral, data, params);
                         break;
-                    case 9:
+                    case 9:                             //渠道信息
                         genChannelData(deferral, data);
                         break;
                 }
@@ -467,8 +467,8 @@
                     series: [{
                         name: '',
                         type: 'pie',
-                        radius: '55%',
-                        center: ['50%', '60%'],
+                        radius: '50%',
+                        center: ['50%', '40%'],
                         data: []
                     }]
                 };
@@ -477,13 +477,27 @@
                     case 1:             //产品贡献结构
                         break;
                     case 2:             //渠道贡献结构
+                        //按照从大到小排序
+                        data.data.sort(byNum);
+                        var index = 0;
+                        var otherTotal = 0;
                         for (var key in data.data) {
-                            options.legend.data.push(getChannelNameById(data.data[key].gid));
-                            var seriesData = {
-                                value: data.data[key].amount,
-                                name: getChannelNameById(data.data[key].gid)
-                            };
-                            options.series[0].data.push(seriesData);
+                            if (index < 15) {
+                                //options.legend.data.push(getChannelNameById(data.data[key].gid));
+                                var seriesData = {
+                                    value: data.data[key].amount,
+                                    name: getChannelNameById(data.data[key].gid)
+                                };
+                                options.series[0].data.push(seriesData);
+                            } else {
+                                var amount = null==data.data[key].amount?0:parseInt(data.data[key].amount);
+                                otherTotal += amount;
+                            }
+                            index++;
+                        }
+                        if (index >=15) {
+                            //options.legend.data.push('其他');
+                            options.series[0].data.push({value:otherTotal, name: '其他'});
                         }
                         options.series[0].name = "渠道贡献结构";
                         break;
@@ -519,27 +533,79 @@
 
                         break;
                     case 4:             //分布结构(付费用户、活跃用户（双饼图）)
+                        console.log(params);
+                        if (15 == params.dtype) {           //付费用户分布结构
 
+                        } else if (27 == params.dtype) {    //活跃用户分布结构
 
-                    case 5:             //分布结构(新增付费用户、流失付费用户、流失用户)
-                        for (var key in data.data) {
-                            options.legend.data.push(getChannelNameById(data.data[key].gid));
-                            var seriesData = {
-                                value: data.data[key].amount,
-                                name: getChannelNameById(data.data[key].gid)
-                            };
-                            options.series[0].data.push(seriesData);
                         }
+
+                        var leftoption = options;
+                        for (var key in data.data.left) {
+                            options.legend.data.push(data.data.left[key].seg);
+                            options.series[0].data.push({value:data.data.left[key].amount, name:data.data.left[key].seg});
+                        }
+                        var rightoption = options;
+                        for (var key in data.data.right) {
+                            options.legend.data.push(data.data.right[key].seg);
+                            options.series[0].data.push({value:data.data.right[key].amount, name:data.data.right[key].seg});
+                        }
+                        options = [leftoption, rightoption];
+                    case 5:             //分布结构(新增付费用户、流失付费用户、流失用户)
+                        //按照从大到小排序
+                        data.data.sort(byNum);
+                        var index = 0;
+                        var otherTotal = 0;
+                        for (var key in data.data) {
+                            if (index < 15) {
+                                //options.legend.data.push(getChannelNameById(data.data[key].gid));
+                                var seriesData = {
+                                    value: data.data[key].amount,
+                                    name: getChannelNameById(data.data[key].gid)
+                                };
+                                options.series[0].data.push(seriesData);
+                            } else {
+                                var amount = null==data.data[key].amount?0:parseInt(data.data[key].amount);
+                                otherTotal += amount;
+                            }
+                            index++;
+                        }
+                        if (index >=15) {
+                            //options.legend.data.push('其他');
+                            options.series[0].data.push({value:otherTotal, name: '其他'});
+                        }
+                        //for (var key in data.data) {
+                        //    options.legend.data.push(getChannelNameById(data.data[key].gid));
+                        //    var seriesData = {
+                        //        value: data.data[key].amount,
+                        //        name: getChannelNameById(data.data[key].gid)
+                        //    };
+                        //    options.series[0].data.push(seriesData);
+                        //}
                         options.series[0].name = "分布结构";
                         break;
                     case 6:             //分布结构(top付费用户、top流失用户、top总流失用户（单饼图）)
+                        //按照从大到小排序
+                        data.data.sort(byNum);
+                        var index = 0;
+                        var otherTotal = 0;
                         for (var key in data.data) {
-                            options.legend.data.push(getChannelNameById(data.data[key].gid));
-                            var seriesData = {
-                                value: data.data[key].amount,
-                                name: getChannelNameById(data.data[key].gid)
-                            };
-                            options.series[0].data.push(seriesData);
+                            if (index < 15) {
+                                //options.legend.data.push(getChannelNameById(data.data[key].gid));
+                                var seriesData = {
+                                    value: data.data[key].amount,
+                                    name: getChannelNameById(data.data[key].gid)
+                                };
+                                options.series[0].data.push(seriesData);
+                            } else {
+                                var amount = null==data.data[key].amount?0:parseInt(data.data[key].amount);
+                                otherTotal += amount;
+                            }
+                            index++;
+                        }
+                        if (index >=15) {
+                            //options.legend.data.push('其他');
+                            options.series[0].data.push({value:otherTotal, name: '其他'});
                         }
                         options.series[0].name = "分布结构";
                         break;
@@ -576,7 +642,17 @@
                     }],
                     yAxis : [{
                         type : 'value',
-                        data : []
+                        //scale: true,
+                        data : [],
+                        axisLabel: {
+                            formatter: function (value) {
+                                if (value >= 100000) {
+                                    return num2e(value);
+                                } else {
+                                    return value;
+                                }
+                            }
+                        }
                     }],
                     series: [{
                         name: '趋势',
@@ -589,12 +665,12 @@
                             }, {
                                 type: 'min', name: '最小值', symbolSize: 20
                             }]
-                        },
+                        }/*,
                         markLine: {
                             data : [{
                                 type: 'average', name: '平均值'
                             }]
-                        }
+                        }*/
                     }],
                     dataZoom : {
                         show: true,
@@ -628,10 +704,10 @@
                             data: [],
                             itemStyle: {normal: {areaStyle: {type: 'default'}}}
                         };
-                        for (var key in data.data) {
-                            options.xAxis[0].data.push(moment(new Date(data.data[key].time * 1000)).format('YYYY-MM-DD'));
-                            options.series[0].data.push(parseInt(data.data[key].amount));
-                            options.series[1].data.push(parseInt(data.data[key].amount2));
+                        for (var key in data.data.newRech) {
+                            options.xAxis[0].data.push(moment(new Date(data.data.newRech[key].time * 1000)).format('YYYY-MM-DD'));
+                            undefined!=data.data.lostRech[key] && options.series[0].data.push(parseInt(data.data.lostRech[key].amount));
+                            options.series[1].data.push(parseInt(data.data.newRech[key].amount));
 
                             options.xAxis[0].data = options.xAxis[0].data.reverse();
                             options.series[0].data = options.series[0].data.reverse();
@@ -987,6 +1063,22 @@
                 19: '付费玩家'
             }
         };
+        var channeldata = {
+            ios: [{
+                id: "2",
+                name: "IOS官服"
+            }],
+            android: [{
+                id: "1",
+                name: "Android官服"
+            }, {
+                id: "3",
+                name: "4399"
+            }, {
+                id: "4",
+                name: "37wan"
+            }]
+        };
 
         // Promise-based API
         return {
@@ -998,6 +1090,9 @@
                 return $q.when(getGameList());
             },
             loadAllChannels : function() {
+                /////////////////////////////////////////
+                //return $q.when(channeldata);
+
                 return $q.when(getChannelList());
             },
             loadAllGameData : function(param) {
@@ -1253,6 +1348,11 @@
     function byAlpha(a, b) {
         return a.name.localeCompare(b.name);
     }
+    function byNum(a, b) {
+        /*a.amount = null == a.amount ? 0 : a.amount;
+        b.amount = null == b.amount ? 0 : b.amount;*/
+        return b.amount - a.amount;
+    }
     function getGameNameById(gid) {
         for (var id in overallGamelist) {
             if (gid == overallGamelist[id].gid) {
@@ -1270,10 +1370,15 @@
         }
     }
     function verifyRet(data) {
-        if ("OK" == data.status && "\u4e0d\u5b58\u5728\u8be5\u63a5\u53e3" != data.data)
+        if ("OK" == data.status && "\u4e0d\u5b58\u5728\u8be5\u63a5\u53e3" != data.data && "no this api" != data.data)
             return true;
         else
             return false;
+    }
+    function num2e(num){
+        var p = Math.floor(Math.log(num)/Math.LN10);
+        var n = (num * Math.pow(10, -p)).toFixed(1);
+        return n + 'e' + p;
     }
     //tools ↑
 })();

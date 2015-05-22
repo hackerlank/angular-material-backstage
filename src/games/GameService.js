@@ -706,8 +706,8 @@
                         };
                         for (var key in data.data.newRech) {
                             options.xAxis[0].data.push(moment(new Date(data.data.newRech[key].time * 1000)).format('YYYY-MM-DD'));
-                            undefined!=data.data.lostRech[key] && options.series[0].data.push(parseInt(data.data.lostRech[key].amount));
-                            options.series[1].data.push(parseInt(data.data.newRech[key].amount));
+                            options.series[0].data.push(parseInt(data.data.newRech[key].amount));
+                            undefined!=data.data.lostRech[key] && undefined!=data.data.lostRech[key].amount && options.series[1].data.push(parseInt(data.data.lostRech[key].amount));
 
                             options.xAxis[0].data = options.xAxis[0].data.reverse();
                             options.series[0].data = options.series[0].data.reverse();

@@ -608,9 +608,9 @@
 		self.selectServer = selectServer;
 		self.getGameNameById = getGameNameById;
 		self.topTypes = {
-			1: 'TOP100',
-			2: 'TOP500',
-			3: 'TOP1000'
+			1: 'TOP100付费',
+			2: 'TOP500付费',
+			3: 'TOP1000付费'
 		};
         self.loadGameBoardData = loadGameBoardData;
         self.cuTitle = "当前在线";

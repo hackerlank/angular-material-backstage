@@ -25,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GameController.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/games/GameController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.83653843">
-              <caret line="1317" column="8" selection-start-line="1317" selection-start-column="8" selection-end-line="1317" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="603" column="43" selection-start-line="603" selection-start-column="43" selection-end-line="603" selection-end-column="43" />
               <folding>
                 <element signature="e#583#736#0" expanded="false" />
                 <element signature="e#800#1707#0" expanded="false" />
@@ -45,36 +45,42 @@
                 <element signature="e#6627#6639#0" expanded="false" />
                 <element signature="e#87083#87384#0" expanded="false" />
                 <element signature="e#87406#88384#0" expanded="false" />
-                <element signature="e#88971#89024#0" expanded="false" />
-                <element signature="e#89131#89342#0" expanded="false" />
-                <element signature="e#89367#89472#0" expanded="false" />
-                <element signature="e#90016#90425#0" expanded="false" />
-                <element signature="e#90491#90706#0" expanded="false" />
-                <element signature="e#90778#91045#0" expanded="false" />
-                <element signature="e#91120#91396#0" expanded="false" />
-                <element signature="e#91469#91739#0" expanded="false" />
-                <element signature="e#94150#94170#0" expanded="false" />
-                <element signature="e#100067#100245#0" expanded="false" />
-                <element signature="e#100282#100320#0" expanded="false" />
-                <element signature="e#100356#100593#0" expanded="false" />
-                <element signature="e#100619#100676#0" expanded="false" />
-                <element signature="e#102657#102696#0" expanded="false" />
+                <element signature="e#89137#89348#0" expanded="false" />
+                <element signature="e#89373#89478#0" expanded="false" />
+                <element signature="e#90022#90431#0" expanded="false" />
+                <element signature="e#90497#90712#0" expanded="false" />
+                <element signature="e#90784#91051#0" expanded="false" />
+                <element signature="e#91126#91402#0" expanded="false" />
+                <element signature="e#91475#91745#0" expanded="false" />
+                <element signature="e#94156#94176#0" expanded="false" />
+                <element signature="e#100073#100251#0" expanded="false" />
+                <element signature="e#100288#100326#0" expanded="false" />
+                <element signature="e#100362#100599#0" expanded="false" />
+                <element signature="e#100625#100682#0" expanded="false" />
+                <element signature="e#102663#102702#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameService.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameService.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/games/GameService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="745" column="0" selection-start-line="745" selection-start-column="0" selection-end-line="745" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.44444445">
+              <caret line="1049" column="28" selection-start-line="1049" selection-start-column="28" selection-end-line="1049" selection-end-column="28" />
               <folding>
                 <element signature="e#2720#3837#0" expanded="false" />
                 <element signature="e#3939#3951#0" expanded="false" />
                 <element signature="e#9550#9632#0" expanded="false" />
                 <element signature="e#9685#9767#0" expanded="false" />
                 <element signature="e#9823#9905#0" expanded="false" />
+                <element signature="e#32997#33919#0" expanded="false" />
+                <element signature="e#33970#34136#0" expanded="false" />
+                <element signature="e#34138#34303#0" expanded="false" />
+                <element signature="e#34305#34469#0" expanded="false" />
+                <element signature="e#34471#34640#0" expanded="false" />
+                <element signature="e#34642#34808#0" expanded="false" />
+                <element signature="e#34810#34978#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -143,10 +149,10 @@
         <option value="$PROJECT_DIR$/template/distChartTpl.html" />
         <option value="$PROJECT_DIR$/bower_components/echarts/echarts-src.js" />
         <option value="$PROJECT_DIR$/bower_components/echarts/echarts.js" />
-        <option value="$PROJECT_DIR$/src/games/GameService.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/assets/app.css" />
         <option value="$PROJECT_DIR$/src/games/GameController.js" />
+        <option value="$PROJECT_DIR$/src/games/GameService.js" />
       </list>
     </option>
   </component>
@@ -737,20 +743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/games/GameService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="745" column="0" selection-start-line="745" selection-start-column="0" selection-end-line="745" selection-end-column="0" />
-          <folding>
-            <element signature="e#2720#3837#0" expanded="false" />
-            <element signature="e#3939#3951#0" expanded="false" />
-            <element signature="e#9550#9632#0" expanded="false" />
-            <element signature="e#9685#9767#0" expanded="false" />
-            <element signature="e#9823#9905#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/template/trendChartTpl.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -779,8 +771,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/games/GameController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.83653843">
-          <caret line="1317" column="8" selection-start-line="1317" selection-start-column="8" selection-end-line="1317" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="603" column="43" selection-start-line="603" selection-start-column="43" selection-end-line="603" selection-end-column="43" />
           <folding>
             <element signature="e#583#736#0" expanded="false" />
             <element signature="e#800#1707#0" expanded="false" />
@@ -796,20 +788,40 @@
             <element signature="e#6627#6639#0" expanded="false" />
             <element signature="e#87083#87384#0" expanded="false" />
             <element signature="e#87406#88384#0" expanded="false" />
-            <element signature="e#88971#89024#0" expanded="false" />
-            <element signature="e#89131#89342#0" expanded="false" />
-            <element signature="e#89367#89472#0" expanded="false" />
-            <element signature="e#90016#90425#0" expanded="false" />
-            <element signature="e#90491#90706#0" expanded="false" />
-            <element signature="e#90778#91045#0" expanded="false" />
-            <element signature="e#91120#91396#0" expanded="false" />
-            <element signature="e#91469#91739#0" expanded="false" />
-            <element signature="e#94150#94170#0" expanded="false" />
-            <element signature="e#100067#100245#0" expanded="false" />
-            <element signature="e#100282#100320#0" expanded="false" />
-            <element signature="e#100356#100593#0" expanded="false" />
-            <element signature="e#100619#100676#0" expanded="false" />
-            <element signature="e#102657#102696#0" expanded="false" />
+            <element signature="e#89137#89348#0" expanded="false" />
+            <element signature="e#89373#89478#0" expanded="false" />
+            <element signature="e#90022#90431#0" expanded="false" />
+            <element signature="e#90497#90712#0" expanded="false" />
+            <element signature="e#90784#91051#0" expanded="false" />
+            <element signature="e#91126#91402#0" expanded="false" />
+            <element signature="e#91475#91745#0" expanded="false" />
+            <element signature="e#94156#94176#0" expanded="false" />
+            <element signature="e#100073#100251#0" expanded="false" />
+            <element signature="e#100288#100326#0" expanded="false" />
+            <element signature="e#100362#100599#0" expanded="false" />
+            <element signature="e#100625#100682#0" expanded="false" />
+            <element signature="e#102663#102702#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/games/GameService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44444445">
+          <caret line="1049" column="28" selection-start-line="1049" selection-start-column="28" selection-end-line="1049" selection-end-column="28" />
+          <folding>
+            <element signature="e#2720#3837#0" expanded="false" />
+            <element signature="e#3939#3951#0" expanded="false" />
+            <element signature="e#9550#9632#0" expanded="false" />
+            <element signature="e#9685#9767#0" expanded="false" />
+            <element signature="e#9823#9905#0" expanded="false" />
+            <element signature="e#32997#33919#0" expanded="false" />
+            <element signature="e#33970#34136#0" expanded="false" />
+            <element signature="e#34138#34303#0" expanded="false" />
+            <element signature="e#34305#34469#0" expanded="false" />
+            <element signature="e#34471#34640#0" expanded="false" />
+            <element signature="e#34642#34808#0" expanded="false" />
+            <element signature="e#34810#34978#0" expanded="false" />
           </folding>
         </state>
       </provider>

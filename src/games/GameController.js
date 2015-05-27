@@ -1312,5 +1312,9 @@
             );
         }
         // tools ↑
+
+
+        //hide loading overlay
+        myjquery("#loading-overlay").fadeOut("slow");
   	};
 })();

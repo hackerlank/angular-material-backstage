@@ -17,6 +17,12 @@
 
 <body ng-app="starterApp" layout="column" ng-controller="UserController as ul">
 
+<div class="overlay" id="loading-overlay">
+	<!--<md-progress-circular md-mode="indeterminate" class="overlay-loading"></md-progress-circular>-->
+	<img class="overlay-loading-gif" src="assets/images/loading.gif">
+	<div>Loading...</div>
+</div>
+
 <!-- 顶部导航条 ↓ -->
 <md-toolbar layout="column" class="game-head-nav" md-is-locked-open>
     <md-content layout="row" class="game-head-nav-content">
@@ -34,7 +40,7 @@
 
         <span flex></span>
 
-		<span ng-if="!ul.hideProgressBar"><md-progress-circular md-diameter="26" class="game-data-progress-circular"  md-mode="indeterminate"></md-progress-circular></span>
+		<span ng-if="!ul.hideProgressBar"><md-progress-circular md-diameter="26" class="game-data-progress-circular" md-mode="indeterminate"></md-progress-circular></span>
         <!-- 用户管理按钮 ↓ -->
         <md-button class="menu md-icon-button" ng-click="ul.toggleUserCtrl()" aria-label="Show User Administration">
             <md-icon md-svg-icon="user"></md-icon>

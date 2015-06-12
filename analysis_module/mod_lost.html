@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>用户流失</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+
+    <link rel="stylesheet" href="../bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="../assets/analysis_module/common.css"/>
+    <link rel="stylesheet" href="../assets/analysis_module/mod_lost.css"/>
+</head>
+
+<body ng-app="AnalysisModules" layout="column" ng-controller="ModController as mc">
+
+<!-- 顶部导航条 ↓ -->
+<md-toolbar layout="column" class="game-head-nav" md-is-locked-open>
+    <md-content layout="row" class="game-head-nav-content">
+        <!-- 菜单按钮 ↓ -->
+        <md-button class="menu" hide-gt-sm ng-click="mc.toggleList($event)" aria-label="Show Game List">
+            <md-icon md-svg-icon="menu"></md-icon>
+        </md-button>
+        <!-- 菜单按钮 ↑ -->
+
+        <!-- logo ↓ -->
+        <md-button class="md-primary game-giant-logo" ng-click="mc.selectTotal()" aria-label="select total">
+            <img src="../assets/images/giant_logo.png" class="toolbar_logo">
+        </md-button>
+        <!-- logo ↑ -->
+
+        <span flex></span>
+
+        <span ng-if="!mc.hideProgressBar"><md-progress-circular md-diameter="26" class="game-data-progress-circular" md-mode="indeterminate"></md-progress-circular></span>
+        <!-- 用户管理按钮 ↓ -->
+        <md-button class="menu md-icon-button" ng-click="mc.toggleUserCtrl()" aria-label="Show User Administration">
+            <md-icon md-svg-icon="user"></md-icon>
+        </md-button>
+        <!-- 用户管理按钮 ↑ -->
+    </md-content>
+    <!--<md-progress-linear ng-if="!ul.hideProgressBar" md-mode="indeterminate" class="game-progress-bar"></md-progress-linear>-->
+</md-toolbar>
+<!-- 顶部导航条 ↑ -->
+
+
+
+<script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-animate/angular-animate.js"></script>
+<script src="../bower_components/angular-aria/angular-aria.js"></script>
+<script type="text/javascript" src="../bower_components/angular-material/angular-material.js"></script>
+<script src="../bower_components/echarts/echarts.js"></script>
+
+<script src="../src/modules/Modules.js"></script>
+<script src="../src/modules/ModController.js"></script>
+<script src="../src/modules/ModService.js"></script>
+
+<script type="text/javascript">
+    var tmp = false;
+
+
+    require.config({
+        paths: {
+            echarts: './bower_components/echarts'
+        }
+    });
+
+
+    var app = angular
+            .module('AnalysisModules', ['ngMaterial', 'modules'])
+            .config(function ($mdThemingProvider, $mdIconProvider) {
+
+                $mdIconProvider
+                        .defaultIconSet("../assets/svg/avatars.svg", 128)
+                        .icon("menu", "../assets/svg/menu.svg", 24)
+                        .icon("user", "../assets/svg/user.svg", 24)
+                        .icon("play", "../assets/svg/play.svg", 24)
+                        .icon("next", "../assets/svg/next.svg", 24)
+                        .icon("calendar", "../assets/svg/calendar.svg", 24)
+                        .icon("circle-right", "../assets/svg/circle-right.svg", 24)
+                        .icon("settings", "../assets/svg/settings.svg", 24)
+                        .icon("share", "../assets/svg/share.svg", 24)
+                        .icon("google_plus", "../assets/svg/google_plus.svg", 512)
+                        .icon("hangouts", "../assets/svg/hangouts.svg", 512)
+                        .icon("twitter", "../assets/svg/twitter.svg", 512)
+                        .icon("phone", "../assets/svg/phone.svg", 512);
+
+                $mdThemingProvider.theme('default')
+                        .primaryPalette('light-blue')
+                        .accentPalette('light-blue');
+
+            });
+</script>
+</body>
+</html>

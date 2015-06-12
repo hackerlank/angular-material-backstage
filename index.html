@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="assets/app.css"/>
 </head>
 
-<body ng-app="starterApp" layout="column" ng-controller="UserController as ul">
+<body ng-app="GamesData" layout="column" ng-controller="UserController as ul">
 
 <div class="overlay" id="loading-overlay">
 	<!--<md-progress-circular md-mode="indeterminate" class="overlay-loading"></md-progress-circular>-->
@@ -1296,7 +1296,7 @@
 
 
     var app = angular
-                .module('starterApp', ['ngMaterial', 'dateRangePicker', 'games'])
+                .module('GamesData', ['ngMaterial', 'dateRangePicker', 'games'])
                 .config(function ($mdThemingProvider, $mdIconProvider) {
 
                 $mdIconProvider

@@ -1,0 +1,68 @@
+html, body {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: Microsoft YaHei;
+    font-size: 32px;
+    color: #999999;
+    background: url("bg.png") top center repeat-y;
+    background-size: cover;
+}
+
+.bar {
+    background-color: transparent;
+}
+
+.content {
+    background-color: transparent;
+}
+
+.docs-module {
+    /*margin-top: 250px;*/
+    margin-top: 80%;
+
+}
+
+.btn {
+    font-size: 13px;
+    line-height: 30px;
+    height: 45px;
+    width: 85%;
+    margin: 5px;
+    text-align: left;
+    color: #05aed9;
+    border-radius: 10px;
+}
+
+.platform_icon {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+.ml20 {
+    margin-left: 15px;
+    vertical-align: middle;
+}
+
+.w30 {
+    width: 30px;
+    text-align: center;
+}
+
+.w15 {
+    width: 20px;
+    text-align: center;
+}
+
+.segmented-control .control-item {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.segmented-control .control-item.active {
+    background-color: #d9f7ff;
+}
+
+.bar {
+    border-bottom: 0px;
+}

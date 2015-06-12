@@ -1,0 +1,24 @@
+{
+	"token": {
+		"Battle of Balls":"球球大作戰",
+		"This is an ultra fun, cute and challenging casual game":"這是一款超好玩，超萌酷，超有挑戰性，",
+	  	"allowing players all over the world to compete with one another in time.":"可與全球玩家即時對戰的休閒遊戲。",
+	  	"Join right now.":"快來挑戰極限吧！",
+		"Ver.1.1":"當前版本號：V1.2",
+	  	"Size: 24MB":"包大小:24MB",
+		"Last Update: 2015/06/02":"更新時間：2015/06/07",
+		"About Us":"關於巨人",
+		"Products":"服務條款",
+		"Investor relations":"商務中心",
+		"Contact Us":"聯繫我們",
+		"© 2013 Giant Interactive Group, Inc. All Rights Reserved.":"© 2013 Giant Interactive Group, Inc. All Rights Reserved.",
+		".":"",
+	  	"..":"",
+	  	"https://itunes.apple.com/us/app/qiu-qiu-da-zuo-zhan-battle/id996509117?l=zh&ls=1&mt=8":"https://itunes.apple.com/us/app/qiu-qiu-da-zuo-zhan-battle/id996509117?l=zh&ls=1&mt=8",
+	  	"https://play.google.com/store/apps/details?id=com.ztgame.bob":"https://play.google.com/store/apps/details?id=com.ztgame.bob",
+		"LOGO-en.png":"LOGO-en.png"
+	},
+	"regex": [
+
+	]
+}

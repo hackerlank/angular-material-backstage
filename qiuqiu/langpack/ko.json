@@ -1,0 +1,24 @@
+{
+	"token": {
+		"Battle of Balls":"뚱이대작전",
+		"This is an ultra fun, cute and challenging casual game":"이것은 정말 재밌고 귀엽고 도전성이 강한,",
+	  	"allowing players all over the world to compete with one another in time.":"글로벌 유저와 실시간 대전이 가능한 케주얼 게임입니다.",
+	  	"Join right now.":"어서 자신의 한계를 도전해 보세요!",
+		"Ver.1.1":"Ver.1.2",
+	  	"Size: 24MB":"설치 패키지: 24MB",
+		"Last Update: 2015/06/02":"업데이트 시간: 2015/06/07",
+		"About Us":"About Us",
+		"Products":"Products",
+		"Investor relations":"Investor relations",
+		"Contact Us":"Contact Us",
+		"© 2013 Giant Interactive Group, Inc. All Rights Reserved.":"© 2013 Giant Interactive Group, Inc. All Rights Reserved.",
+		".":"",
+	  	"..":"",
+	  	"https://itunes.apple.com/us/app/qiu-qiu-da-zuo-zhan-battle/id996509117?l=zh&ls=1&mt=8":"https://itunes.apple.com/us/app/qiu-qiu-da-zuo-zhan-battle/id996509117?l=zh&ls=1&mt=8",
+	  	"https://play.google.com/store/apps/details?id=com.ztgame.bob":"https://play.google.com/store/apps/details?id=com.ztgame.bob",
+		"LOGO-en.png":"LOGO-en.png"
+	},
+	"regex": [
+
+	]
+}

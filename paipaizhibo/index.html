@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>拍拍直播</title>
+
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Include the compiled Ratchet CSS -->
+
+    <link href="dassets/ratchet.min.css" rel="stylesheet">
+    <link href="dassets/app.css" rel="stylesheet">
+
+    <!-- Include the compiled Ratchet JS -->
+    <script src="dassets/ratchet.js"></script>
+
+</head>
+<body>
+<!-- Make sure all your bars are the first things in your <body> -->
+<!--<header class="bar bar-nav">
+    <div class="segmented-control" >
+        <a class="control-item active" href="#ios_download"><img src="dassets/ios_icon.png" class="w15" /></a>
+        <a class="control-item" href="#android_download"><img src="dassets/android_icon.png" class="w15" /></a>
+    </div>
+</header>-->
+
+<!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
+<div class="content">
+    <div class="column control-content active" id="ios_download">
+        <div class="docs-module">
+            <div id="webview">
+                <h5 class="docs-module-title" style="text-align:center;color:red">IOS7.1请使用Safari打开下面的链接进行安装:</h5>
+                <h5 class="docs-module-title" style="text-align:center;color:red"><a
+                        href="http://222.73.195.214/index.html">http://222.73.195.214/index.html</a></h5>
+                <h5 class="docs-module-title" style="text-align:center;">长按拷贝链接 使用Safari打开</h5>
+            </div>
+            <div id="web_brower">
+                <p class="column" align="center">
+                    <!--<img src="http://222.73.195.214/dassets/logo_paipaizhibo.png" width="200px" height="200px" />-->
+                </p>
+
+                <div id="cer_download">
+                    <a id="ios-ssl-install" class="btn" data-ignore="push" href="https://222.73.195.214/CA/ca.cer">
+                        <span class="icon icon-download w30"></span><span class="ml20"><strong id="ios-ssl-install-prompt">IOS7.1及以上系统先安装证书</strong></span>
+                    </a>
+
+                    <a class="btn" id="link1" data-ignore="push">
+                        <span><img class="platform_icon w30" src="dassets/ios_icon.png"></span><span class="ml20"><strong>IOS7.1及以上系统点此下载正式版</strong></span>
+                    </a>
+                </div>
+
+                <div id="normal_download">
+                    <a class="btn" id="link2" data-ignore="push">
+                        <span><img class="platform_icon w30" src="dassets/ios_icon.png"></span><span class="ml20"><strong>IOS7.1以下点此下载正式版</strong></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column control-content" id="android_download">
+        <div class="docs-module">
+            <!--h5 class="docs-module-title" style="text-align:center;">°²×¿¶þÎ¬ÂëÉ¨ÃèÖ±½ÓÏÂÔØ°²×°°ü</h5-->
+            <p class="column" align="center">
+                <!--<img src="http://222.73.195.214/dassets/logo_paipaizhibo.png" width="200px" height="200px"/>-->
+            </p>
+            <!--h4 class="docs-module-title" style="text-align:center">°²×¿¶þÎ¬ÂëÉ¨ÃèÏÂÔØ</h4-->
+            <a class="btn" data-ignore="push" href="http://222.73.195.214/dassets/paipaizhibo.apk">
+                <span><img class="platform_icon w30" src="dassets/android_icon.png"></span><span class="ml20"><strong>点此直接下载android版</strong></span>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
+<script>
+    document.getElementById("link1").setAttribute("href", "itms-services:///?action=download-manifest&url=https://222.73.195.214/dassets/download_paipaizhibo.plist?" + Math.round(1000000));
+    document.getElementById("link2").setAttribute("href", "itms-services:///?action=download-manifest&url=http://222.73.195.214/dassets/download_paipaizhibo.plist?" + Math.round(1000000));
+
+    // this one checks for the url and it will fail if you don't have the certs installed.
+    function detectCACert() {
+        try {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "https://222.73.195.214/dassets/ios_icon.png", true);
+            xhr.send();
+        } catch( err ) {
+            console.log(err);
+            alert(12);
+            return false;
+        }
+
+        document.getElementById("ios-ssl-install-prompt").innerHTML = "检测到已安装的证书，请直接下载游戏";
+        document.getElementById("ios-ssl-install").style.backgroundColor = "#EAEAEA";
+        document.getElementById("ios-ssl-install").style.color = "#CCCCCC";
+        if ( xhr.readyState == 4 && xhr.status == 200 ) {alert(1);
+        }
+    }
+    //detectCACert();
+
+
+
+    var controlList = document.getElementsByClassName("control-item");
+    if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+        if (/(android_download)/i.test(window.location.herf)) {
+            //controlList[0].click();
+        }
+        if (/(7_1)/i.test(navigator.userAgent) | /(8_*)/i.test(navigator.userAgent))
+        //if (/(7_1)/i.test(navigator.userAgent) | /(8_0)/i.test(navigator.userAgent))
+        {
+            document.getElementById("cer_download").style.display = '';
+            document.getElementById("normal_download").style.display = 'none';
+        }
+        else {
+            document.getElementById("cer_download").style.display = 'none';
+            document.getElementById("normal_download").style.display = '';
+        }
+    }
+    else {
+        if (!/(android_download)/i.test(window.location.herf)) {
+            //controlList[1].click();
+        }
+    }
+
+    if (!/(Safari)/i.test(navigator.userAgent)) {
+        document.getElementById("webview").style.display = '';
+        document.getElementById("web_brower").style.display = 'none';
+    }
+    else {
+        document.getElementById("webview").style.display = 'none';
+        document.getElementById("web_brower").style.display = '';
+    }
+
+
+</script>

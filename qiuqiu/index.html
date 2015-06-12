@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head data-gwd-animation-mode="proMode">
+<meta charset="UTF-8">
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+<title lang="en">Battle of Balls</title>
+<style type="text/css">
+    html, body {width: 100%;height: 100%;margin: 0;}
+    body {text-align: center;margin: 0;padding: 0;font-family: Microsoft YaHei;font-size: 14px;color: #999999;background: url("bg.jpg") top center repeat-y;background-size: cover;}img {border: 0;margin: 0;padding: 0;max-width: 100%;height: auto;}
+    .main-container {height: 100%;min-height: 480px;overflow: hidden;display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-orient: vertical;-webkit-flex-flow: column;flex-flow: column;}
+    .main-container .logo-img {width: auto;width:30%;max-width: 200px;}
+    .main{-webkit-box-flex: 1; -webkit-flex: 1;flex: 1;padding: 2em; margin-top: 20px;}
+    .logo {padding-top: 65px;}
+    .description {}
+    .sys-container {margin-top: 15px;position: relative;width: 100%;}
+    .sys-container a{width: 28%; max-width: 150px; display: inline-block; text-align: center;}
+    .sys-container a img{width: 70%; max-width: 100px;}
+    .footer{width: 100%;font-size: 14px; text-align: center; height: 60px;}
+    .footer p{margin: 0px; padding:0px; font-size: .9em;}
+    #weixin-tip{position: absolute; background-color: rgba(0,0,0,.8); z-index: 999; width: 100%; height: 100%; top: 0px; left: 0px;}
+    .hidden{display: none;}
+</style>
+</head>
+<body>
+<div class="main-container" id="main-container">
+    <div class="logo"><img id="qiuqiulogo" lang="en" class="logo-img" src="LOGO-en.png"></div>
+    <div class="main">
+        <div class="description">
+            <span lang="en">This is an ultra fun, cute and challenging casual game</span><span id="interbr"><br/></span><span lang="en">allowing players all over the world to compete with one another in time.</span><br/><span lang="en">Join right now.</span>
+        </div>
+        <div class="sys-container">
+            <a href="javascript:void(0)" target="_blank" onclick="loadIOS();"><img src="ios.png"></a>
+            <a href="javascript:void(0)" target="_blank" onclick="loadAndroid();"><img src="android.png"></a>
+        </div>
+    </div>
+    <div class="footer">
+        <p class="v"><span lang="en">Ver.1.1</span>&nbsp;<span lang="en">Size: 24MB</span></p>
+        <p class="t" lang="en">Last Update: 2015/06/02</p>
+    </div>
+</div>
+
+<span class="hidden" id="ios_link" lang="en">https://itunes.apple.com/us/app/qiu-qiu-da-zuo-zhan-battle/id996509117?l=zh&ls=1&mt=8</span>
+<span class="hidden" id="android_link" lang="en">https://play.google.com/store/apps/details?id=com.ztgame.bob</span>
+</body>
+<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="jquery-lang.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var language = navigator.language || navigator.userLanguage;
+        var langArr = language.split("-");
+        if (("zh" == langArr[0] && "zh-cn" != language.toLowerCase()) || "zh" != langArr[0]) {
+            language = langArr[0];
+        } else {
+            if (2 == langArr.length && "zh" == langArr[0]) {
+                language = langArr[0] + langArr[1].toLowerCase();
+            }
+        }
+
+        window.lang.change(language);
+    });
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?9258cd46aa3712e6b764eb234efe5277";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+
+
+    var lang = new Lang('en');
+    for (var lk in isoLangs) {
+        lang.dynamic(lk, 'langpack/' + lk + '.json');
+    }
+
+
+    function is_weixin() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    var isWeixin = is_weixin();
+    var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight;
+    function loadHtml(){
+        var div = document.createElement('div');
+        div.id = 'weixin-tip';
+        div.innerHTML = '<img src="live_weixin.png" alt="微信打开"/>';
+        document.body.appendChild(div);
+    }
+
+    function loadAndroid() {
+        if (isWeixin) {
+            loadHtml();
+        } else {
+            window.location.href="bob_1.0.apk";
+        }
+    }
+    function loadIOS() {
+        if (isWeixin) {
+            loadHtml();
+        } else {
+            window.location.href="https://itunes.apple.com/us/app/qiu-qiu-da-zuo-zhan-battle/id996509117?l=zh&ls=1&mt=8";
+        }
+    }
+
+    //判断移动设备
+    var u = navigator.userAgent;
+    if (!/AppleWebKit.*Mobile/i.test(u)) {
+        window.location.href="index_PC.html";
+    }
+
+
+
+    window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", checkWidth, false);
+
+
+    function checkWidth() {
+        if (90 == window.orientation) {
+            document.getElementById("main-container").style.minHeight = "700px";
+        } else {
+            document.getElementById("main-container").style.minHeight = "480px";
+        }
+
+    }
+
+    checkWidth();
+
+</script>
+</html>

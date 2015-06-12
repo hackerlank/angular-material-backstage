@@ -1,0 +1,24 @@
+{
+	"token": {
+		"Battle of Balls":"球球大作战",
+		"This is an ultra fun, cute and challenging casual game":"这是一款超好玩，超萌酷，超有挑战性，",
+	  	"allowing players all over the world to compete with one another in time.":"可与全球玩家实时对战的休闲游戏。",
+	  	"Join right now.":"快来挑战极限吧！",
+		"Ver.1.1":"当前版本号：V1.2",
+	  	"Size: 24MB":"包大小:24MB",
+		"Last Update: 2015/06/02":"更新时间：2015/06/07",
+		"About Us":"关于巨人",
+		"Products":"服务条款",
+		"Investor relations":"商务中心",
+		"Contact Us":"联系我们",
+		"© 2013 Giant Interactive Group, Inc. All Rights Reserved.":"© 2014 上海巨人网络科技有限公司版权所有（021-61205656）",
+		".":"文化部经营许可证：沪网文[2011]0494-054；ICP证：沪B2-20050107；",
+	  	"..":"互联网出版许可证：新出网证（沪）字 008号",
+	  	"https://itunes.apple.com/us/app/qiu-qiu-da-zuo-zhan-battle/id996509117?l=zh&ls=1&mt=8":"https://itunes.apple.com/us/app/qiu-qiu-da-zuo-zhan-battle/id996509117?l=zh&ls=1&mt=8",
+	  	"https://play.google.com/store/apps/details?id=com.ztgame.bob":"bob_1.0.apk",
+		"LOGO-en.png":"LOGO.png"
+	},
+	"regex": [
+
+	]
+}

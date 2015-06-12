@@ -1,0 +1,31 @@
+html, body {
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: #EBF0F3;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling : touch;
+}
+
+md-toolbar {
+    height: 53px;
+    min-height: 53px;
+    z-index: 69;
+    opacity: 0.95;
+}
+
+md-toolbar.md-default-theme {
+    /*background-color: #ffffff;*/
+}
+
+md-toolbar h1 {
+    margin: auto;
+}
+
+md-toolbar .toolbar_logo {
+    width: 109px;
+    height: 31px;
+    margin: 5px 5px;
+}

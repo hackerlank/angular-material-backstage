@@ -230,7 +230,7 @@
                             return s.slice(0, 4);
                         }
                     },
-                    autoPlay : true,
+                    autoPlay : false,
                     playInterval : 1000
                 },
                 options: [{
@@ -473,7 +473,7 @@
                             return s.slice(0, 4);
                         }
                     },
-                    autoPlay : true,
+                    autoPlay : false,
                     playInterval : 1000
                 },
                 options: [{

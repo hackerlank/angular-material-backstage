@@ -9,6 +9,18 @@ html, body {
     -webkit-overflow-scrolling : touch;
 }
 
+::-webkit-scrollbar {width: 8px;height: 10px;}
+::-webkit-scrollbar-button {width: 5px;height: 5px}
+::-webkit-scrollbar-track {background: #EEE;border: thin solid #EEE;border-radius: 8px;}
+::-webkit-scrollbar-thumb {background: #BBB;border: thin solid #BBB;border-radius: 8px;}
+::-webkit-scrollbar-thumb:hover {background:#7d7d7d;}
+
+.f12 {font-size: 12px;}
+.f16 {font-size: 16px;}
+
+.p10 {padding: 10px;}
+
+
 .overlay {
     position: absolute;
     top: 0;
@@ -68,6 +80,11 @@ md-toolbar .toolbar_logo {
 .main-container .mod-subheader {height:68px; background-color:#EEEEEE; margin-right:0px; width:100%; padding:10px 10%;}
 .main-container .mod-subheader .right-content {width:100%; text-align:right; maring-top: 5px; font-style:italic;}
 .main-container .content {width: 100%; padding: 10px 10%;}
+.main-container .content md-content {background-color: transparent !important;}
+.main-container .content md-content md-tabs {height: 400px; background: #FEFEFE; border: 1px solid #F0F0F0;}
+.main-container .content md-content .md-tabs-content {height: 80%; overflow-y: scroll}
+.main-container .content md-content md-tabs .md-header-items-container {border-bottom: 1px solid #e1e1e1}
+.main-container .content md-content h1:first-child {margin-top: 0;}
 .main-container .content .seg-title {width: 100%; margin: 10px 0; font-size: 24px;}
 .main-container .content .seg-content {width: 100%;}
 .main-container .content .seg-sub-container {width: 100%; padding-left: 20px; margin-top:20px;}

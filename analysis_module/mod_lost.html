@@ -15,9 +15,15 @@
 
 <body ng-app="AnalysisModules" layout="column" ng-controller="ModController as mc">
 
+<div class="overlay" id="loading-overlay">
+    <!--<md-progress-circular md-mode="indeterminate" class="overlay-loading"></md-progress-circular>-->
+    <img class="overlay-loading-gif" src="../assets/images/loading.gif">
+    <div>Loading...</div>
+</div>
+
 <!-- 顶部导航条 ↓ -->
-<md-toolbar layout="column" class="game-head-nav" md-is-locked-open>
-    <md-content layout="row" class="game-head-nav-content">
+<md-toolbar layout="column" class="mod-head-nav" md-is-locked-open>
+    <md-content layout="row" class="mod-head-nav-content">
         <!-- 菜单按钮 ↓ -->
         <md-button class="menu" hide-gt-sm ng-click="mc.toggleList($event)" aria-label="Show Game List">
             <md-icon md-svg-icon="menu"></md-icon>
@@ -30,20 +36,177 @@
         </md-button>
         <!-- logo ↑ -->
 
-        <span flex></span>
+        <span flex class="mod-title">用户流失模型</span>
 
         <span ng-if="!mc.hideProgressBar"><md-progress-circular md-diameter="26" class="game-data-progress-circular" md-mode="indeterminate"></md-progress-circular></span>
         <!-- 用户管理按钮 ↓ -->
-        <md-button class="menu md-icon-button" ng-click="mc.toggleUserCtrl()" aria-label="Show User Administration">
+        <!--<md-button class="menu md-icon-button" ng-click="mc.toggleUserCtrl()" aria-label="Show User Administration">
             <md-icon md-svg-icon="user"></md-icon>
-        </md-button>
+        </md-button>-->
         <!-- 用户管理按钮 ↑ -->
     </md-content>
     <!--<md-progress-linear ng-if="!ul.hideProgressBar" md-mode="indeterminate" class="game-progress-bar"></md-progress-linear>-->
 </md-toolbar>
 <!-- 顶部导航条 ↑ -->
 
+<div class="main-container">
+    <div class="mod-subheader">
+        <strong>引言：</strong>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        <div class="right-content">
+            尽可能找出早期用户何时何地流失，及尽可能的找出流失原因。
+        </div>
+    </div>
 
+    <div class="content">
+        <div class="seg-title">
+            数据需求内容
+        </div>
+        <div class="seg-content">
+            <div class="seg-sub-container">
+                <div class="seg-sub-title">1、各类转化率</div>
+                <div class="seg-sub-content">
+                    <div class="echart-container" id="npointLost"></div>
+                    <div class="seg-conclusion"><p><strong>论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......</strong></p></div>
+                </div>
+            </div>
+            <div class="seg-sub-container">
+                <div class="seg-sub-title">2、整体流失率</div>
+                <div class="seg-sub-content">
+                    <div class="echart-container" id="overallLost"></div>
+                    <div class="seg-conclusion"><p><strong>论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......</strong></p></div>
+                </div>
+            </div>
+            <div class="seg-sub-container">
+                <div class="seg-sub-title">3、等级(段)流失率</div>
+                <div class="seg-sub-content">
+                    <div class="echart-container" id="lvLost"></div>
+                    <div class="seg-conclusion"><p><strong>论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......</strong></p></div>
+
+                    <div class="seg-sub-dep2-title">核心账号等级流失率</div>
+                    <div class="seg-sub-dep2-content">
+                        <div class="echart-container" id="coreLvLost"></div>
+                        <div class="seg-conclusion"><p><strong>论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......</strong></p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="seg-sub-container">
+                <div class="seg-sub-title">4、任务/关卡完成率</div>
+                <div class="seg-sub-content">
+                    <div class="" id="taskLost"></div>
+                </div>
+            </div>
+            <div class="seg-sub-container">
+                <div class="seg-sub-title">5、地图滞留率/流失率</div>
+                <div class="seg-sub-content">
+                    <div class="" id="mapLost"></div>
+                </div>
+            </div>
+            <div class="seg-sub-container">
+                <div class="seg-sub-title">6、在线时长分布</div>
+                <div class="seg-sub-content">
+                    <div class="seg-sub-content-half">
+                        <div class="echart-container" id="olDist1"></div>
+                    </div>
+                    <div class="seg-sub-content-half">
+                        <div class="echart-container" id="olDist2"></div>
+                    </div>
+
+                    <div class="seg-conclusion"><p><strong>论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......</strong></p></div>
+                </div>
+            </div>
+            <div class="seg-sub-container">
+                <div class="seg-sub-title">7、职业分布</div>
+                <div class="seg-sub-content">
+                    <div class="seg-sub-content-half">
+                        <div class="echart-container" id="jobDist2"></div>
+                    </div>
+                    <div class="seg-sub-content-half">
+                        <div class="echart-container" id="jobDist1"></div>
+                    </div>
+
+                    <div class="seg-conclusion"><p><strong>论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......</strong></p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="seg-title">
+            流逝用户列表
+        </div>
+        <div class="seg-content">
+
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="seg-title">
+            用户状态详情
+        </div>
+        <div class="seg-content">
+
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="seg-title">
+            流失核心账号行为数据
+        </div>
+        <div class="seg-content">
+            <div class="seg-sub-container">
+                <div class="seg-sub-title">1、消费行为</div>
+                <div class="seg-sub-content">
+                    <div class="seg-sub-dep2-title">a）消费总额分布</div>
+                    <div class="seg-sub-dep2-content"></div>
+                </div>
+                <div class="seg-sub-content">
+                    <div class="seg-sub-dep2-title">b）最后一次消费时间分布</div>
+                    <div class="seg-sub-dep2-content"></div>
+                </div>
+                <div class="seg-sub-content">
+                    <div class="seg-sub-dep2-title">c）最后一次消费金额分布</div>
+                    <div class="seg-sub-dep2-content"></div>
+                </div>
+                <div class="seg-sub-content">
+                    <div class="seg-sub-dep2-title">d）最后一次消费点分布</div>
+                    <div class="seg-sub-dep2-content"></div>
+                </div>
+            </div>
+
+            <div class="seg-sub-container">
+                <div class="seg-sub-title">1、登陆行为</div>
+                <div class="seg-sub-content">
+                    <div class="seg-sub-dep2-title">a）最后一次登陆时间</div>
+                    <div class="seg-sub-dep2-content"></div>
+                </div>
+                <div class="seg-sub-content">
+                    <div class="seg-sub-dep2-title">b）流失前的登录活跃行为</div>
+                    <div class="seg-sub-dep2-content">
+
+                        <div class="seg-sub-dep3-title">付费账号流失前登陆活跃行为</div>
+                        <div class="seg-sub-dep3-content"></div>
+                    </div>
+                </div>
+                <div class="seg-sub-content">
+                    <div class="seg-sub-dep2-title">c）流失前在线时长</div>
+                    <div class="seg-sub-dep2-content">
+
+                        <div class="seg-sub-dep3-title">付费账号流失前在线时长行为</div>
+                        <div class="seg-sub-dep3-content"></div>
+                    </div>
+                </div>
+                <div class="seg-sub-content">
+                    <div class="seg-sub-dep2-title">d）流失前最后一个功能</div>
+                    <div class="seg-sub-dep2-content">
+
+                        <div class="seg-sub-dep3-title">付费账号流失前在线时长行为</div>
+                        <div class="seg-sub-dep3-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
 <script src="../bower_components/angular/angular.js"></script>
@@ -62,7 +225,7 @@
 
     require.config({
         paths: {
-            echarts: './bower_components/echarts'
+            echarts: '../bower_components/echarts'
         }
     });
 

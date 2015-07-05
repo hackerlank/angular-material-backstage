@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head data-gwd-animation-mode="proMode">
+    <meta charset="UTF-8">
+    <title lang="en">Battle of Balls</title>
+
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+        }
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei","微软雅黑" !important;
+            font-size: 21px;
+            color: #999999;
+            background: url("bg.jpg") no-repeat center center fixed;
+            background: url("bg-ie.jpg") no-repeat center center fixed\9;
+            *background: url("bg-ie.jpg") no-repeat center center fixed\9;
+            _background: url("bg-ie.jpg") no-repeat center center fixed\9;
+            background-size: cover;
+
+            /*overflow: hidden;*/
+        }
+        img {
+            border: 0;
+            margin: 0;
+            padding: 0;
+            max-width: 100%;
+            height: auto;
+        }
+        .main-container {
+            height: 100%;
+            overflow: hidden;
+        }
+        .main-container .logo-img {
+            /*width: auto;
+            min-width:200px;
+            max-width:15%;*/
+            /*min-width: 145px;
+            width: 11%;
+            max-width: 205px;*/
+            /*width: 15%;*/
+
+        }
+        .logo {
+            padding-top: 50px;
+        }
+        .description {
+            margin-top: 60px;
+        }
+        .sys-container {
+            margin-top: 30px;
+            position: relative;
+            width: 100%;
+        }
+
+        .footer1 {
+            position: fixed;
+            bottom: 145px;
+            width: 100%;
+            font-size: 12px;
+        }
+        .footer2 {
+            position: fixed;
+            bottom: 130px;
+            width: 100%;
+            font-size: 12px;
+        }
+
+        .platform-logo {
+            width: 100px;
+        }
+
+        .ml50 {
+            margin-left: 75px;
+        }
+
+
+        /*底部*/
+        .footer{ position: fixed; width: 100%; height:113px; bottom: 0px; padding-top:14px; background-color:#EFE;}
+        .footer #bottom{position:relative;width:900px; margin: 0 auto; height:113px; background:url(giantlogo.png) left 36% no-repeat;}
+        .footer #bottom a{padding:0px 4px;}
+        .footer #bottom a:link{color:#999999; padding:0px 4px;}
+        .footer #bottom a:visited{color:#999999; padding:0px 4px;}
+        .footer #bottom .botp1{ position:absolute; left:167px; top:13px; font-size:12px;}
+        .footer #bottom .botp2{ position:absolute; right:84px; top:13px; font-size:12px;}
+        .footer #bottom .botp3{ position:absolute; left:170px; top:41px; font-size:12px;}
+
+        .hidden{display: none;}
+
+        @media screen and (max-width: 600px) {
+            body {
+                font-size: 16px;
+            }
+            .main-container .logo-img {
+                width: 150px;
+            }
+            .platform-logo {
+                width: 75px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <div class="logo"><img id="qiuqiulogo" lang="en" class="logo-img" src="LOGO-en.png"></div>
+    <div class="description">
+        <p>
+            <span lang="en">This is an ultra fun, cute and challenging casual game</span><span lang="en">allowing players all over the world to compete with one another in time.</span><br/><span lang="en">Join right now.</span>
+        </p>
+    </div>
+    <div class="sys-container">
+            <a href="ios" target="_blank" onclick="loadIOS();return false;"><img src="ios.png" class="platform-logo"></a>
+            <a href="###" target="_blank" onclick="loadAndroid();return false;" class="ml50"><img class="platform-logo" src="android.png"></a>
+    </div>
+
+
+    <div class="footer1" lang="en">
+        Ver.1.1
+    </div>
+    <div class="footer2" lang="en">
+        Last Update: 2015/06/02
+    </div>
+
+
+    <div class="footer">
+        <div id="bottom"><p class="botp1"><a href="http://www.ga-me.com/cn/about_us.php" target="_blank" lang="en">About Us</a>| <a
+                href="http://www.ztgame.com/html/clause.html" target="_blank" lang="en">Products</a>|<a
+                href="http://www.ztgame.com/swhz.html" target="_blank" lang="en">Investor relations</a>|<a
+                href="http://www.ga-me.com/cn/contact_details.php" target="_blank" lang="en">Contact Us</a></p>
+
+            <p class="botp2" lang="en">© 2013 Giant Interactive Group, Inc. All Rights Reserved.</p>
+
+            <p id="botp3" class="botp3"><span lang="en">.</span>&nbsp;&nbsp;&nbsp;&nbsp;<span lang="en">..</span></p></div>
+    </div>
+
+
+</div>
+
+<!--<span class="hidden" id="logo_link" lang="en">LOGO-en.png</span>-->
+<span class="hidden" id="ios_link" lang="en">https://itunes.apple.com/us/app/qiu-qiu-da-zuo-zhan-battle/id996509117?l=zh&ls=1&mt=8</span>
+<span class="hidden" id="android_link" lang="en">https://play.google.com/store/apps/details?id=com.ztgame.bob</span>
+</body>
+<script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="jquery-lang.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var language = navigator.language || navigator.userLanguage;
+        var langArr = language.split("-");
+        if (("zh" == langArr[0] && "zh-cn" != language.toLowerCase()) || "zh" != langArr[0]) {
+            language = langArr[0];
+        } else {
+            if (2 == langArr.length && "zh" == langArr[0]) {
+                language = langArr[0] + langArr[1].toLowerCase();
+            }
+        }
+
+        window.lang.change(language);
+
+        if ("zhcn" != language) {
+            $("#botp3").html("");
+        }
+    });
+
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?9258cd46aa3712e6b764eb234efe5277";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+
+
+    var lang = new Lang('en');
+    for (var lk in isoLangs) {
+        lang.dynamic(lk, 'langpack/' + lk + '.json');
+    }
+
+
+    function is_weixin() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    var isWeixin = is_weixin();
+    var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight;
+
+    function loadHtml() {
+        var div = document.createElement('div');
+        div.id = 'weixin-tip';
+        div.innerHTML = '<p><img src="live_weixin.png" style="width: 100%;" alt="微信打开"/></p>';
+        document.body.appendChild(div);
+    }
+
+    function loadStyleText(cssText) {
+        var style = document.createElement('style');
+        style.rel = 'stylesheet';
+        style.type = 'text/css';
+        try {
+            style.appendChild(document.createTextNode(cssText));
+        } catch (e) {
+            style.styleSheet.cssText = cssText; //ie9以下
+        }
+        var head = document.getElementsByTagName("head")[0]; //head标签之间加上style样式
+        head.appendChild(style);
+    }
+
+    var cssText = "#weixin-tip{position: fixed; left:0; top:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80); width: 100%; height:100%; z-index: 100;} #weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;}";
+
+    function loadAndroid() {
+        if (isWeixin) {
+            loadHtml();
+            loadStyleText(cssText);
+        } else {
+            var android_link = $("#android_link").html();
+            window.location.href = android_link;
+        }
+    }
+
+    function loadIOS() {
+        if (isWeixin) {
+            loadHtml();
+            loadStyleText(cssText);
+        } else {
+            var ios_link = $("#ios_link").html();
+            window.location.href = ios_link;
+        }
+    }
+
+</script>
+</html>

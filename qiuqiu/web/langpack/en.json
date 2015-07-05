@@ -1,0 +1,33 @@
+﻿{
+	"token": {
+		"qiuqiu":"Battle of Balls",
+		"t1":"This is an ultra fun, cute and challenging casual game",
+	  	"t1-1":"allowing players all over the world to compete with one another in  time. ",
+	  	"t1-2":"Join right now.",
+		"t3":"Ver.1.1",
+	  	"t3-1":"Size: 24MB",
+		"t4":"Last Update: 2015/06/02",
+		"t5":"About Us",
+		"t6":"Products",
+		"t7":"Investor relations",
+		"t8":"Contact Us",
+		"t9":"© 2013 Giant Interactive Group, Inc. All Rights Reserved.",
+		"t10":"Business license of the Ministry of culture:Shanghai Net article[2011]0494-054；ICP：Shanghai B2-20050107；",
+	  	"t11":"Internet publishing license: new network card (Shanghai)",
+		"t12":"My username",
+		"t13":"World ranking",
+		"t14":"I was in the last match......",
+		"t15":"Round position",
+		"t16":"Phagocytosis",
+		"t17":"Maximum weight",
+		"t18":"This is a game that can be used in real time with global players to fight",
+		"t19":"Come and play with me.",
+		"t20":"Click the following button to download or apply directly to the store search",
+		"t21":"\"Battle of Balls\"",
+	  	"https://itunes.apple.com/us/app/qiu-qiu-da-zuo-zhan-battle/id996509117?l=zh&ls=1&mt=8":"https://itunes.apple.com/us/app/qiu-qiu-da-zuo-zhan-battle/id996509117?l=zh&ls=1&mt=8",
+	  	"android.apk":"android.apk"
+	},
+	"regex": [
+
+	]
+}

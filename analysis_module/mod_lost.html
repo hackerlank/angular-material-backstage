@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="../bower_components/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="../assets/analysis_module/common.css"/>
     <link rel="stylesheet" href="../assets/analysis_module/mod_lost.css"/>
+    <link rel="stylesheet" href="../bower_components/pickadate/themes/default.css"/>
+    <link rel="stylesheet" href="../bower_components/pickadate/themes/default.date.css"/>
+    <link rel="stylesheet" href="../bower_components/pickadate/themes/default.time.css"/>
 </head>
 
 <body ng-app="AnalysisModules" layout="column" ng-controller="ModController as mc">
@@ -24,15 +27,9 @@
 <!-- 顶部导航条 ↓ -->
 <md-toolbar layout="column" class="mod-head-nav" md-is-locked-open>
     <md-content layout="row" class="mod-head-nav-content">
-        <!-- 菜单按钮 ↓ -->
-        <md-button class="menu" hide-gt-sm ng-click="mc.toggleList($event)" aria-label="Show Game List">
-            <md-icon md-svg-icon="menu"></md-icon>
-        </md-button>
-        <!-- 菜单按钮 ↑ -->
-
         <!-- logo ↓ -->
         <md-button class="md-primary game-giant-logo" ng-click="mc.selectTotal()" aria-label="select total">
-            <img src="../assets/images/giant_logo.png" class="toolbar_logo">
+            <img src="../assets/images/giant_logo_analysis.png" class="toolbar_logo-analysis">
         </md-button>
         <!-- logo ↑ -->
 
@@ -51,86 +48,170 @@
 
 <div class="main-container">
     <div class="mod-subheader">
-        <strong>引言：</strong>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        <div class="right-content">
-            尽可能找出早期用户何时何地流失，及尽可能的找出流失原因。
+        <div class="fl">
+            <span>
+                评分图例：
+                <span><img src="../assets/images/S.png" class="rank-img-small" /><span class="fz11 ml2">优</span></span>
+                <span class="ml10"><img src="../assets/images/A.png" class="rank-img-small" /><span class="fz11 ml2">良</span></span>
+                <span class="ml10"><img src="../assets/images/B.png" class="rank-img-small" /><span class="fz11 ml2">中</span></span>
+                <span class="ml10"><img src="../assets/images/C.png" class="rank-img-small" /><span class="fz11 ml2">需注意</span></span>
+            </span>
+        </div>
+        <div class="fr">
+            <span>
+                总等级评分：
+                <span><img src="../assets/images/A.png" class="rank-img-large" /></span>
+            </span>
         </div>
     </div>
 
     <div class="content">
-        <div class="seg-title">
-            概况：各数据点解读
-        </div>
-        <md-content>
-            <md-tabs md-dynamic-height md-border-bottom="">
-                <md-tab label="<div class='p10'><span class='f16'>各类转化率</span><br/><span class='f12'>hakuna matata</span></div>">
-                    <md-content class="md-padding">
-                        <h1 class="md-display-2">各类转化率</h1>
-                        <p>常规的区分维度是：统计时间、流失率计算标准、地域、用户来源渠道平台、用户的手机机型、用户的选取范、是否付费、付费金额段</p>
-                    </md-content>
-                </md-tab>
-                <md-tab label="<div class='p10'><span class='f16'>整体流失率</span><br/><span class='f12'>hakuna matata</span></div>">
-                    <md-content class="md-padding">
-                        <h1 class="md-display-2">整体流失率</h1>
-                        <p>常规的区分维度是：统计时间、流失率计算标准、地域、用户来源渠道平台、用户的手机机型、用户的选取范、是否付费、付费金额段</p>
-                        <p>在新用户等级流失率的计算时，可考虑区分是否付费、不同付费段用户的流失率</p>
-                    </md-content>
-                </md-tab>
-                <md-tab label="<div class='p10'><span class='f16'>等级(段)流失率</span><br/><span class='f12'>hakuna matata</span></div>">
-                    <md-content class="md-padding">
-                        <h1 class="md-display-2">等级(段)流失率</h1>
-                        <p>
-                            常规的区分维度是：统计时间、流失率计算标准、地域、用户来源渠道平台、用户的手机机型、用户的选取范、是否付费、付费金额段
-                            <br/>
-                            在新用户等级流失率的计算时，可考虑区分是否付费、不同付费段用户的流失率
-                        </p>
-                    </md-content>
-                </md-tab>
-                <md-tab label="<div class='p10'><span class='f16'>任务/关卡完成率</span><br/><span class='f12'>hakuna matata</span></div>">
-                    <md-content class="md-padding">
-                        <h1 class="md-display-2">任务/关卡完成率</h1>
-                        <p>
-                            常规的区分维度是：统计时间、流失率计算标准、地域、用户来源渠道平台、用户的手机机型、用户的选取范、是否付费、付费金额段
-                            <br/>
-                            在新用户等级流失率的计算时，可考虑区分是否付费、不同付费段用户的流失率
-                        </p>
-                    </md-content>
-                </md-tab>
-                <md-tab label="<div class='p10'><span class='f16'>地图滞留率/流失率</span><br/><span class='f12'>hakuna matata</span></div>">
-                    <md-content class="md-padding">
-                        <h1 class="md-display-2">地图滞留率/流失率</h1>
-                        <p>
-                            常规的区分维度是：统计时间、流失率计算标准、地域、用户来源渠道平台、用户的手机机型、用户的选取范、是否付费、付费金额段
-                            <br/>
-                            在新用户等级流失率的计算时，可考虑区分是否付费、不同付费段用户的流失率
-                        </p>
-                    </md-content>
-                </md-tab>
-                <md-tab label="<div class='p10'><span class='f16'>在线时长分布</span><br/><span class='f12'>hakuna matata</span></div>">
-                    <md-content class="md-padding">
-                        <h1 class="md-display-2">在线时长分布</h1>
-                        <p>
-                            常规的区分维度是：统计时间、流失率计算标准、地域、用户来源渠道平台、用户的手机机型、用户的选取范、是否付费、付费金额段
-                            <br/>
-                            在新用户等级流失率的计算时，可考虑区分是否付费、不同付费段用户的流失率
-                        </p>
-                    </md-content>
-                </md-tab>
-                <md-tab label="<div class='p10'><span class='f16'>职业分布</span><br/><span class='f12'>hakuna matata</span></div>">
-                    <md-content class="md-padding">
-                        <h1 class="md-display-2">职业分布</h1>
-                        <p>
-                            常规的区分维度是：统计时间、流失率计算标准、地域、用户来源渠道平台、用户的手机机型、用户的选取范、是否付费、付费金额段
-                            <br/>
-                            在新用户等级流失率的计算时，可考虑区分是否付费、不同付费段用户的流失率
-                        </p>
-                    </md-content>
-                </md-tab>
-            </md-tabs>
-        </md-content>
+        <md-card class="card">
+            <md-subheader class="card-header">概况：各数据点解读</md-subheader>
+            <md-card-content class="card-content">
+                <md-tabs md-dynamic-height md-border-bottom="">
+                    <md-tab class="tab-header" label="<div class='tab-header-label'><img id='' src='../assets/images/S.png' class='rank-img-medium' /><div class='f16 mt10'>各类转化率</div></div>">
+                        <md-content class="card-content-padding">
+                            <h1 class="md-display-2">各类转化率</h1>
+                            <p>比较公司A类产品：</p>
+                            <p>某个维度下的转化率较高：x%，高出A类产品平均值m%</p>
+                            <p>某个维度下的转化率较低：y%，低于A类产品平均值n%</p>
+                            <p>比较公司xx类产品：</p>
+                            <p>
+                                <div style="position: relative; height: 50%; width: 80%;">
+                                    <input type="text" pick-a-date="curDate" />
+                                </div>
+                                <div class="echart-container" id="npointLost" layout="row" layout-align="center center">
+                                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                </div>
+                            </p>
+                            <p class="chart-desc">论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......</p>
+                        </md-content>
+                    </md-tab>
+                    <md-tab call-draw-overall-lost-chart label="<div class='tab-header-label'><img id='' src='../assets/images/C.png' class='rank-img-medium' /><div class='f16 mt10'>整体流失率</div></div>">
+                        <md-content class="md-padding">
+                            <h1 class="md-display-2">整体流失率</h1>
+                            <p>比较公司A类产品：</p>
+                            <p>某个维度下的整体流失率较高：x%，高出A类产品平均值m%</p>
+                            <p>某个维度下的整体流失率较低：y%，低于A类产品平均值n%</p>
+                            <p>比较公司xx类产品：</p>
+                            <p>
+                                <div class="echart-container" id="overallLost" layout="row" layout-align="center center">
+                                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                </div>
+                            </p>
+                            <p class="chart-desc">论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......</p>
+                        </md-content>
+                    </md-tab>
+                    <md-tab call-draw-lv-lost-chart label="<div class='tab-header-label'><img id='' src='../assets/images/B.png' class='rank-img-medium' /><div class='f16 mt10'>等级(段)流失率</div></div>">
+                        <md-content class="md-padding">
+                            <h1 class="md-display-2">等级(段)流失率</h1>
+                            <p>(示例文字：)</p>
+                            <p>比较公司A类产品：</p>
+                            <p>某个维度下的等级(段)流失率较高：x%，高出A类产品平均值m%</p>
+                            <p>某个维度下的等级(段)流失率较低：y%，低于A类产品平均值n%</p>
+                            <p>比较公司xx类产品：</p>
+                            <p>
+                                <div class="echart-container" id="lvLost" layout="row" layout-align="center center">
+                                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                </div>
+                            </p>
+                            <p class="chart-desc">论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......</p>
+
+                            <h2 class="md-display-3">核心账号等级流失率</h2>
+                            <p>
+                                <div class="echart-container" id="coreLvLost" layout="row" layout-align="center center">
+                                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                </div>
+                            </p>
+                            <p class="chart-desc">论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......</p>
+                        </md-content>
+                    </md-tab>
+                    <md-tab call-draw-task-lost-chart label="<div class='tab-header-label'><img id='' src='../assets/images/A.png' class='rank-img-medium' /><div class='f16 mt10'>任务/关卡完成率</div></div>">
+                        <md-content class="md-padding">
+                            <h1 class="md-display-2">任务/关卡完成率</h1>
+                            <p>(示例文字：)</p>
+                            <p>比较公司A类产品：</p>
+                            <p>某个维度下的任务/关卡完成率较高：x%，高出A类产品平均值m%</p>
+                            <p>某个维度下的任务/关卡完成率较低：y%，低于A类产品平均值n%</p>
+                            <p>比较公司xx类产品：</p>
+                            <p>
+                                <div class="echart-container" id="taskLost" layout="row" layout-align="center center">
+                                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                </div>
+                            </p>
+                            <p class="chart-desc">论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......</p>
+                        </md-content>
+                    </md-tab>
+                    <md-tab call-draw-map-lost-chart label="<div class='tab-header-label'><img id='' src='../assets/images/B.png' class='rank-img-medium' /><div class='f16 mt10'>地图滞留率/流失率</div></div>">
+                        <md-content class="md-padding">
+                            <h1 class="md-display-2">地图滞留率/流失率</h1>
+                            <p>(示例文字：)</p>
+                            <p>比较公司A类产品：</p>
+                            <p>某个维度下的地图滞留率/流失率较高：x%，高出A类产品平均值m%</p>
+                            <p>某个维度下的地图滞留率/流失率较低：y%，低于A类产品平均值n%</p>
+                            <p>比较公司xx类产品：</p>
+                            <p>
+                                <div class="echart-container" id="mapLost" layout="row" layout-align="center center">
+                                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                </div>
+                            </p>
+                            <p class="chart-desc">论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......</p>
+                        </md-content>
+                    </md-tab>
+                    <md-tab call-draw-ol-dist-chart label="<div class='tab-header-label'><img id='' src='../assets/images/S.png' class='rank-img-medium' /><div class='f16 mt10'>在线时长分布</div></div>">
+                        <md-content class="md-padding">
+                            <h1 class="md-display-2">在线时长分布</h1>
+                            <p>(示例文字：)</p>
+                            <p>比较公司A类产品：</p>
+                            <p>某个维度下的在线时长分布较高：x%，高出A类产品平均值m%</p>
+                            <p>某个维度下的在线时长分布较低：y%，低于A类产品平均值n%</p>
+                            <p>比较公司xx类产品：</p>
+                            <p>
+                                <div class="echart-container-half">
+                                    <div class="echart-container" id="olDist2" layout="row" layout-align="center center">
+                                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                    </div>
+                                </div>
+                                <div class="echart-container-half">
+                                    <div class="echart-container" id="olDist1" layout="row" layout-align="center center">
+                                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                    </div>
+                                </div>
+                            </p>
+                            <p class="chart-desc">论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......</p>
+                        </md-content>
+                    </md-tab>
+                    <md-tab call-draw-job-dist-chart label="<div class='tab-header-label'><img id='' src='../assets/images/C.png' class='rank-img-medium' /><div class='f16 mt10'>职业分布</div></div>">
+                        <md-content class="md-padding">
+                            <h1 class="md-display-2">职业分布</h1>
+                            <p>(示例文字：)</p>
+                            <p>比较公司A类产品：</p>
+                            <p>某个维度下的职业分布较高：x%，高出A类产品平均值m%</p>
+                            <p>某个维度下的职业分布较低：y%，低于A类产品平均值n%</p>
+                            <p>比较公司xx类产品：</p>
+                            <p>
+                                <div class="echart-container-half">
+                                    <div class="echart-container" id="jobDist2" layout="row" layout-align="center center">
+                                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                    </div>
+                                </div>
+                                <div class="echart-container-half">
+                                    <div class="echart-container" id="jobDist1" layout="row" layout-align="center center">
+                                        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                                    </div>
+                                </div>
+                            </p>
+                            <p class="chart-desc">论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......</p>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-card-content>
+        </md-card>
 
 
-        <div class="seg-title">
+
+        <!--<div class="seg-title">
             数据需求内容
         </div>
         <div class="seg-content">
@@ -199,28 +280,79 @@
                     <div class="seg-conclusion"><p><strong>论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......论述文字.......</strong></p></div>
                 </div>
             </div>
-        </div>
+        </div>-->
+
+
     </div>
 
     <div class="content">
-        <div class="seg-title">
-            流逝用户列表
-        </div>
-        <div class="seg-content">
-
-        </div>
+        <md-card class="card">
+            <md-subheader class="card-header">流逝用户列表</md-subheader>
+            <md-card-content class="card-content-extra">
+                <md-tabs md-dynamic-height md-border-bottom="">
+                    <md-tab label="DATA SEGMENT">
+                        <md-content class="card-content-padding">
+                            <h1 class="md-display-2">DATA SEGMENT</h1>
+                            <p>比较公司A类产品：</p>
+                            <p>某个维度下的转化率较高：x%，高出A类产品平均值m%</p>
+                            <p>某个维度下的转化率较低：y%，低于A类产品平均值n%</p>
+                            <p>比较公司xx类产品：</p>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-card-content>
+        </md-card>
     </div>
 
     <div class="content">
-        <div class="seg-title">
-            用户状态详情
-        </div>
-        <div class="seg-content">
-
-        </div>
+        <md-card class="card">
+            <md-subheader class="card-header">用户状态详情</md-subheader>
+            <md-card-content class="card-content-extra">
+                <md-tabs md-dynamic-height md-border-bottom="">
+                    <md-tab label="DATA SEGMENT">
+                        <md-content class="card-content-padding">
+                            <h1 class="md-display-2">DATA SEGMENT</h1>
+                            <p>比较公司A类产品：</p>
+                            <p>某个维度下的转化率较高：x%，高出A类产品平均值m%</p>
+                            <p>某个维度下的转化率较低：y%，低于A类产品平均值n%</p>
+                            <p>比较公司xx类产品：</p>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-card-content>
+        </md-card>
     </div>
 
     <div class="content">
+        <md-card class="card">
+            <md-subheader class="card-header">流失核心账号行为数据</md-subheader>
+            <md-card-content class="card-content-extra">
+                <md-tabs md-dynamic-height md-border-bottom="">
+                    <md-tab label="消费行为">
+                        <md-content class="card-content-padding">
+                            <h1 class="md-display-2">消费行为</h1>
+                            <p><h3>a）消费总额分布</h3></p>
+                            <p><h3>b）最后一次消费时间分布</h3></p>
+                            <p><h3>c）最后一次消费金额分布</h3></p>
+                            <p><h3>d）最后一次消费点分布</h3></p>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="登陆行为">
+                        <md-content class="card-content-padding">
+                            <h1 class="md-display-2">登陆行为</h1>
+                            <p><h3>a）最后一次登陆时间</h3></p>
+                            <p><h3>b）流失前的登录活跃行为</h3></p>
+                            <p><h3>c）流失前在线时长</h3></p>
+                            <p><h3>d）流失前最后一个功能</h3></p>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-card-content>
+        </md-card>
+    </div>
+
+
+    <!--<div class="content">
         <div class="seg-title">
             流失核心账号行为数据
         </div>
@@ -277,15 +409,20 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
 
 <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
-<script src="../bower_components/angular/angular.js"></script>
-<script src="../bower_components/angular-animate/angular-animate.js"></script>
-<script src="../bower_components/angular-aria/angular-aria.js"></script>
+<script type="text/javascript" src="../bower_components/pickadate/picker.js"></script>
+<script type="text/javascript" src="../bower_components/pickadate/picker.date.js"></script>
+<script type="text/javascript" src="../bower_components/pickadate/picker.time.js"></script>
+<script type="text/javascript" src="../bower_components/pickadate/date.js"></script>
+<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="../bower_components/angular-animate/angular-animate.js"></script>
+<script type="text/javascript" src="../bower_components/angular-aria/angular-aria.js"></script>
 <script type="text/javascript" src="../bower_components/angular-material/angular-material.js"></script>
-<script src="../bower_components/echarts/echarts.js"></script>
+<script type="text/javascript" src="../bower_components/echarts/echarts.js"></script>
+
 
 <script src="../src/modules/Modules.js"></script>
 <script src="../src/modules/ModController.js"></script>
@@ -326,6 +463,74 @@
                         .accentPalette('light-blue');
 
             });
+
+
+
+    // pick-a-date (attribute)
+    app.directive('pickADate', function () {
+        return {
+            restrict: "A",
+            scope: {
+                pickADate: '=',
+                minDate: '=',
+                maxDate: '=',
+                pickADateOptions: '='
+            },
+            link: function (scope, element, attrs) {
+                var options = myjquery.extend(scope.pickADateOptions || {}, {
+                    onSet: function (e) {
+                        if (scope.$$phase || scope.$root.$$phase) // we are coming from $watch or link setup
+                            return;
+                        var select = element.pickadate('picker').get('select'); // selected date
+                        scope.$apply(function () {
+                            if (e.hasOwnProperty('clear')) {
+                                scope.pickADate = null;
+                                return;
+                            }
+                            if (!scope.pickADate)
+                                scope.pickADate = new Date(0);
+                            scope.pickADate.setYear(select.obj.getFullYear());
+                            // Interesting: getYear returns only since 1900. Use getFullYear instead.
+                            // It took me half a day to figure that our. Ironically setYear()
+                            // (not setFullYear, duh) accepts the actual year A.D.
+                            // So as I got the $#%^ 114 and set it, guess what, I was transported to ancient Rome 114 A.D.
+                            // That's it I'm done being a programmer, I'd rather go serve Emperor Trajan as a sex slave.
+                            scope.pickADate.setMonth(select.obj.getMonth());
+                            scope.pickADate.setDate(select.obj.getDate());
+                        });
+                    },
+                    onClose: function () {
+                        element.blur();
+                    }
+                });
+                element.pickadate(options);
+                function updateValue(newValue) {
+                    if (newValue) {
+                        scope.pickADate = (newValue instanceof Date) ? newValue : new Date(newValue);
+                        // needs to be in milliseconds
+                        element.pickadate('picker').set('select', scope.pickADate.getTime());
+                    } else {
+                        element.pickadate('picker').clear();
+                        scope.pickADate = null;
+                    }
+                }
+                updateValue(scope.pickADate);
+                element.pickadate('picker').set('min', scope.minDate ? scope.minDate : false);
+                element.pickadate('picker').set('max', scope.maxDate ? scope.maxDate : false);
+                scope.$watch('pickADate', function (newValue, oldValue) {
+                    if (newValue == oldValue)
+                        return;
+                    updateValue(newValue);
+                }, true);
+                scope.$watch('minDate', function (newValue, oldValue) {
+                    element.pickadate('picker').set('min', newValue ? newValue : false);
+                }, true);
+                scope.$watch('maxDate', function (newValue, oldValue) {
+                    element.pickadate('picker').set('max', newValue ? newValue : false);
+                }, true);
+            }
+        };
+    });
 </script>
 </body>
 </html>

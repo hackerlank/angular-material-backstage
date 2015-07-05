@@ -8,7 +8,74 @@
         .controller('ModController', [
             'ModService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$scope', '$mdDialog', '$mdUtil', '$mdToast',
             ModController
-        ]);
+        ]).directive('callDrawOverallLostChart', function () {
+            return {
+                restrict: 'A',
+                link: function ($scope, element, attrs) {
+                    element.bind('click', function() {
+                        if (!$scope.IfCallDrawOverallLostChart) {
+                            $scope.drawOverallLost();
+                        }
+                    });
+                }
+            }
+        }).directive('callDrawLvLostChart', function () {
+            return {
+                restrict: 'A',
+                link: function ($scope, element, attrs) {
+                    element.bind('click', function() {
+                        if (!$scope.IfCallDrawLvLostChart) {
+                            setTimeout(function() {
+                                $scope.drawLvLost();
+                                $scope.drawCoreLvLost();
+                            }, 500);
+                        }
+                    });
+                }
+            }
+        }).directive('callDrawTaskLostChart', function () {
+            return {
+                restrict: 'A',
+                link: function ($scope, element, attrs) {
+                    element.bind('click', function() {
+
+                    });
+                }
+            }
+        }).directive('callDrawMapLostChart', function () {
+            return {
+                restrict: 'A',
+                link: function ($scope, element, attrs) {
+                    element.bind('click', function() {
+
+                    });
+                }
+            }
+        }).directive('callDrawOlDistChart', function () {
+            return {
+                restrict: 'A',
+                link: function ($scope, element, attrs) {
+                    element.bind('click', function() {
+                        if (!$scope.IfCallDrawOlDistChart) {
+                            $scope.drawOlDist1();
+                            $scope.drawOlDist2();
+                        }
+                    });
+                }
+            }
+        }).directive('callDrawJobDistChart', function () {
+            return {
+                restrict: 'A',
+                link: function ($scope, element, attrs) {
+                    element.bind('click', function() {
+                        if (!$scope.IfCallDrawJobDistChart) {
+                            $scope.drawJobDist1();
+                            $scope.drawJobDist2();
+                        }
+                    });
+                }
+            }
+        });
 
 
     function ModController(gameService, $mdSidenav, $mdBottomSheet, $log, $q, $scope, $mdDialog, $mdUtil, $mdToast) {
@@ -17,6 +84,19 @@
         // controller params ↓
         // 初始化请求参数
         self.gid = 0;                       //默认全部
+
+        $scope.IfCallDrawOverallLostChart = false;
+        $scope.IfCallDrawLvLostChart = false;
+        $scope.IfCallDrawTaskLostChart = false;
+        $scope.IfCallDrawMapLostChart = false;
+        $scope.IfCallDrawOlDistChart = false;
+        $scope.IfCallDrawJobDistChart = false;
+
+        $scope.curDate = '';
+        $scope.newDate = function() {
+            return new Date();
+        };
+
 
 
         function reloadParam(act) {
@@ -118,8 +198,7 @@
             );
         }
 
-        drawOverallLost();
-        function drawOverallLost() {
+        $scope.drawOverallLost = function() {
             var option = {
                 tooltip : {
                     trigger: 'axis'
@@ -198,13 +277,13 @@
                 function (ec, theme) {
                     var myChart = ec.init(document.getElementById('overallLost'), theme);
                     myChart.setOption(option);
+                    $scope.IfCallDrawOverallLostChart = true;
                 }
             );
         }
 
 
-        drawLvLost();
-        function drawLvLost() {
+        $scope.drawLvLost = function() {
             var xdata = [];
             var series1 = [];
             var series2 = [];
@@ -442,12 +521,12 @@
                 function (ec, theme) {
                     var myChart = ec.init(document.getElementById('lvLost'), theme);
                     myChart.setOption(option);
+                    $scope.IfCallDrawLvLostChart = true;
                 }
             );
         }
 
-        drawCoreLvLost();
-        function drawCoreLvLost() {
+        $scope.drawCoreLvLost = function() {
             var xdata = [];
             var series1 = [];
             var series2 = [];
@@ -635,12 +714,13 @@
                 function (ec, theme) {
                     var myChart = ec.init(document.getElementById('coreLvLost'), theme);
                     myChart.setOption(option);
+                    $scope.IfCallDrawLvLostChart = true;
                 }
             );
         }
 
-        drawOlDist1();
-        function drawOlDist1() {
+
+        $scope.drawOlDist1 = function() {
             var option = {
                 tooltip : {
                     trigger: 'item',
@@ -695,12 +775,12 @@
                 function (ec, theme) {
                     var myChart = ec.init(document.getElementById('olDist1'), theme);
                     myChart.setOption(option);
+                    $scope.IfCallDrawOlDistChart = true;
                 }
             );
         }
 
-        drawOlDist2();
-        function drawOlDist2() {
+        $scope.drawOlDist2 = function() {
             var option = {
                 tooltip : {
                     trigger: 'axis'
@@ -779,12 +859,13 @@
                 function (ec, theme) {
                     var myChart = ec.init(document.getElementById('olDist2'), theme);
                     myChart.setOption(option);
+                    $scope.IfCallDrawOlDistChart = true;
                 }
             );
         }
 
-        drawJobDist1();
-        function drawJobDist1() {
+
+        $scope.drawJobDist1 = function() {
             var option = {
                 tooltip : {
                     trigger: 'axis'
@@ -837,13 +918,13 @@
                 function (ec, theme) {
                     var myChart = ec.init(document.getElementById('jobDist1'), theme);
                     myChart.setOption(option);
+                    $scope.IfCallDrawJobDistChart = true;
                 }
             );
         }
 
 
-        drawJobDist2();
-        function drawJobDist2() {
+        $scope.drawJobDist2 = function() {
             var option = {
                 tooltip : {
                     trigger: 'axis'
@@ -922,6 +1003,7 @@
                 function (ec, theme) {
                     var myChart = ec.init(document.getElementById('jobDist2'), theme);
                     myChart.setOption(option);
+                    $scope.IfCallDrawJobDistChart = true;
                 }
             );
         }

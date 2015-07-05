@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://www.battleofballs.com/index_PC.html -->
+<html><head data-gwd-animation-mode="proMode"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title lang="en">球球大作战</title>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?95d909a7103f943a56124edd39930d1f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+        }
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei","微软雅黑" !important;
+            font-size: 21px;
+            color: #999999;
+            background: url("bg.jpg") no-repeat center center fixed;
+            background: url("bg-ie.jpg") no-repeat center center fixed\9;
+            *background: url("bg-ie.jpg") no-repeat center center fixed\9;
+            _background: url("bg-ie.jpg") no-repeat center center fixed\9;
+            background-size: cover;
+
+            /*overflow: hidden;*/
+        }
+        img {
+            border: 0;
+            margin: 0;
+            padding: 0;
+            max-width: 100%;
+            height: auto;
+        }
+        .main-container {
+            height: 100%;
+            overflow: hidden;
+        }
+        .main-container .logo-img {
+            width: auto;
+            min-width:200px;
+            max-width:15%;
+        }
+        .logo {
+            padding-top: 50px;
+        }
+        .description {
+            margin-top: 60px;
+        }
+        .sys-container {
+            margin-top: 30px;
+            position: relative;
+            width: 100%;
+        }
+
+        .footer1 {
+            position: fixed;
+            bottom: 145px;
+            width: 100%;
+            font-size: 12px;
+        }
+        .footer2 {
+            position: fixed;
+            bottom: 130px;
+            width: 100%;
+            font-size: 12px;
+        }
+
+        .platform-logo {
+            width: 100px;
+        }
+
+        .ml50 {
+            margin-left: 50px;
+        }
+
+
+        /*底部*/
+
+        .footer{ position: fixed; width: 100%; height:113px; bottom: 0px; padding-top:14px; background-color:#EFE;}
+        .footer #bottom{position:relative;width:720px; margin: 0 auto; height:113px; background:url(popLogo.png) left 41% no-repeat; background-size: 150px;}
+        .footer #bottom a{padding:0px 4px;}
+        .footer #bottom a:link{color:#999999; padding:0px 4px;}
+        .footer #bottom a:visited{color:#999999; padding:0px 4px;}
+        .footer #bottom .botp1{ position:absolute; left:186px; top:8px; font-size:12px; text-align: left;}
+		.footer #bottom .botp1spec {font-size: 20px;}
+        .footer #bottom .botp2{ position:absolute; left:170px;/*right:65px;*/ top:28px; font-size:12px;}
+        .footer #bottom .botp3{ position:absolute; left:170px; top:50px; font-size:12px;}
+
+        .hidden{display: none;}
+
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <div class="logo"><img class="logo-img" src="./LOGO.png"></div>
+    <div class="description">
+        <p>
+            <span lang="en">这是一款超好玩，超萌酷，超有挑战性，</span><span lang="en">可与全球玩家实时对战的休闲游戏。</span><br><span lang="en">快来挑战极限吧！</span>
+        </p>
+    </div>
+    <div class="sys-container">
+            <a href="http://www.battleofballs.com/ios" target="_blank" onclick="loadIOS();return false;"><img src="./ios.png" class="platform-logo"></a>
+            <a href="http://www.battleofballs.com/index_PC.html###" target="_blank" onclick="loadAndroid();return false;"><img class="ml50 platform-logo" src="./android.png"></a>
+    </div>
+
+
+    <div class="footer1" lang="en">
+        当前版本号：V2.4.1
+    </div>
+    <div class="footer2" lang="en">
+        更新时间：2015/06/24
+    </div>
+
+
+    <div class="footer">
+        <div id="bottom"><p class="botp1"><span class="botp1spec">我们是superpop工作室</span>
+            <br/>我们是一群带着对梦想追求的人，我们追求super不同的人生。
+            <br/>《球球大作战》是我们的第一款休闲手机游戏，我们希望它super popular，super bob!
+        </p>
+    </div>
+</div>
+
+
+<span class="hidden" id="ios_link" lang="en">https://itunes.apple.com/us/app/qiu-qiu-da-zuo-zhan-battle/id996509117?l=zh&amp;ls=1&amp;mt=8</span>
+<span class="hidden" id="android_link" lang="en">http://res.battleofballs.com/bob.apk</span>
+
+<script type="text/javascript" src="./jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+
+    function is_weixin() {
+        var ua = navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == "micromessenger") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    var isWeixin = is_weixin();
+    var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight : document.documentElement.clientHeight;
+
+    function loadHtml() {
+        var div = document.createElement('div');
+        div.id = 'weixin-tip';
+        div.innerHTML = '<p><img src="live_weixin.png" style="width: 100%;" alt="微信打开"/></p>';
+        document.body.appendChild(div);
+    }
+
+    function loadStyleText(cssText) {
+        var style = document.createElement('style');
+        style.rel = 'stylesheet';
+        style.type = 'text/css';
+        try {
+            style.appendChild(document.createTextNode(cssText));
+        } catch (e) {
+            style.styleSheet.cssText = cssText; //ie9以下
+        }
+        var head = document.getElementsByTagName("head")[0]; //head标签之间加上style样式
+        head.appendChild(style);
+    }
+
+    var cssText = "#weixin-tip{position: fixed; left:0; top:0; background: rgba(0,0,0,0.8); filter:alpha(opacity=80); width: 100%; height:100%; z-index: 100;} #weixin-tip p{text-align: center; margin-top: 10%; padding:0 5%;}";
+
+    function loadAndroid() {
+        if (isWeixin) {
+            loadHtml();
+            loadStyleText(cssText);
+        } else {
+            var android_link = $("#android_link").html();
+            window.location.href = android_link;
+        }
+    }
+
+    function loadIOS() {
+        if (isWeixin) {
+            loadHtml();
+            loadStyleText(cssText);
+        } else {
+            var ios_link = $("#ios_link").html();
+            window.location.href = ios_link;
+        }
+    }
+
+</script>
+
+</body></html>

@@ -9194,7 +9194,8 @@ jQuery.noConflict = function( deep ) {
 // (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
 // and CommonJS for browser emulators (#13566)
 if ( typeof noGlobal === strundefined ) {
-	window.myjquery /*= window.$*/ = jQuery;
+	//window.myjquery /*= window.$*/ = jQuery;
+	window.jQuery = window.$ = jQuery;
 }
 
 
@@ -9203,3 +9204,6 @@ if ( typeof noGlobal === strundefined ) {
 return jQuery;
 
 }));
+
+
+myjquery = jQuery.noConflict();
